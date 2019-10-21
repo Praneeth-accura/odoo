@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--mail settings view-->
+    <record id="mail_settings_form_view" model="ir.ui.view">
+        <field name="name">inventory.reorders.mail.form</field>
+        <field name="model">inventory.reorders.mail</field>
+        <field name="arch" type="xml">
+            <form string="Mail Settings Form">
+                <sheet>
+                    <group>
+                        <fied name="name" invisibel="1"/>
+                        <field name="employee_ids" widget="many2many_tags"/>
+                        <field name="mail_addresses" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mail_settings_tree_view" model="ir.ui.view">
+        <field name="name">inventory.reorders.mail.tree</field>
+        <field name="model">inventory.reorders.mail</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--mail settings action -->
+    <record id="mail_settings_action" model="ir.actions.act_window">
+        <field name="name">Mail Settings</field>
+        <field name="res_model">inventory.reorders.mail</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a new Mail Setting
+          </p>
+        </field>
+    </record>
+
+    <!--mail settings menu-->
+    <menuitem
+            id="menu_mail_settings"
+            name="Mail Settings"
+            parent="stock.menu_stock_config_settings"
+            action="mail_settings_action"
+            sequence="8"
+            groups="base.group_erp_manager"/>
+</odoo>

@@ -56,7 +56,7 @@ class ProductTemplate(models.Model):
              'the e-commerce such as e-books, music, pictures,... The "Digital Product" module has to be installed.')
     rental = fields.Boolean('Can be Rent')
     categ_id = fields.Many2one(
-        'product.category', 'Internal Category',
+        'product.category', 'Internal Category(Department)',
         change_default=True, default=_get_default_category_id,
         required=True, help="Select category for the current product")
 
@@ -150,6 +150,10 @@ class ProductTemplate(models.Model):
         help="Small-sized image of the product. It is automatically "
              "resized as a 64x64px image, with aspect ratio preserved. "
              "Use this field anywhere a small image is required.")
+    brand = fields.Char('Brand', index=True, translate=True)
+    p_category = fields.Char('Product Category', index=True, translate=True)
+    # department = fields.Char('Department', index=True, translate=True)
+
 
     @api.depends('product_variant_ids')
     def _compute_product_variant_id(self):

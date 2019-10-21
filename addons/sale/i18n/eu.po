@@ -3,25 +3,23 @@
 # * sale
 # 
 # Translators:
+# Martin Trigaux, 2017
 # Eneko <eastigarraga@codesyntax.com>, 2018
+# Mikel Lizarralde <mikellizarralde@gmail.com>, 2018
 # Gari Araolaza <garaolaza@codesyntax.com>, 2018
 # Naomi Hidalgo <naomihid96@gmail.com>, 2018
-# Nagore Ruiz de Escudero <nagore.ruiz.escudero@gmail.com>, 2018
+# oihane <oihanecruce@gmail.com>, 2018
 # Esther Martín Menéndez <esthermartin001@gmail.com>, 2018
-# Gorka Toledo <gorka.toledo@gmail.com>, 2018
 # ibinka lete <ilete@fpbidasoa.net>, 2018
-# Mikel Lizarralde <mikellizarralde@gmail.com>, 2018
-# Martin Trigaux, 2019
-# Victor Laskurain <blaskurain@binovo.es>, 2019
-# oihane <oihanecruce@gmail.com>, 2019
-# 
+# Gorka Toledo <gorka.toledo@gmail.com>, 2018
+# Nagore Ruiz de Escudero <nagore.ruiz.escudero@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 15:07+0000\n"
-"PO-Revision-Date: 2017-09-20 10:23+0000\n"
-"Last-Translator: oihane <oihanecruce@gmail.com>, 2019\n"
+"POT-Creation-Date: 2018-04-27 14:48+0000\n"
+"PO-Revision-Date: 2018-04-27 14:48+0000\n"
+"Last-Translator: Nagore Ruiz de Escudero <nagore.ruiz.escudero@gmail.com>, 2018\n"
 "Language-Team: Basque (https://www.transifex.com/odoo/teams/41243/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,7 +81,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale.field_product_product_sales_count
 #: model:ir.model.fields,field_description:sale.field_product_template_sales_count
 msgid "# Sales"
-msgstr "# Salmentak"
+msgstr "# Sales"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_invoice_count
@@ -104,7 +102,7 @@ msgstr "Eskari #"
 #: model:ir.model.fields,field_description:sale.field_res_partner_sale_order_count
 #: model:ir.model.fields,field_description:sale.field_res_users_sale_order_count
 msgid "# of Sales Order"
-msgstr "Salmenta-eskaera #"
+msgstr "# of Sales Order"
 
 #. module: sale
 #: model:mail.template,report_name:sale.email_template_edi_sale
@@ -245,20 +243,11 @@ msgstr ""
 "guztiak kontsumitu dituelako.</i>"
 
 #. module: sale
-#: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-
-#. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_my_orders
 msgid ""
 "<span class=\"hidden-xs\">Sales Order #</span>\n"
 "                      <span class=\"visible-xs\">Ref.</span>"
 msgstr ""
-"<span class=\"hidden-xs\">Salmenta-eskaerar #</span>\n"
-"                      <span class=\"visible-xs\">Erref.</span>"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_my_orders
@@ -266,8 +255,6 @@ msgid ""
 "<span class=\"label label-danger\"><i class=\"fa fa-fw fa-warning\"/><span "
 "class=\"hidden-xs\"> Problem</span></span>"
 msgstr ""
-"<span class=\"label label-danger\"><i class=\"fa fa-fw fa-warning\"/><span "
-"class=\"hidden-xs\"> Arazoa</span></span>"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_my_quotations
@@ -303,8 +290,6 @@ msgid ""
 "<span class=\"label label-info\"><i class=\"fa fa-fw fa-clock-o\"/><span "
 "class=\"hidden-xs\"> Invoiced</span></span>"
 msgstr ""
-"<span class=\"label label-info\"><i class=\"fa fa-fw fa-clock-o\"/><span "
-"class=\"hidden-xs\"> Fakturatuta</span></span>"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_my_orders
@@ -312,8 +297,6 @@ msgid ""
 "<span class=\"label label-success hidden-xs\"><i class=\"fa fa-fw fa-"
 "check\"/><span class=\"hidden-xs\"> Done</span></span>"
 msgstr ""
-"<span class=\"label label-success hidden-xs\"><i class=\"fa fa-fw fa-"
-"check\"/><span class=\"hidden-xs\"> Eginda</span></span>"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_order_page
@@ -330,13 +313,11 @@ msgid ""
 "<span class=\"label label-success\"><i class=\"fa fa-fw fa-check\"/> "
 "Done</span>"
 msgstr ""
-"<span class=\"label label-success\"><i class=\"fa fa-fw fa-check\"/> "
-"Eginda</span>"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "<span>Pro-Forma Invoice # </span>"
-msgstr "<span>Pro-Forma faktura # </span>"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_order_page
@@ -346,7 +327,7 @@ msgstr "<strong>Kontaktua</strong>"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "<strong>Date Ordered:</strong>"
-msgstr "<strong>Eskaeraren data:</strong>"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_order_page
@@ -392,7 +373,7 @@ msgstr "Kopurua"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "<strong>Quotation Date:</strong>"
-msgstr "<strong>Aurrekontuaren Data:</strong>"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
@@ -458,7 +439,7 @@ msgstr ""
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_order_page
 msgid "Accept &amp; Sign"
-msgstr "Onartu &amp; Sinatu"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,help:sale.field_sale_advance_payment_inv_deposit_account_id
@@ -481,7 +462,7 @@ msgid "Addresses in Sales Orders"
 msgstr "Addresses in Sales Orders"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:159
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:156
 #, python-format
 msgid "Advance: %s"
 msgstr "Aurrerapena: %s"
@@ -519,7 +500,6 @@ msgid "Allows you to send pro-forma invoice."
 msgstr ""
 
 #. module: sale
-#: model:ir.ui.view,arch_db:sale.report_invoice_layouted
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "Amount"
 msgstr "Kopurua"
@@ -528,18 +508,18 @@ msgstr "Kopurua"
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_amt_invoiced
 #: model:ir.model.fields,field_description:sale.field_sale_report_amt_invoiced
 msgid "Amount Invoiced"
-msgstr "Fakturatutako kopurua"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_amt_to_invoice
 #: model:ir.model.fields,field_description:sale.field_sale_report_amt_to_invoice
 msgid "Amount To Invoice"
-msgstr "Fakturatzeko kopurua"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_crm_team_quotations_amount
 msgid "Amount of quotations to invoice"
-msgstr "Fakturatzeko aurrekontuen kopurua"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_report_all_channels_sales_analytic_account_id
@@ -601,17 +581,17 @@ msgstr "Orri jauzia sortzen du"
 #. module: sale
 #: model:ir.filters,name:sale.filter_isale_report_product
 msgid "By Product"
-msgstr "Produktuka"
+msgstr "By Product"
 
 #. module: sale
 #: model:ir.filters,name:sale.filter_sale_report_salespersons
 msgid "By Salespersons"
-msgstr "Saltzaileka"
+msgstr "By Salespersons"
 
 #. module: sale
 #: model:ir.filters,name:sale.filter_sale_report_salesteam
 msgid "By Salesteam"
-msgstr "Salmenta-taldeka"
+msgstr "By Salesteam"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_qty_delivered_updateable
@@ -621,7 +601,7 @@ msgstr "Bidalita Editatu Dezake"
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_product_updatable
 msgid "Can Edit Product"
-msgstr "Produktua editatu dezake"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_order_form
@@ -679,27 +659,27 @@ msgstr "Enpresa"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with DHL"
-msgstr "DHL-ko garraio eta bidaltze kostualk kalkulatu"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with FedEx"
-msgstr "FedEx-eko garraio eta bidaltze kostualk kalkulatu"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with UPS"
-msgstr "UPS-ko garraio eta bidaltze kostualk kalkulatu"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with USPS"
-msgstr "USP-ko garraio eta bidaltze kostualk kalkulatu"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Compute shipping costs and ship with bpost"
-msgstr "Bpost-eko garraio eta bidaltze kostualk kalkulatu"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
@@ -714,7 +694,7 @@ msgstr "Konfigurazioa"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_order_form
 msgid "Confirm Sale"
-msgstr "Salmenta baieztatu"
+msgstr "Confirm Sale"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_confirmation_date
@@ -730,7 +710,7 @@ msgstr "Kontaktua"
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_res_config_settings_module_sale_coupon
 msgid "Coupons & Promotions"
-msgstr "Kupoia & Promozioak"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sale_advance_payment_inv
@@ -764,7 +744,7 @@ msgstr "Nork sortua"
 #: model:ir.model.fields,field_description:sale.field_sale_layout_category_create_date
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_create_date
 msgid "Created on"
-msgstr "Noiz sortua"
+msgstr "Created on"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_create_date
@@ -780,7 +760,7 @@ msgstr "Moneta"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_all_channels_sales_view_search
 msgid "Current Year Sales"
-msgstr "Aurtengo salmentak"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_order_partner_id
@@ -788,12 +768,12 @@ msgstr "Aurtengo salmentak"
 #: model:ir.ui.view,arch_db:sale.view_order_product_search
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
 msgid "Customer"
-msgstr "Bezeroa"
+msgstr "Kidea"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_res_config_settings_group_sale_delivery_address
 msgid "Customer Addresses"
-msgstr "Bezeroaren helbideak"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_client_order_ref
@@ -808,7 +788,7 @@ msgstr "Bezeroaren zergak"
 #. module: sale
 #: model:ir.ui.menu,name:sale.res_partner_menu
 msgid "Customers"
-msgstr "Bezeroak"
+msgstr "Kidea"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_report_all_channels_sales_date_order
@@ -829,7 +809,7 @@ msgstr ""
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_res_config_settings_use_sale_note
 msgid "Default Terms & Conditions"
-msgstr "Lehenetsitako Terminoak & Baldintzak"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_res_company_sale_note
@@ -847,7 +827,7 @@ msgid "Delivered"
 msgstr "Bidalita"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:844
+#: code:addons/sale/models/sale.py:824
 #: model:ir.ui.view,arch_db:sale.view_order_form
 #, python-format
 msgid "Delivered Quantity"
@@ -905,7 +885,7 @@ msgstr ""
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_res_config_settings_module_website_sale_digital
 msgid "Digital Content"
-msgstr "Eduki digitala"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_invoice_layouted
@@ -921,7 +901,7 @@ msgstr "Deskontua (%)"
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_product_pricelist_discount_policy
 msgid "Discount Policy"
-msgstr "Deskontu-politika"
+msgstr ""
 
 #. module: sale
 #: selection:product.pricelist,discount_policy:0
@@ -931,7 +911,7 @@ msgstr "Deskontuak daude prezioan"
 #. module: sale
 #: model:res.groups,name:sale.group_discount_per_so_line
 msgid "Discount on lines"
-msgstr "Deskontua lerroetan"
+msgstr "Discount on lines"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_res_config_settings_group_discount_per_so_line
@@ -950,7 +930,7 @@ msgid "Display Name"
 msgstr "Izena erakutsi"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:85
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:84
 #, python-format
 msgid "Down Payment"
 msgstr "Aurrerakina"
@@ -968,7 +948,7 @@ msgstr "Aurrerakin produktua"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Down Payments"
-msgstr "Aurrerakinak"
+msgstr ""
 
 #. module: sale
 #: selection:sale.advance.payment.inv,advance_payment_method:0
@@ -981,7 +961,7 @@ msgid "Down payment (percentage)"
 msgstr "Aurrerakina (portzentajea)"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:82
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:81
 #, python-format
 msgid "Down payment of %s%%"
 msgstr "%s%% (r)en aurrerakina"
@@ -1019,15 +999,10 @@ msgid "Extended Filters"
 msgstr "Extended Filters"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:827
+#: code:addons/sale/models/sale.py:807
 #, python-format
 msgid "Extra line with %s "
 msgstr "%s (r)ekin lerro gehigarria"
-
-#. module: sale
-#: model:ir.model,name:sale.model_ir_model_fields
-msgid "Fields"
-msgstr "Eremuak"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_fiscal_position_id
@@ -1054,7 +1029,7 @@ msgstr "Guztiz fakturatuta"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
 msgid "Future Activities"
-msgstr "Etorkizuneko jarduerak"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
@@ -1072,7 +1047,7 @@ msgstr "Pisu gordina"
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
 #: model:ir.ui.view,arch_db:sale.view_sales_order_line_filter
 msgid "Group By"
-msgstr "Multzokatu"
+msgstr "Group By"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_configuration_search_view
@@ -1121,15 +1096,15 @@ msgstr ""
 #: code:addons/sale/controllers/portal.py:216
 #, python-format
 msgid "Invalid order"
-msgstr "Baliogabeko eskaera"
+msgstr ""
 
 #. module: sale
 #: model:ir.model,name:sale.model_account_invoice
 msgid "Invoice"
-msgstr "Faktura"
+msgstr "Invoice"
 
 #. module: sale
-#: code:addons/sale/models/account_invoice.py:55
+#: code:addons/sale/models/account_invoice.py:52
 #, python-format
 msgid "Invoice %s paid"
 msgstr "Faktura %s -ean ordainduta"
@@ -1167,7 +1142,7 @@ msgstr "Faktura"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sale_advance_payment_inv
 msgid "Invoice Sales Order"
-msgstr "Faktura salmenta-eskaera"
+msgstr "Invoice Sales Order"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_invoice_status
@@ -1178,7 +1153,7 @@ msgstr "Faktura egoera"
 #. module: sale
 #: model:ir.model.fields,help:sale.field_sale_order_partner_invoice_id
 msgid "Invoice address for current sales order."
-msgstr "Salmenta eskaera honetzako fakturazio helbidea"
+msgstr "Invoice address for current sales order."
 
 #. module: sale
 #: model:ir.model.fields,help:sale.field_crm_team_invoiced
@@ -1214,7 +1189,7 @@ msgid "Invoiced"
 msgstr "Fakturatuta"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:845
+#: code:addons/sale/models/sale.py:825
 #: model:ir.ui.view,arch_db:sale.view_order_form
 #, python-format
 msgid "Invoiced Quantity"
@@ -1300,17 +1275,11 @@ msgid "Is expired"
 msgstr ""
 
 #. module: sale
-#: code:addons/sale/models/sale.py:864
+#: code:addons/sale/models/sale.py:861
 #, python-format
 msgid ""
 "It is forbidden to modify the following fields in a locked order:\n"
 "%s"
-msgstr ""
-
-#. module: sale
-#: code:addons/sale/models/sale.py:551
-#, python-format
-msgid "It is not allowed to confirm an order in the following states: %s"
 msgstr ""
 
 #. module: sale
@@ -1343,7 +1312,7 @@ msgstr "Last Updated on"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
 msgid "Late Activities"
-msgstr "Azken jarduerak"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_account_invoice_line_layout_category_sequence
@@ -1447,7 +1416,7 @@ msgstr ""
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
 msgid "My Activities"
-msgstr "Nire Jarduerak"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
@@ -1491,6 +1460,22 @@ msgstr "Mezurik ez"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "No longer edit orders once confirmed"
+msgstr ""
+
+#. module: sale
+#: model:ir.actions.act_window,help:sale.action_quotations
+#: model:ir.actions.act_window,help:sale.action_quotations_salesteams
+msgid ""
+"Note that once a Quotation becomes a Sales Order, it will be moved\n"
+"                from the Quotations list to the Sales Order list."
+msgstr ""
+
+#. module: sale
+#: model:ir.actions.act_window,help:sale.act_res_partner_2_sale_order
+#: model:ir.actions.act_window,help:sale.action_orders_salesteams
+msgid ""
+"Note that once a Quotation becomes a Sales Order, it will be moved from the "
+"Quotations list to the Sales Order list."
 msgstr ""
 
 #. module: sale
@@ -1636,7 +1621,7 @@ msgid "Ordered Qty"
 msgstr "Eskatutako kop."
 
 #. module: sale
-#: code:addons/sale/models/sale.py:841
+#: code:addons/sale/models/sale.py:821
 #: model:ir.ui.view,arch_db:sale.view_order_form
 #, python-format
 msgid "Ordered Quantity"
@@ -1741,7 +1726,7 @@ msgid "Please define an accounting sales journal for this company."
 msgstr ""
 
 #. module: sale
-#: code:addons/sale/models/sale.py:949
+#: code:addons/sale/models/sale.py:916
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -1749,6 +1734,11 @@ msgid ""
 msgstr ""
 "Mesedez, zehaztu produktu honentzako diru-sarrera kontua: \"%s\" (id:%d) - "
 "edo bere kategoria: \"%s\"."
+
+#. module: sale
+#: model:ir.ui.view,arch_db:sale.report_invoice_layouted
+msgid "Price"
+msgstr "Price"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_price_reduce
@@ -1835,11 +1825,6 @@ msgstr "Produktua"
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Product Catalog"
 msgstr ""
-
-#. module: sale
-#: model:ir.ui.menu,name:sale.menu_product_category_config_sale
-msgid "Product Categories"
-msgstr "Produktu Kategoriak"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_report_all_channels_sales_categ_id
@@ -2090,13 +2075,13 @@ msgstr "Sales Analysis"
 #: model:ir.ui.view,arch_db:sale.view_order_product_search
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
 msgid "Sales Channel"
-msgstr "Salmenta-kanala"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.menu,name:sale.report_sales_team
 #: model:ir.ui.menu,name:sale.sales_team_config
 msgid "Sales Channels"
-msgstr "Salmenta-kanalak"
+msgstr ""
 
 #. module: sale
 #: selection:sale.report,state:0
@@ -2189,7 +2174,7 @@ msgstr ""
 #: code:addons/sale/models/sales_team.py:94
 #, python-format
 msgid "Sales: Untaxed Total"
-msgstr "Salmentak: Zergarik gabeko Totala"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_report_all_channels_sales_user_id
@@ -2246,7 +2231,15 @@ msgstr ""
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Sell and purchase products in different units of measure"
-msgstr "Produktuak unitate desberdinetan salerosi"
+msgstr ""
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_res_config_settings_module_website_sale_digital
+msgid ""
+"Sell digital products - provide downloadable content on your customer portal"
+msgstr ""
+"Produktu digitalak saldu - zure bezero-atarian jaitsi daitekeen edukia "
+"eskaini"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
@@ -2344,8 +2337,6 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
 msgid "Show all records which has next action date is before today"
 msgstr ""
-"Erakutsi gaur baino lehenagoko hurrengo ekintza data duten erregistro "
-"guztiak"
 
 #. module: sale
 #: model:res.groups,comment:sale.group_show_price_total
@@ -2490,28 +2481,12 @@ msgid "Terms and conditions"
 msgstr "Terms and conditions"
 
 #. module: sale
-#: code:addons/sale/models/analytic.py:134
+#: code:addons/sale/models/analytic.py:128
+#: code:addons/sale/models/analytic.py:140
 #, python-format
 msgid ""
-"The Sales Order %s linked to the Analytic Account %s is cancelled. You "
-"cannot register an expense on a cancelled Sales Order."
-msgstr ""
-
-#. module: sale
-#: code:addons/sale/models/analytic.py:133
-#, python-format
-msgid ""
-"The Sales Order %s linked to the Analytic Account %s is currently locked. "
-"You cannot register an expense on a locked Sales Order. Please create a new "
-"SO linked to this Analytic Account."
-msgstr ""
-
-#. module: sale
-#: code:addons/sale/models/analytic.py:129
-#, python-format
-msgid ""
-"The Sales Order %s linked to the Analytic Account %s must be validated "
-"before registering expenses."
+"The Sales Order %s linked to the Analytic Account must be validated before "
+"registering expenses."
 msgstr ""
 
 #. module: sale
@@ -2532,7 +2507,7 @@ msgid ""
 msgstr ""
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:151
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:149
 #, python-format
 msgid ""
 "The product used to invoice a down payment should be of type 'Service'. "
@@ -2543,7 +2518,7 @@ msgstr ""
 "hau."
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:149
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:147
 #, python-format
 msgid ""
 "The product used to invoice a down payment should have an invoice policy set"
@@ -2591,7 +2566,7 @@ msgstr ""
 "menuan."
 
 #. module: sale
-#: code:addons/sale/models/sale.py:438 code:addons/sale/models/sale.py:442
+#: code:addons/sale/models/sale.py:430 code:addons/sale/models/sale.py:434
 #, python-format
 msgid "There is no invoiceable line."
 msgstr ""
@@ -2709,7 +2684,17 @@ msgid "Track Service"
 msgstr "Zerbitzuaren jarraipena"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:578
+#: model:ir.model.fields,field_description:sale.field_res_config_settings_module_delivery_ups
+msgid "UPS"
+msgstr ""
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_res_config_settings_module_delivery_usps
+msgid "USPS"
+msgstr ""
+
+#. module: sale
+#: code:addons/sale/models/sale.py:570
 #, python-format
 msgid "Uncategorized"
 msgstr "Kategoria gabe"
@@ -2793,7 +2778,7 @@ msgid "Warning"
 msgstr "Abisua"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:1037
+#: code:addons/sale/models/sale.py:1006
 #, python-format
 msgid "Warning for %s"
 msgstr "Abisua %s (r)ako"
@@ -2812,7 +2797,7 @@ msgstr "Abisua Produktu hau saltzean "
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_res_config_settings_group_warning_sale
 msgid "Warnings"
-msgstr "Oharrak"
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_advance_payment_inv_advance_payment_method
@@ -2837,7 +2822,7 @@ msgstr ""
 "Ahalegindu zaitez baliogabetzen lehenbizi"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:1098
+#: code:addons/sale/models/sale.py:1069
 #, python-format
 msgid ""
 "You can not remove a sales order line.\n"
@@ -2865,17 +2850,11 @@ msgid "Your Order has been confirmed."
 msgstr ""
 
 #. module: sale
+#: model:ir.actions.act_window,help:sale.action_quotations
 #: model:ir.actions.act_window,help:sale.action_quotations_salesteams
 msgid ""
 "Your next actions should flow efficiently: confirm the Quotation\n"
 "                to a Sales Order, then create the Invoice and collect the Payment."
-msgstr ""
-
-#. module: sale
-#: model:ir.actions.act_window,help:sale.action_quotations
-msgid ""
-"Your next actions should flow efficiently: confirm the Quotation\n"
-"            to a Sales Order, then create the Invoice and collect the Payment."
 msgstr ""
 
 #. module: sale
@@ -2887,10 +2866,15 @@ msgid ""
 msgstr ""
 
 #. module: sale
+#: model:ir.model.fields,field_description:sale.field_res_config_settings_module_delivery_bpost
+msgid "bpost"
+msgstr ""
+
+#. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_order_error
 #: model:ir.ui.view,arch_db:sale.portal_order_success
 msgid "close"
-msgstr "itxi"
+msgstr ""
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_order_form
@@ -2905,7 +2889,7 @@ msgstr ""
 #. module: sale
 #: model:ir.model,name:sale.model_res_config_settings
 msgid "res.config.settings"
-msgstr "res.config.settings"
+msgstr ""
 
 #. module: sale
 #: model:ir.model,name:sale.model_sale_layout_category

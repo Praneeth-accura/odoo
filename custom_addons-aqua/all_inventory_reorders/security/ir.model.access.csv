@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inventory_reorders_manager,inventory.reorders,all_inventory_reorders.model_inventory_reorders,stock.group_stock_manager,1,1,1,1
+access_inventory_reorders_mail_admin,inventory.reorders.mail,all_inventory_reorders.model_inventory_reorders_mail,base.group_erp_manager,1,1,1,1

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	    <record id="report_xlsx_wizard_form_inherit_cost_report" model="ir.ui.view">
+	        <field name="name">report.xlsx.wizard.form.inherit.cost.report</field>
+	        <field name="model">report.xlsx.wizard</field>
+	        <field name="inherit_id" ref="os_hr_payroll_reports.report_xlsx_wizard_form_inherit_paye"/>
+	        <field name="arch" type="xml">
+	        	<data>
+		        	<xpath expr="//field[@name='year_start']" position="after">
+		        		<field name="date_start" attrs="{'invisible': [('report_type','!=','cost')]}"></field>
+		        		<field name="date_end" attrs="{'invisible': [('report_type','!=','cost')]}"></field>
+                	</xpath>
+               	</data>
+	        </field>
+	    </record>
+	</data>
+</odoo>

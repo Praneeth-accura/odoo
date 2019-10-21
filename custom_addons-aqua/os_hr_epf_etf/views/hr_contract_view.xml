@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+    	<record id="hr_contract_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//page[@name='information']" position="after">
+                        <page string="EPF &amp; ETF" name="epf_etf" attrs="{'invisible':[('epf', '=', False),('etf', '=', False)]}">
+                        	<group cols="4">
+	                            <group>
+	                            	<field name="member_no" attrs="{'required':['|',('epf', '=', True),('etf', '=', True)]}"/>
+	                            	<field name="zone"/>
+	                            </group>
+	                            <group>
+	                            	<field name="pf_salary_rule_ids" widget='many2many_tags'
+	                            		   groups="hr_payroll.group_hr_payroll_manager,hr_payroll.group_hr_payroll_user"/>
+                              	</group>
+                           	</group>
+                        </page>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            id="dynamic_product_page_report"
+            model="wizard.product.page.report"
+            string="Dynamic Product Page Label"
+            report_type="qweb-pdf"
+            name="dynamic_product_barcode_print.dynamic_prod_page_rpt"
+            file="dynamic_product_barcode_print.dynamic_prod_page_rpt"
+            menu="False"
+        />
+
+        <record id="paperformat_dynamic_page_label" model="report.paperformat">
+            <field name="name">Dynamic Page Paper Format</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">1</field>
+            <field name="margin_bottom">1</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">1</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">80</field>
+            <field name="report_ids" eval="[(6,0,[ref('dynamic_product_barcode_print.dynamic_product_page_report')])]"/>
+        </record>
+
+    </data>
+</openerp>

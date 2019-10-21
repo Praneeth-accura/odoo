@@ -1,0 +1,6 @@
+<odoo>
+    <record id="mail.mail_activity_data_meeting" model="mail.activity.type">
+        <field name="name">Visits</field>
+        <field name="icon">fa-users</field>
+    </record>
+</odoo>

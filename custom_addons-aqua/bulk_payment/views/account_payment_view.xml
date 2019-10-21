@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Default payment modifications -->
+    <record id="view_account_payment_form_bulk" model="ir.ui.view">
+        <field name="name">account.payment.form.bulk</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='open_payment_matching_screen']" position="after">
+                <field name="bulk_payment_id" invisible="1"/>
+                <button name="open_bulk_payment" string="Bulk Payment" type="object" icon="fa-bars" class="oe_stat_button" attrs="{'invisible': [('bulk_payment_id', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Bulk register payment -->
+    <record id="view_account_payment_from_invoices_bulk" model="ir.ui.view">
+        <field name="name">account.register.payments.wizard.bulk</field>
+        <field name="model">account.register.payments</field>
+        <field name="inherit_id" ref="account.view_account_payment_from_invoices"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='amount']" position="replace">
+                <field name="payment_mode" invisible="1"/>
+                <field name="invoice_type" invisible="1"/>
+                <field name="amount" attrs="{'readonly': ['|',('multi', '=', True),('payment_mode', '=', 'full')], 'invisible': [('payment_mode', '=', 'partial')]}"/>
+                <field name="lines_total_amount" widget="monetary" attrs="{'invisible': [('payment_mode', '=', 'full')]}"/>
+            </xpath>
+
+            <xpath expr="//footer[1]" position="before">
+                <field name="payment_lines" attrs="{'invisible': [('payment_mode', '=', 'full')]}">
+                    <tree editable="bottom" default_order="amount desc">
+                        <field name="invoice_id" domain="[('state', '=', 'open'),('type', '=', parent.invoice_type),('commercial_partner_id', '=', parent.partner_id)]"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="amount" widget="monetary"/>
+                    </tree>
+                </field>
+            </xpath>
+
+            <xpath expr="//button[@name='create_payments']" position="replace">
+                <button string='Validate' name="create_payments" type="object" class="btn-primary" attrs="{'invisible': [('payment_mode', '=', 'partial')]}"/>
+            </xpath>
+
+            <xpath expr="//button[@name='create_payments']" position="after">
+                <button string='Validate' name="create_partial_payments" type="object" class="btn-primary" attrs="{'invisible': [('payment_mode', '=', 'full')]}"/>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="view_account_payment_from_invoices_bulk_check" model="ir.ui.view">
+        <field name="name">account.register.payments.wizard.bulk.check</field>
+        <field name="model">account.register.payments</field>
+        <field name="inherit_id" ref="account_check_printing.view_account_payment_from_invoices_inherited"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='check_amount_in_words']" position="replace">
+                <field name="check_amount_in_words" attrs="{'invisible': ['|',('payment_method_code', '!=', 'check_printing'),('payment_mode', '=', 'partial')]}" groups="base.group_no_one"/>
+                <field name="lines_total_amount_in_words" attrs="{'invisible': ['|',('payment_method_code', '!=', 'check_printing'),('payment_mode', '=', 'full')]}" groups="base.group_no_one"/>
+            </xpath>
+
+            <xpath expr="//field[@name='check_number']" position="replace">
+                <field name="check_number" attrs="{'invisible': ['|', ('payment_method_code', '!=', 'check_printing'), ('check_manual_sequencing', '=', False)]}"/>
+                <field name="manual_check_number" attrs="{'invisible': ['|', ('payment_method_code', '!=', 'check_printing'), ('check_manual_sequencing', '=', True)]}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Bulk payment viewes -->
+    <record id="view_bulk_payment_form" model="ir.ui.view">
+        <field name="name">Bulk Payment Form View</field>
+        <field name="model">account.bulk.payment</field>
+        <field name="arch" type="xml">
+
+            <form create="false" edit="false">
+                <sheet>
+                    <h1 class="mt0">
+                        <div>
+                            <field name="name"/>
+                        </div>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="payment_method_id"/>
+                            <field name="payment_method_code" invisible="1"/>
+                            <field name="check_manual_sequencing" invisible="1"/>
+                            <field name="check_number" attrs="{'invisible': ['|', ('payment_method_code', '!=', 'check_printing'), ('check_manual_sequencing', '=', False)]}"/>
+                            <field name="manual_check_number" attrs="{'invisible': ['|', ('payment_method_code', '!=', 'check_printing'), ('check_manual_sequencing', '=', True)]}"/>
+                            <field name="payment_date"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="lines_total_amount" widget="monetary"/>
+                            <field name="lines_total_amount_in_words" attrs="{'invisible': [('payment_method_code', '!=', 'check_printing')]}"/>
+                            <field name="partner_id"/>
+                            <field name="communication"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Related Payments">
+                            <field name="payment_ids">
+                                <tree editable="bottom" default_order="amount desc">
+                                    <field name="name"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="amount" widget="monetary"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Payment Lines">
+                            <field name="bulk_payment_lines">
+                                <tree editable="bottom" default_order="amount desc">
+                                    <field name="invoice_id"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="amount" widget="monetary"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+    <!-- tree view for bulk payments-->
+    <record id="view_bulk_payment_tree" model="ir.ui.view">
+        <field name="name">Bulk Payment Tree View</field>
+        <field name="model">account.bulk.payment</field>
+        <field name="arch" type="xml">
+
+            <tree create="false">
+                <field name="name"/>
+                <field name="payment_date"/>
+                <field name="payment_method_id"/>
+                <field name="communication"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="lines_total_amount" widget="monetary"/>
+            </tree>
+
+        </field>
+    </record>
+
+    <!-- Bulk payment action for customer-->
+    <record id="act_view_bulk_payment_form_for_customers" model="ir.actions.act_window">
+        <field name="name">Bulk Payments</field>
+        <field name="res_model">account.bulk.payment</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('partner_type', '=', 'customer')]</field>
+    </record>
+    <!-- Bulk payment action for vendor-->
+    <record id="act_view_bulk_payment_form_for_vendors" model="ir.actions.act_window">
+        <field name="name">Bulk Payments</field>
+        <field name="res_model">account.bulk.payment</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('partner_type', '=', 'supplier')]</field>
+    </record>
+
+    <!-- Bulk payment menu item for customer-->
+    <menuitem id="menu_bulk_payments_customers"
+              name="Bulk Payments"
+              action="act_view_bulk_payment_form_for_customers"
+              parent="account.menu_finance_receivables_documents"
+              groups="group_account_payment_bulk_user"
+              sequence="100"
+    />
+    <!-- Bulk payment menu item for vendor-->
+    <menuitem id="menu_bulk_payments_vendors"
+              name="Bulk Payments"
+              action="act_view_bulk_payment_form_for_vendors"
+              parent="account.menu_finance_payables_documents"
+              groups="group_account_payment_bulk_user"
+              sequence="100"
+    />
+
+</odoo>

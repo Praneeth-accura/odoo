@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- Session  Summary Report  -->
+  <template id="report_sessionoverview">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Session: <span t-field="o.name"/></h2>
+                        <div class="row mt32 mb32">
+                        	<table class="table table-bordered">
+                        		<tbody>
+			                        <tr>
+			                            <td><b>Point of sale : </b> <span t-field="o.config_id.name"/></td>
+			                            <td><b>Opening Date : </b> <span t-field="o.start_at"/></td>
+			                        </tr>
+			                        <tr>
+			                        	<td><b>Responsible : </b> <span t-field="o.user_id.name"/></td>
+		                             	<td><b>Closing date : </b> <span t-field="o.stop_at"/></td>
+			                        </tr>
+		                     	</tbody>
+                        	</table>
+                        	<br/>
+                           	<div style="margin-top: 100px;">
+                              <table class="table table-condensed">
+	                                 <thead>
+				                        <tr class="text-center">
+				                            <th>Reference</th>
+				                            <th>Journal</th>
+				                            <th>Starting Balance</th>
+				                            <th>Transactions Subtotal</th>
+				                            <th>Ending Balance</th>
+				                            <th>Difference</th>
+				                        </tr>
+				                     </thead>
+	                                 <tbody>
+                                       <t t-foreach="o.statement_ids" t-as="l">
+	                                       <tr>
+	                                       <td>
+	                                            <span t-field="l.name"/>
+	                                       </td>
+	                                       <td>
+	                                             <span t-field="l.journal_id"/>
+	                                       </td>
+	                                       <td>
+	                                             <span t-field="l.balance_start" />
+	                                       </td>
+	                                       <td>
+	                                             <span t-field="l.total_entry_encoding" />
+	                                       </td>
+	                                       <td>
+	                                              <span t-field="l.balance_end_real" />
+	                                       </td>
+	                                       <td>
+	                                              <span t-field="l.difference" />
+	                                       </td>
+	                                       </tr>
+                                     </t>
+                                  </tbody>
+                               </table>
+                            </div>
+                         </div>
+                       </div>
+                    </t>
+                </t>
+            </t>
+  </template>
+</odoo>

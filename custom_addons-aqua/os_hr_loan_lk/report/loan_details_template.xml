@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="loan_details_document">
+    <t t-call="web.external_layout">
+        <t t-set="doc" t-value="doc.with_context({'lang':'doc.employee_id.language_ids'})" />
+        <div class="page">
+            <div>
+                <h1 class="text-center mb32">
+                    <span>LOAN DETAILS</span>
+                </h1>
+            </div>
+            <t t-foreach="doc" t-as="loan">
+				<div class="text-right">
+					<span>Print Date : </span>
+					<strong t-field="doc.current_date"/>
+				</div>
+	            <h3>
+	               <span t-if="doc.state in ['awaiting']">Confirmed # </span>
+	               <span t-if="doc.state in ['approve']">Approved # </span>
+	               <span t-if="doc.state in ['closed']">Closed #</span>
+	               <span t-field="doc.name"/>
+	            </h3>
+	            <div style="float:left;">
+		            <div class="col-sm-12" style="float:left">
+			            <table style="width: 100%;">
+		            		<tr style="height: 25px;">
+		            			<td><span>Employee Code &#160;</span> </td>
+		            			<td colspan="2"><span>&#160;:&#160;</span></td>
+		            			<td><strong t-field="doc.employee_code"/></td>
+		            			<td>Employee &#160;</td>
+		            			<td colspan="2"><b>&#160;:&#160;</b></td>
+		            			<td><strong t-field="doc.employee_id"/></td>
+		            		</tr>
+		            		<tr style="height: 25px;">
+		            			<td>Loan Date&#160;</td>
+		            			<td colspan="2"><b>&#160;:&#160;</b></td>
+		            			<td><strong t-field="doc.create_date"/></td>
+		            			<td t-if="doc.state in ['approve']">Approved Date&#160;</td>
+		            			<td colspan="2" t-if="doc.state in ['approve']"><b>&#160;:&#160;</b></td>
+		            			<td t-if="doc.state in ['approve']"><strong t-field="doc.approved_on"/></td>
+		            		</tr>
+		            		<tr style="height: 25px;" t-if="doc.state in ['approve']">	
+		            			<td>Approved By&#160;</td>
+		            			<td colspan="2"><b>&#160;:&#160;</b></td>
+		            			<td><strong t-field="doc.approved_by_id.name"/></td>
+		            		</tr>
+			        	</table>
+			        </div>
+		       	</div>
+		       	<div style="clear:both">
+		        <br/>
+		        </div>
+		        
+		       	<div class="col-sm-4" style="float:right;">
+		       		<table class="table table-bordered">
+		       			<tr>
+	            			<td>Loan Amount&#160;</td>
+	            			<td><strong t-field="doc.loan_amount"/></td>
+	            			<td>No.of Installments&#160;</td>
+	            			<td><strong t-field="doc.no_of_installments"/></td>
+	            		</tr>
+	            		<tr t-if="doc.state in ['approve']">
+	            			<td>Balance&#160;</td>
+	            			<td><strong t-field="doc.balance_amount"/></td>
+	            			<td>Pending Installments&#160;</td>
+	            			<td><strong t-field="doc.pending_installments"/></td>
+	            		</tr>
+	            	</table>
+		       	</div>
+		       	 
+		        <div style="clear:both">
+		        <br/>
+		        </div>
+		       	
+		        <t t-if="doc.witness_ids">
+	               	<div style="clear:both">
+	               		<h4>Witness</h4>
+	               		<table class="table table-bordered">
+	              			<thead>
+	              				<tr>
+	              					<th class="text-center">Sl No.</th>
+	              					<th class="text-center">Employee Code</th>
+	              					<th class="text-left">Name</th>
+	              				</tr>
+	              			</thead>
+	              			<t t-set="i" t-value="1"/>
+	                   		<t t-foreach="doc.witness_ids" t-as="witness">
+		               			<tbody>
+		               				<tr>
+		               					<td class="text-center"><span t-esc="i"/></td>
+		               					<td class="text-center">
+		                               		<span t-field="witness.emp_code"/>
+		                           		</td>
+		                           		<td class="text-left">
+		                               		<span t-field="witness.employee_id"/>
+		                           		</td>
+		               				</tr>
+		               			</tbody>
+		               			<t t-set="i" t-value="i+1"/>
+	               			</t>	
+		            	</table>
+	               	</div>
+	            </t>
+	            <br/>
+               	<div style="clear:both">
+               		<h4>Payment Summary</h4>
+                	<table class="table table-bordered">
+                    	<thead>
+	                        <tr>
+	                            <th class="text-center">Installment No</th>
+	                            <th class="text-center">Installment Date</th>
+	                            <th class="text-right">Amount / Installment</th>
+	                            <th class="text-right">Paid Amount</th>
+	                            <th class="text-center">Paid Date</th>
+	                            <th class="text-center">Status</th>
+	                        </tr>
+                   		</thead>
+                   		<tbody>
+                   			<t t-set="i" t-value="1"/>
+	                   		<t t-foreach="doc.installment_ids" t-as="installment">
+		               			<tbody>
+		               				<tr>
+		               					<td class="text-center"><span t-esc="i"/></td>
+		               					<td class="text-center">
+		                               		<span t-field="installment.installment_date"/>
+		                           		</td>
+		                           		<td class="text-right">
+		                               		<span t-field="installment.amount"/>
+		                           		</td>
+		                           		<td class="text-right">
+		                               		<span t-field="installment.paid_amount"/>
+		                           		</td>
+		                           		<td class="text-center">
+		                               		<span t-field="installment.paid_date"/>
+		                           		</td>
+		                           		<td class="text-center">
+		                               		<span t-field="installment.status"/>
+		                           		</td>
+		               				</tr>
+		               			</tbody>
+		               			<t t-set="i" t-value="i+1"/>
+	               			</t>
+                   		</tbody>
+                	</table>
+            	</div>
+            </t>
+        </div>
+     </t>
+</template>
+
+<template id="report_loan_deatils">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="os_hr_loan_lk.loan_details_document" t-lang="doc.employee_id.language_ids"/>
+        </t>
+    </t>
+</template>
+
+</odoo>

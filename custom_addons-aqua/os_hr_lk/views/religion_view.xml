@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+	<!-- Religion View -->
+    <record id="view_religion_form" model="ir.ui.view">
+    	<field name="name">hr.religion.form</field>
+    	<field name="model">employee.religion</field>
+    	<field name="arch" type="xml">
+        	<form string="Religion">
+            	<group>
+                	<field name="name" required="1"/>
+            	</group>
+        	</form>
+    	</field>
+     </record>
+     
+     <record id="view_religion_tree" model="ir.ui.view">
+     	<field name="name">hr.religion.tree</field>
+     	<field name="model">employee.religion</field>
+    	<field name="arch" type="xml">
+        	<tree string="Religion">
+            	<field name="name"/>
+         	</tree>
+     	</field>
+     </record>
+     
+     <record id="open_module_view_religion" model="ir.actions.act_window">
+     	<field name="name">Religion</field>
+     	<field name="res_model">employee.religion</field>
+     	<field name="view_type">form</field>
+     	<field name="view_mode">tree,form</field>
+     	<field name="help" type="html">
+       		<p class="oe_view_nocontent_create">
+         		Click to create a religion.
+       		</p>
+     	</field>
+     </record>
+     
+     <menuitem id="menu_religion" action="open_module_view_religion" name="Religion" 
+     parent="hr.menu_human_resources_configuration" sequence="98"/>
+     
+</odoo>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<!-- salary category -->
+		<record id="ST" model="hr.salary.rule.category">
+			<field name="name">Sub Total</field>
+			<field name="code">ST</field>
+		</record>
+	
+		<!-- Salary Rules -->
+		<record id="hr_rule_arrears" model="hr.salary.rule">
+        	<field name="name">Arrears</field>
+        	<field name="sequence" eval="2"/>
+        	<field name="code">ARR</field>
+        	<field name="category_id" ref="hr_payroll.ALW"/>
+        	<field name="condition_select">none</field>
+        	<field name="amount_select">code</field>
+        	<field name="amount_python_compute">result = (inputs.ARR and inputs.ARR.amount)</field>
+		</record>
+		<record id="hr_rule_input_arrears" model="hr.rule.input">
+    		<field name="code">ARR</field>
+    		<field name="name">Arrears</field>
+    		<field name="input_id" ref="hr_rule_arrears"/>
+		</record>
+		
+		<record id="hr_rule_subtotal" model="hr.salary.rule">
+        	<field name="name">Sub Total</field>
+        	<field name="sequence" eval="3"/>
+        	<field name="code">ST</field>
+        	<field name="category_id" ref="os_hr_payroll_reports.ST"/>
+        	<field name="condition_select">none</field>
+        	<field name="amount_select">code</field>
+        	<field name="amount_python_compute">result = categories.BASIC + ARR</field>
+		</record>
+		<record id="hr_rule_input_subtotal" model="hr.rule.input">
+    		<field name="code">ST</field>
+    		<field name="name">Sub Total</field>
+    		<field name="input_id" ref="hr_rule_subtotal"/>
+		</record>
+		
+		<record id="hr_rule_sp_alw" model="hr.salary.rule">
+        	<field name="name">Special Allowance</field>
+        	<field name="sequence" eval="11"/>
+        	<field name="code">SALW</field>
+        	<field name="category_id" ref="hr_payroll.ALW"/>
+        	<field name="condition_select">none</field>
+        	<field name="amount_select">code</field>
+        	<field name="amount_python_compute">result = (inputs.SALW and inputs.SALW.amount)</field>
+		</record>
+		<record id="hr_rule_input_sp_alw" model="hr.rule.input">
+    		<field name="code">SALW</field>
+    		<field name="name">Special Allowance</field>
+    		<field name="input_id" ref="hr_rule_sp_alw"/>
+		</record>
+		
+		<record id="hr_rule_perform_alw" model="hr.salary.rule">
+        	<field name="name">Performance Allowance</field>
+        	<field name="sequence" eval="12"/>
+        	<field name="code">PALW</field>
+        	<field name="category_id" ref="hr_payroll.ALW"/>
+        	<field name="condition_select">none</field>
+        	<field name="amount_select">code</field>
+        	<field name="amount_python_compute">result = (inputs.PALW and inputs.PALW.amount)</field>
+		</record>
+		<record id="hr_rule_input_perform_alw" model="hr.rule.input">
+    		<field name="code">PALW</field>
+    		<field name="name">Performance Allowance</field>
+    		<field name="input_id" ref="hr_rule_perform_alw"/>
+		</record>
+		
+		<record id="EPTF" model="hr.salary.rule.category">
+            <field name="name">Provident</field>
+            <field name="code">EPTF</field>
+        </record>
+        <record id="hr_salary_rule_pf_salary" model="hr.salary.rule">
+			<field name="name">PF Salary</field>
+			<field name="sequence" eval="120"/>
+			<field name="code">PFS</field>
+			<field name="category_id" ref="EPTF"/>
+			<field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.pf_salary_rule_ids</field>
+        </record>
+		<record id="hr_salary_rule_employee_pf" model="hr.salary.rule">
+			<field name="name">Provident Fund</field>
+			<field name="sequence" eval="121"/>
+			<field name="code">PFE</field>
+			<field name="category_id" ref="hr_payroll.DED"/>
+			<field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (PFS * 8  /  100) * -1</field>
+        </record>
+        <record id="hr_salary_rule_employer_epf" model="hr.salary.rule">
+			<field name="name">Employer Provident Fund</field>
+			<field name="sequence" eval="122"/>
+			<field name="code">EPF</field>
+			<field name="category_id" ref="EPTF"/>
+			<field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (PFS * 12  /  100) * -1</field>
+        </record>
+        <record id="hr_salary_rule_etf_contribution" model="hr.salary.rule">
+			<field name="name">Employee Trust Fund</field>
+			<field name="sequence" eval="123"/>
+			<field name="code">ETF</field>
+			<field name="category_id" ref="EPTF"/>
+			<field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (PFS * 3  /  100) * -1</field>
+        </record>
+        
+        <record id="PAYE" model="hr.salary.rule.category">
+            <field name="name">Paye</field>
+            <field name="code">PAYE</field>
+        </record>
+        <record id="hr_salary_rule_paye_salary" model="hr.salary.rule">
+			<field name="name">PAYE Salary</field>
+			<field name="sequence" eval="124"/>
+			<field name="code">PYS</field>
+			<field name="category_id" ref="PAYE"/>
+			<field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.paye_salary_rule_ids</field>
+        </record>
+        <record id="hr_rule_paye" model="hr.salary.rule">
+        	<field name="name">PAYE</field>
+        	<field name="sequence" eval="125"/>
+        	<field name="code">PAYE</field>
+        	<field name="category_id" ref="hr_payroll.DED"/>
+        	<field name="condition_select">none</field>
+        	<field name="amount_select">code</field>
+        	<field name="amount_python_compute">if employee.paye_section == '114' and categories.PAYE &lt; 62500:
+        result = payslip.paye_tax
+
+elif employee.paye_section == '114' and categories.PAYE &lt; 104167 and categories.PAYE >= 62500:
+        result = ((categories.PAYE * 0.04) - 2500) * -1
+
+elif employee.paye_section == '114' and categories.PAYE &lt; 145833 and categories.PAYE >= 104167:
+        result = ((categories.PAYE * 0.08) - 6667) * -1
+
+elif employee.paye_section == '114' and categories.PAYE &lt; 187500 and categories.PAYE >= 145833:
+        result = ((categories.PAYE * 0.12) - 12500) * -1
+
+elif employee.paye_section in ['117','117A'] and categories.PAYE &lt; 25000:
+        result = (categories.PAYE * 0.10) * -1
+
+elif employee.paye_section in ['117','117A'] and categories.PAYE >= 25000:
+        result = (categories.PAYE * 0.16) * -1
+
+else:
+        result = ((categories.PAYE * 0.16) - 20000) * -1
+    		
+    		</field>
+		</record>
+        
+        <record id="hr_rule_paye_tax" model="hr.salary.rule">
+        	<field name="name">PAYE Tax Adjustments</field>
+        	<field name="sequence" eval="127"/>
+        	<field name="code">PTAX</field>
+        	<field name="category_id" ref="hr_payroll.DED"/>
+        	<field name="condition_select">none</field>
+        	<field name="amount_select">code</field>
+        	<field name="amount_python_compute">result = (inputs.PTAX and inputs.PTAX.amount) * -1</field>
+		</record>
+		<record id="hr_rule_input_paye_tax" model="hr.rule.input">
+    		<field name="code">PTAX</field>
+    		<field name="name">PAYE Tax Adjustments</field>
+    		<field name="input_id" ref="hr_rule_paye_tax"/>
+		</record>
+		
+		<record id="hr_rule_stamp_duty" model="hr.salary.rule">
+        	<field name="name">Stamp Duty</field>
+        	<field name="sequence" eval="130"/>
+        	<field name="code">SD</field>
+        	<field name="category_id" ref="hr_payroll.DED"/>
+        	<field name="condition_select">none</field>
+        	<field name="amount_select">code</field>
+        	<field name="amount_python_compute">if categories.GROSS > 25000:
+        result = -25
+
+else:
+        result = 0
+
+    		</field>
+		</record>
+		
+		<record id="NCA" model="hr.salary.rule.category">
+            <field name="name">Non Cash Allowance</field>
+            <field name="code">NCA</field>
+        </record>
+		
+		<record id="hr_rule_non_cash" model="hr.salary.rule">
+        	<field name="name">Non Cash Allowance</field>
+        	<field name="sequence" eval="13"/>
+        	<field name="code">NCA</field>
+        	<field name="category_id" ref="NCA"/>
+        	<field name="condition_select">none</field>
+        	<field name="amount_select">code</field>
+        	<field name="amount_python_compute">result = (inputs.NCA and inputs.NCA.amount) or 0
+    		</field>
+		</record>
+
+		<record id="hr_salary_rule_ot" model="hr.salary.rule">
+            <field name="amount_select">fix</field>
+            <field eval="100" name="amount_fix"/>
+            <field name="quantity">worked_days.OT and worked_days.OT.number_of_hours</field>
+            <field name="code">OT</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Over Time</field>
+            <field name="sequence" eval="34"/>
+         </record>
+
+        <record id="hr_salary_rule_late" model="hr.salary.rule">
+            <field name="amount_select">fix</field>
+            <field eval="100" name="amount_fix"/>
+            <field name="quantity">worked_days.LATE and worked_days.LATE.number_of_hours</field>
+            <field name="code">LATE</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Late Time</field>
+            <field name="sequence" eval="35"/>
+         </record>
+
+        <record id="hr_salary_rule_nopay" model="hr.salary.rule">
+            <field name="amount_select">fix</field>
+            <field eval="100" name="amount_fix"/>
+            <field name="quantity">worked_days.NOPAY and worked_days.NOPAY.number_of_hours</field>
+            <field name="code">NOPAY</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Nopay Hours</field>
+            <field name="sequence" eval="35"/>
+         </record>
+
+		<record id="hr_rule_input_non_cash" model="hr.rule.input">
+    		<field name="code">NCA</field>
+    		<field name="name">Non Cash Allowance</field>
+    		<field name="input_id" ref="hr_rule_non_cash"/>
+		</record>
+		
+		<record id="hr_payroll.hr_rule_taxable" model="hr.salary.rule">
+            <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.NCA</field>
+        </record>
+        
+		<!-- Salary Structure -->
+		<record id="structure_srilanka" model="hr.payroll.structure">
+            <field name="code">SSS</field>
+            <field name="name">Srilankan Salary Structure</field>
+            <field eval="[(6, 0, [ref('hr_rule_arrears')])]" name="rule_ids"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="parent_id" ref="hr_payroll.structure_base"/>
+        </record>
+	</data>
+</odoo>

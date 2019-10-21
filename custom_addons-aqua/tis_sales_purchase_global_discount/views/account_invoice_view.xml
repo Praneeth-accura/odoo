@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.ui.view" id="view_invoice_discount_form">
+   		<field name="name">invoice.discount.form</field>
+   		<field name="model">account.invoice</field>
+   		<field name="inherit_id" ref="account.invoice_form"/>
+   		<field name="arch" type="xml">
+       		<xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="before">
+                <group colspan="2" class="oe_left">
+               		<field name="discount_type" class="oe_right"/>
+               		<field name="discount_rate" attrs="{'required': [('discount_type', '!=', False)]}"/>
+               		<field name="discount_narration"/>
+               		<field name="analytic_id" groups="analytic.group_analytic_accounting"/>
+           		</group>
+            </xpath>
+          	<xpath expr="//field[@name='amount_tax']" position="after">
+          		<div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                    <label for="amount_grand" />
+                </div>
+           		<field name="amount_grand" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+        		<field name="amount_discount" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+        		<div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                    <label for="amount_total"/>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="replace">
+            	<field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </xpath>
+   		</field>
+	</record>
+	
+	<record model="ir.ui.view" id="view_vendor_discount_form">
+   		<field name="name">invoice.discount.form</field>
+   		<field name="model">account.invoice</field>
+   		<field name="inherit_id" ref="account.invoice_supplier_form"/>
+   		<field name="arch" type="xml">
+       		<xpath expr="//notebook[1]/page[1]/group/group[1]" position="after">
+                <group colspan="2"></group>
+                <group colspan="2" class="oe_left">
+               		<field name="discount_type" class="oe_left"/>
+               		<field name="discount_rate"/>
+               		<field name="discount_narration"/>
+               		<field name="analytic_id" groups="analytic.group_analytic_accounting"/>
+           		</group>
+            </xpath>
+          	<xpath expr="//field[@name='amount_tax']" position="after">
+          		<div class="oe_subtotal_footer_separator oe_inline">
+                    <label for="amount_grand" />
+                </div>
+           		<field name="amount_grand" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+        		<field name="amount_discount" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+            </xpath>
+   		</field>
+	</record>
+</odoo>

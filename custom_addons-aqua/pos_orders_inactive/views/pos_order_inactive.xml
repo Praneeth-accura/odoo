@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--pos order inactive form view-->
+    <data>
+        <record id="pos_orders_inactive_form_view" model="ir.ui.view">
+            <field name="name">pos.orders.inactive.form</field>
+            <field name="model">pos.orders.inactive</field>
+            <field name="arch" type="xml">
+                <form string="POS Orders Active/Inactive">
+                    <h4>
+                        <p>Do you want to inactive POS Orders after 7 days from Today click Inactive button, If you want restore to Default click Restore</p>
+                    </h4>
+                    <footer>
+                        <button name="inactive_orders" string="Inactive" type="object" class="oe_highlight"/>
+                        <button name="restore_orders" string="Restore" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--pos orders inactive from action-->
+        <record id="pos_orders_inactive_action" model="ir.actions.act_window">
+            <field name="name">POS Orders Active/Inactive</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.orders.inactive</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="pos_orders_inactive_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <!--menu item pos order active/inactive-->
+        <menuitem id="menu_point_config_product"
+                  action="pos_orders_inactive_action"
+                  name="POS Orders Active/Inactive"
+                  parent="point_of_sale.menu_point_config_product"
+                  sequence="100"
+                  groups="point_of_sale.group_pos_manager"/>
+    </data>
+</odoo>

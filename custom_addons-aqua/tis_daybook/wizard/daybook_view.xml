@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_daybook_form" model="ir.ui.view">
+        <field name="name">journal.daybook.form</field>
+        <field name="model">journal.daybook</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+       		<form string="Daybook">
+				<field name="daybook_printed" invisible="1"/>
+       			<group colspan="2" attrs="{'invisible':[('daybook_printed','=',True)]}">
+       				<group>
+	       				<label string="Period" for="from_date"/>
+	       				<div class="oe_left">
+	       					<field name="from_date" class="oe_inline"/> - <field name="to_date" class="oe_inline"/>
+	       				</div>
+	       				<separator colspan="2"/>
+	       				<field name="partner_ids" widget="many2many_tags" class="oe_left"/>
+       				</group>
+	       			<group>
+	       				<group>
+       						<field name="amount_filter" class="oe_left"/>
+	       				</group>
+	       				<group attrs="{'invisible':[('amount_filter', '=', False)]}">
+		   					<label for="amount_from" string="Amount Range" attrs="{'invisible':[('amount_filter', '!=', 'range')]}" class="oe_inline"/>
+		   					<div attrs="{'invisible':[('amount_filter', '!=', 'range')]}">
+		       					<field name="amount_from" class="oe_inline" attrs="{'required':[('amount_filter', '!=', False)]}"/>
+		       					<field name="amount_to" class="oe_inline" attrs="{'required':[('amount_filter', '!=', False)], 'invisible':[('amount_filter', '!=', 'range')]}"/>
+		       				</div>
+	       					<field name="amount_from" attrs="{'invisible':[('amount_filter', '=', 'range')], 'required':[('amount_filter','!=',False)]}" class="oe_left"/>
+	       				</group>
+	       			</group>
+       			</group>
+       			<field name="file_name" invisible="1"/>
+            	<field name="daybook_file" readonly="1" filename="file_name" attrs="{'invisible':[('daybook_printed','=',False)]}"/>
+       			<footer>
+		            <button string='Open' name="action_daybook" type="object" class="btn btn-primary btn-sm o_invoice_new" attrs="{'invisible':[('daybook_printed','=',True)]}"/>
+		            <button string="Print" type='object' name="print_daybook" class="btn btn-primary btn-sm o_invoice_new" attrs="{'invisible':[('daybook_printed','=',True)]}"/>
+		            <button string="Export" type='object' name="export_daybook" class="btn btn-primary btn-sm o_invoice_new" attrs="{'invisible':[('daybook_printed','=',True)]}"/>
+		            <button string="Back" type='action' name="tis_daybook.action_daybook" class="btn btn-primary btn-sm o_invoice_new" attrs="{'invisible':[('daybook_printed','=',False)]}"/>
+		            <button string="Cancel" class="btn btn-sm btn btn-default" special="cancel"/>
+             	</footer>
+        	</form>
+        </field>
+   	</record>
+   	<record id="action_daybook" model="ir.actions.act_window">
+        <field name="name">Daybook</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">journal.daybook</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

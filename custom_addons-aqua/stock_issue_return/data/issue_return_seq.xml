@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <record id="seq_issue_return" model="ir.sequence">
+            <field name="name">issue return sequence</field>
+            <field name="code">item.issue.return</field>
+            <!--<field name="prefix"> </field>-->
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

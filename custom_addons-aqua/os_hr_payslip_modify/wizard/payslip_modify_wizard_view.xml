@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	    <record id="payslip_modify_wizard_form" model="ir.ui.view">
+	        <field name="name">payslip.modify.wizard.form</field>
+	        <field name="model">payslip.modify.wizard</field>
+	        <field name="arch" type="xml">
+		        <form>
+		            <group>
+		                <label string="This operation will reset the current payslip to Draft state. Do you want to continue?"/>
+		            </group>
+		            <footer>
+		                <button name="set_payslip_draft" string="Proceed" class="oe_highlight" type='object'/> or
+		                <button string="Cancel" class="oe_link" special="cancel" />
+		            </footer>
+		        </form>
+	        </field>
+	    </record>
+	    <record id="action_view_payslip_modify_wizard_form" model="ir.actions.act_window">
+	            <field name="name">Modify Payslip</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">payslip.modify.wizard</field>
+	            <field name="view_type">form</field>
+	            <field name="view_mode">form</field>
+	            <field name="view_id" ref="payslip_modify_wizard_form"/>
+	            <field name="target">new</field>
+	    </record>
+	</data>
+	
+</odoo>

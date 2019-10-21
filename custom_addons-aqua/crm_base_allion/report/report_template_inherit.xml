@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout1">
+        <div class="header">
+            <div class="row" style="border-bottom: 2px solid black; height: 100px;">
+                <div class="col-xs-3">
+                    <img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)" style="max-height: 100px; margin-top: 28px"/>
+                </div>
+
+                <strong>
+                    <div class="col-xs-9 text-right" name="company_address"
+                         t-field="doc.company_id.partner_id"
+                         t-field-options='{"widget": "contact", "fields": ["address", "name"]}'
+                         style="margin-top: 5px; font-size: 20px;">
+                    </div>
+                </strong>
+            </div>
+        </div>
+
+        <div class="article o_report_layout_standard">
+            <t t-raw="0" />
+        </div>
+
+        <div class="footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <ul class="list-inline mb5">
+                    <li t-if="doc.company_id.phone">Phone: <span t-field="doc.company_id.phone"/></li>
+                    <li t-if="doc.company_id.partner_id.mobile">Hotline: <span t-field="doc.company_id.partner_id.mobile"/></li>
+                    <li t-if="doc.company_id.email">Email: <span t-field="doc.company_id.email"/></li>
+                    <li t-if="doc.company_id.website">Web: <span t-field="doc.company_id.website"/></li>
+                    <li t-if="doc.company_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="doc.company_id.vat"/></li>
+                </ul>
+
+                <div name="financial_infos">
+                    <span t-field="doc.company_id.report_footer"/>
+                </div>
+
+                <div class="text-muted">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="external_layout2">
+        <div class="header">
+            <div class="row" style="border-bottom: 2px solid black; height: 100px;">
+                <div class="col-xs-3">
+                    <img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)" style="max-height: 100px; margin-top: 28px"/>
+                </div>
+
+                <strong>
+                    <span class="col-xs-9 text-right" style="margin-top: 5px; font-size: 20px;" t-field="doc.company_id.partner_id.other_name"/>
+                    <div class="col-xs-9 text-right" name="company_address"
+                         t-field="doc.company_id.partner_id"
+                         t-field-options='{"widget": "contact", "fields": ["address"]}'
+                         style="margin-top: 5px; font-size: 20px;">
+                    </div>
+                </strong>
+            </div>
+        </div>
+
+        <div class="article o_report_layout_standard">
+            <t t-raw="0" />
+        </div>
+
+        <div class="footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <ul class="list-inline mb5">
+                    <li t-if="doc.company_id.phone">Phone: <span t-field="doc.company_id.phone"/></li>
+                    <li t-if="doc.company_id.partner_id.mobile">Hotline: <span t-field="doc.company_id.partner_id.mobile"/></li>
+                    <li t-if="doc.company_id.email">Email: <span t-field="doc.company_id.email"/></li>
+                    <li t-if="doc.company_id.website">Web: <span t-field="doc.company_id.website"/></li>
+                    <li t-if="doc.company_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="doc.company_id.vat"/></li>
+                </ul>
+
+                <div name="financial_infos">
+                    <span t-field="doc.company_id.report_footer"/>
+                </div>
+
+                <div class="text-muted">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+</odoo>

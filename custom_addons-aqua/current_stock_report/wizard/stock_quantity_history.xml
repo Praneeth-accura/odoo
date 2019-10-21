@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_stock_quantity_history_inherit" model="ir.ui.view">
+        <field name="name">Inventory Report Inherit</field>
+        <field name="model">stock.quantity.history</field>
+        <field name="inherit_id" ref="stock.view_stock_quantity_history"/>
+        <field name="arch" type="xml">
+            <data>
+            	<xpath expr="/form/group[1]" position="replace">
+            		<field name="is_printed" nolabel="1" readonly="1" invisible="1"/>
+            		<group attrs="{'invisible': [('is_printed','!=',True)]}">
+		            	<field widget="binary" name="report_file" nolabel="1" filename="report_name"/>
+	                    <field name="report_name" nolabel="1" readonly="1" invisible="1"/>
+		            </group>
+            		<group attrs="{'invisible': [('is_printed','=',True)]}">
+            			<group>
+            				<field name="report_choose" widget="radio"/>
+            				<field name="stock_type" widget="radio" 
+            					   attrs="{'invisible': [('report_choose', '=', 'normal')]}"/>
+            			</group>
+            			<group>
+            				<field name="compute_at_date" widget="radio"/>
+                        	<field name="date" attrs="{'invisible': [('compute_at_date', '=', 0)]}"/>
+            			</group>
+            			<group attrs="{'invisible': [('report_choose', '=', 'normal')]}">
+            				<field name="warehouse_ids" widget="many2many_tags" 
+            					   attrs="{'invisible': [('stock_type', '=', 'loc')],
+            					   		   'required': [('report_choose', '=', 'custom'),
+            					   		   				('stock_type', '=', 'warehouse')]}"/>
+            				<field name="location_ids" widget="many2many_tags"
+            					   attrs="{'invisible': [('stock_type', '=', 'warehouse')],
+            					   		   'required': [('report_choose', '=', 'custom'),
+            					   		   				('stock_type', '=', 'loc')]}"/>
+            			</group>
+            		</group>
+            	</xpath>
+            	<xpath expr="/form/footer" position="replace">
+	            	<footer>
+	                    <button name="open_table" string="Retrieve the Inventory Quantities"
+	                    		type="object" class="btn-primary"
+	                    		attrs="{'invisible': ['|',('report_choose', '!=', 'normal'),
+	                    							  ('is_printed','=',True)]}"/>
+	                    <button name="print_report" string="Export"
+	                    		type="object" class="btn-primary"
+	                    		attrs="{'invisible': ['|',('report_choose', '=', 'normal'),
+	                    							  ('is_printed','=',True)]}"/>
+	                    <button name="action_back" string="Back" class="btn btn-default"
+	                    		type='object' attrs="{'invisible': [('is_printed','!=',True)]}"></button>
+	                    <button string="Cancel" class="btn-default" special="cancel"/>
+	                </footer>
+                </xpath>
+	    	</data>
+        </field>
+    </record>
+    
+</odoo>

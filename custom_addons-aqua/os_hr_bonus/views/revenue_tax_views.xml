@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	
+	<menuitem 
+		id="menu_revenue_tax_table_config" parent="menu_bonus"
+		name="Configuration" sequence="5"/>
+		
+	<record id="view_revenue_tax_table_form" model="ir.ui.view">
+		<field name="name">revenue.tax.table.form</field>
+        <field name="model">revenue.taxtable</field>
+        <field name="arch" type="xml">
+        	<form string="Tax Table">
+        		<sheet>
+        			<group>
+        			<div class="oe_title">
+                  	     <label for="name" class="oe_edit_only"/>
+                         <h1><field name="name" class="oe_inline"/></h1>
+                    </div>
+                    </group>
+        			<group string="Gross Monthly Income Range and Rate">
+	        			<field name="monthly_income_ids" nolabel="1">
+        					<tree editable="bottom">
+        						<field name="income_from"/>
+        						<field name="income_to"/>
+        						<field name="rate"/>
+        					</tree>
+        				</field>
+        			</group>
+        		</sheet>		
+        	</form>
+        </field>
+    </record>
+    
+    <record id="action_revenue_tax_table" model="ir.actions.act_window">
+		<field name="name">Tax Table</field>
+  		<field name="res_model">revenue.taxtable</field>
+    	<field name="view_type">form</field>
+      	<field name="view_mode">tree,form</field> 
+	</record>
+    
+    <menuitem 
+		id="menu_revenue_tax_table" parent="menu_revenue_tax_table_config"
+		name="Tax Table" sequence="1"
+		action="action_revenue_tax_table"/>
+		
+</odoo>

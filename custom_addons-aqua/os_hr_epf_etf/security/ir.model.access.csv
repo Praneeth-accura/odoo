@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee_epf,employee.epf,model_employee_epf,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_employee_epf_hr_user,employee.epf.hr.user,model_employee_epf,base.group_user,1,1,1,0
+access_epf_line,epf.line,model_epf_line,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_epf_line_hr_user,epf.line.hr.user,model_epf_line,base.group_user,1,1,1,0
+access_employee_etf,employee.etf,model_employee_etf,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_employee_etf_hr_user,employee.etf.hr.user,model_employee_etf,base.group_user,1,1,1,0
+access_etf_line,etf.line,model_etf_line,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_etf_line_hr_user,etf.line.hr.user,model_etf_line,base.group_user,1,1,1,0

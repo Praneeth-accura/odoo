@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+  <!-- Session Order Summary Report  -->
+  <template id="report_session_orderoverview">
+        <t t-call="web.html_container">
+           <t t-foreach="docs" t-as="o">
+              <t t-call="web.external_layout">
+                 <div class="page">
+                     <h2>Session: <span t-field="o.name"/></h2>
+                        <div class="row mt32 mb32">
+	                            <table class="table table-bordered">
+	                        		<tbody>
+				                        <tr>
+				                            <td><b>Point of sale : </b> <span t-field="o.config_id.name"/></td>
+				                            <td><b>Opening Date : </b> <span t-field="o.start_at"/></td>
+				                        </tr>
+				                        <tr>
+				                        	<td><b>Responsible : </b> <span t-field="o.user_id.name"/></td>
+			                             	<td><b>Closing date : </b> <span t-field="o.stop_at"/></td>
+				                        </tr>
+			                     	</tbody>
+                        		</table>
+		                       	<br/>
+                              	<div style="margin-top: 100px;">
+		                         <table class="table table-condensed">
+		                              <thead>
+		                                    
+					                        <tr class="text-center" style="font-weight: bold;">
+					                            <th>Order Date</th>
+					                            <th>Order Ref</th>
+					                            <th>Receipt Ref</th>
+					                            <th>Customer</th>
+					                            <th>Salesman</th>
+					                            <th>Total</th>
+					                        </tr>
+					                    </thead>
+					                    <tbody>
+					                      <t t-set="sub_total" t-value="0"/>
+					                      <t t-foreach="o.session_order_summary()" t-as="l">
+					                        <tr>
+					                         <td>
+		                                           <span t-field="l.date_order"/>
+		                                     </td>
+		                                     <td>
+		                                          <span t-field="l.name"/>
+		                                     </td>
+		                                     <td>
+		                                          <span t-field="l.pos_reference"/>
+		                                     </td>
+		                                     <td>
+		                                          <span t-field="l.partner_id"/>
+		                                     </td>
+		                                     <td>
+		                                           <span t-field="l.user_id"/>
+		                                     </td>
+		                                     <td>
+		                                            <span t-field="l.amount_total" />
+		                                     </td>
+					                        </tr>
+					                      	<t t-set="sub_total" t-value="sub_total+l.amount_total"/>
+					                       </t>
+					                    </tbody>
+					              </table >
+						            <div class="col-xs-4 pull-right">
+						                <table class="table table-condensed">
+						                    <tr class="border-black">
+						                        <td><strong>SubTotal</strong></td>
+						                        <td class="text-right">
+						                            <strong><span t-esc="sub_total"/></strong>
+						                        </td>
+						                    </tr>
+						                </table>
+						            </div>
+			                  </div>
+			              </div>
+			           </div>
+			       </t>
+			    </t>
+			 </t>
+   </template>
+</odoo>

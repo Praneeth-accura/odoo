@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+
+	<!-- inherit pos order form -->
+	<record model="ir.ui.view" id="view_pos_pos_form_it_inherit">
+	    <field name="name">pos.order.it</field>
+	    <field name="model">pos.order</field>
+	    <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"></field>
+	    <field name="arch" type="xml">
+	    	<field name="user_id" position="after">
+	    		<field name="cashier_id"/>
+	    	</field>
+	    </field>
+	</record>
+	
+	<!-- inherit pos order tree -->
+	<record model="ir.ui.view" id="view_pos_order_tree_it_inherit">
+	    <field name="name">Orders.IT</field>
+	    <field name="model">pos.order</field>
+	    <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+	    <field name="arch" type="xml">
+	    	<field name="user_id" position="after">
+	    		<field name="cashier_id"/>
+	    	</field>
+	    </field>
+	</record>
+
+</odoo>

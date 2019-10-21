@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<template id="os_hr_bonus.report_bonus_document">
+	    <t t-foreach="doc" t-as="doc">
+		    <t t-call="web.external_layout">
+		        <div class="page">
+	        	    <h2>Bonus Slip</h2>
+		            <div class="oe_structure"/>
+		            <table class="table table-condensed table-bordered">
+		            	<tr>
+		            		<td>NAME</td>
+		            		<td><div t-field="doc.employee_id"/></td>
+		            	</tr>
+		           	 	<tr>
+		            		<td>EPF NO</td>
+		            		<td> <div t-field="doc.epf_no"/></td>
+		            	</tr>
+		            	
+		            </table>
+		            <p>Bonus slip for <span t-field="doc.name"/></p>
+		        </div>
+		        <div>
+		        	<table class="table table-condensed mt32">
+			        	<tr>
+			        		<td>Gross Bonus</td>
+			        		<td class="text-right"><div t-field="doc.gross_bonus" 
+			        			t-field-options='{"widget": "monetary", "display_currency": doc.employee_id.company_id.currency_id}'/></td>
+			        	</tr>
+			      	</table>
+			      	<table class="table table-condensed mt32">
+			        	<tr>
+			        		<td>Tax Table</td>
+			        		<td class="text-right"><div t-field="doc.tax_table"/></td>
+			        	</tr>
+			        	<tr>
+			        		<td>Tax Rate</td>
+			        		<td class="text-right"><span t-field="doc.tax_rate"/><span> %</span></td>
+			        	</tr>
+			        </table>
+			        <table class="table table-condensed mt32">
+			        	<tr class="border-black">
+			        		<td>Gross for Tax</td>
+			        		<td class="text-right" ><div t-field="doc.gross_for_tax"
+				        		t-field-options='{"widget": "monetary", "display_currency": doc.employee_id.company_id.currency_id}'/></td>
+			        	</tr>
+			        </table>
+					
+			        <table class="table table-condensed mt32">
+						<tr>
+							<td><strong>Deductions</strong></td>
+							<td/>
+						</tr>
+						<tr>
+			        		<td>PAYE</td>
+			        		<td class="text-right"><div t-field="doc.paye"
+			        			t-field-options='{"widget": "monetary", "display_currency": doc.employee_id.company_id.currency_id}'/></td>
+			        	</tr>			        	
+			        	<tr>
+			        		<td>Other Deductions</td>
+			        		<td class="text-right"><div t-field="doc.other_deduction"
+			        			t-field-options='{"widget": "monetary", "display_currency": doc.employee_id.company_id.currency_id}'/></td>
+			        	</tr>			        	
+			        	<tr>
+			        		<td>STAMP DUTY</td>
+			        		<td class="text-right"><div t-field="doc.stamp_duty"
+			        			t-field-options='{"widget": "monetary", "display_currency": doc.employee_id.company_id.currency_id}'/></td>
+			        	</tr>
+			        		<tr class="border-black">
+			        		<td><strong>Total Deduction</strong></td>
+			        		<td class="text-right"><div  t-field="doc.total_deduction"
+			        			t-field-options='{"widget": "monetary", "display_currency": doc.employee_id.company_id.currency_id}'/></td>
+			        	</tr>
+			        	</table>
+			        	<table class="table table-condensed mt32">
+			        		<tr class="border-black">
+			        		<td><strong>Net Bonus</strong></td>
+			        		<td class="text-right"><div t-field="doc.net_bonus"
+			        			t-field-options='{"widget": "monetary", "display_currency": doc.employee_id.company_id.currency_id}'/></td>
+			        	</tr>
+		        	</table>
+		        	<br/>
+		        	<p>Net bonus will be credited to your bank account<br/><br/>Stamp Duty will be paid to IR<br/></p>
+		    		<div style="page-break-before:always;">
+			        	<p>
+			        		<br/>
+			        		Received the following amount from <span t-field="doc.employee_id.company_id"/><br/>
+			        		Being the bonus for the month of <span t-field="doc.month_year"/><br/>
+			        		Date of Payment :
+			        		<span t-esc="doc.get_current_date()"/>
+			        	</p>
+			        	<table class="table table-condensed">
+			        		<theah>
+			        			<tr>
+			        				<th>EPF#</th>
+			        				<th>Name</th>
+			        				<th class="text-right">Net Bonus</th>
+			        			</tr>
+			        		</theah>
+			        		<tbody>
+			        			<tr>
+			        				<td><div t-field="doc.epf_no"/></td>
+			        				<td><div t-field="doc.employee_id"/></td>
+			        				<td class="text-right"><div t-field="doc.net_bonus"
+			        					t-field-options='{"widget": "monetary", "display_currency": doc.employee_id.company_id.currency_id}'/></td>
+			        			</tr>
+			        		</tbody>
+			        	</table>
+			        </div>	
+		        </div>
+		    </t>    
+	    </t>
+	</template>	
+	
+	<template id="report_bonus">
+	    <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="os_hr_bonus.report_bonus_document"/>
+	        </t>
+	    </t>
+	</template>
+
+</odoo>

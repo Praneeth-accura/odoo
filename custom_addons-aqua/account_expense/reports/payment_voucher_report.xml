@@ -1,0 +1,95 @@
+<odoo>
+    <template id="payment_voucher_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-size:14px;">
+                        <div class="row">
+                            <div class="text-center">
+                                <h4><b><span t-esc="doc.company_id.name"/></b></h4>
+                                <t t-if="doc.company_id.street"><span t-esc="doc.company_id.street"/>,</t>
+                                <t t-if="doc.company_id.street2"><span t-esc="doc.company_id.street2"/>,</t>
+                                <t t-if="doc.company_id.city"><span t-esc="doc.company_id.city"/>,</t>
+                                <t t-if="doc.company_id.state_id.name"><span t-esc="doc.company_id.state_id.name"/>,</t>
+                                <t t-if="doc.company_id.zip"><span t-esc="doc.company_id.zip"/>,</t>
+                                <t t-if="doc.company_id.country_id.name"><span t-esc="doc.company_id.country_id.name"/></t>
+                                <h5><b>PAYMENT VOUCHER</b></h5>
+                            </div>
+                            <table width="100%" style="border: solid 1px; padding: 5px;">
+                                <tr height="10px">
+                                    <td width="62%" style="padding-top: 5px; padding-bottom: 5px">&#160;&#160;Payment Details</td>
+                                    <td width="15%" style="border-left: solid 1px; border-bottom: solid 1px;">&#160;&#160;&#160; Voucher No</td>
+                                    <td width="23%" style="border-left: solid 1px; border-bottom: solid 1px;">&#160;&#160;&#160; <span t-field="doc.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td width="62%" style="padding-top: 5px; padding-bottom: 5px">&#160;&#160;&#160;&#160;Payee :  &#160;<b><span t-field="doc.partner_id.name"/></b></td>
+                                    <td width="15%" style="border-left: solid 1px; border-bottom: solid 1px;">&#160;&#160;&#160; Date</td>
+                                    <td width="23%" style="border-left: solid 1px; border-bottom: solid 1px;">&#160;&#160;&#160; <span t-field="doc.date" t-options ='{"format": "dd/MM/yyyy"}'/></td>
+                                </tr>
+                                <tr>
+                                    <td width="62%" style="padding-top: 5px; padding-bottom: 5px">&#160;&#160;&#160;&#160;Bank&#160;&#160;  :  &#160;<b><span t-field="doc.journal.name"/></b></td>
+                                    <td width="15%" style="border-left: solid 1px;">&#160;&#160;&#160; Cheque No</td>
+                                    <td width="23%" style="border-left: solid 1px;">&#160;&#160;&#160; <span t-field="doc.check_no"/></td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <t t-set="tax" t-value="0"/>
+                            <t t-set="untaxed_amount" t-value="0"/>
+                            <table style="border: solid 1px; width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30%; border-right: solid 1px; border-bottom: solid 1px; padding-left: 5px; padding-top: 3px; padding-bottom: 3px" class="text-left">Account</th>
+                                        <th style="width: 40%; border-right: solid 1px; border-bottom: solid 1px; padding-left: 5px;" class="text-left">Memo</th>
+                                        <th style="width: 30%; border-bottom: solid 1px; padding-left: 5px;" class="text-right">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.line_ids" t-as="line">
+                                        <tr>
+                                            <td style="border-left: solid 1px; padding-left: 5px; padding-top: 3px; padding-bottom: 3px;"><span t-esc="line.account_id.name"/></td>
+                                            <td style="border-left: solid 1px; padding-left: 5px;"><span t-esc="line.name"/></td>
+                                            <td style="border-left: solid 1px; padding-right: 5px;" class="text-right"><span t-esc="line.debit"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td  width="60%" style="padding-left:5px;"><span t-field="doc.amount_in_words"/></td>
+                                    <td  width="20%" class="text-left" style="padding-left:5px;">Total Amount</td>
+                                    <td  width="20%" class="text-right" style="padding-left:5px;"><span t-field="doc.total_amount"/></td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td class="text-center" style="width: 25%;">...............................</td>
+                                    <td class="text-center" style="width: 25%;">...............................</td>
+                                    <td class="text-center" style="width: 25%;">...............................</td>
+                                    <td class="text-center" style="width: 25%;">...............................</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" style="width: 25%;">Prepared By&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+                                    <td class="text-center" style="width: 25%;">Authorised By&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+                                    <td class="text-center" style="width: 25%;">Approved By&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+                                    <td class="text-center" style="width: 25%;">Received By&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <div class="text-right">
+                                <p>........................................</p>
+                                <p>Payee's Name &amp; ID No&#160;&#160;&#160;</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

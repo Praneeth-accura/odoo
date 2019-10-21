@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="employee_loan_payment_form_view" model="ir.ui.view">
+	        <field name="name">employee.loan.payment.form</field>
+	     	<field name="model">loan.payment</field>
+	     	<field name="arch" type="xml">
+	     		<form string='Loan Payment'>
+     				<group cols="4">
+     					<group>
+     						<field name="employee_id" />
+                              	<field name="employee_code"/>
+     					</group>
+     					<group>
+                               <field name="department_id"/>
+                               <field name="job_id"/>
+                           </group>
+     				</group>
+     				<p class="oe_grey" attrs="{'invisible':[('employee_id', '=', False)]}">
+     					<h3>Click 'Add an item' to Choose your loan installment.</h3>
+                   	</p>
+     				<notebook>
+	     				<page string="Loan">
+                        	<field name="installment_ids" nolabel="1" domain="[('loan_id.employee_id','=',employee_id),('loan_id.state','=','approve'),('status','=','unpaid')]" 
+                        			attrs="{'invisible':[('employee_id', '=', False)]}">
+                        		<tree>
+                        			<field name="loan_id"/>
+                                    <field name="installment_date" />
+                                    <field name="amount" sum="Total"/>
+                                    <field name="status"/>
+                           		</tree>
+	                        </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="process_loan_payment" string="Proceed To Pay" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+	     		</form>
+	     	</field>
+		</record>
+		
+		<record id="open_employee_loan_payment" model="ir.actions.act_window">
+        	<field name="name">Loan Payment</field>
+        	<field name="type">ir.actions.act_window</field>
+	   	 	<field name="res_model">loan.payment</field>
+	   	 	<field name="view_type">form</field>
+	   	 	<field name="view_mode">form</field>
+	   	 	<field name="target">new</field>
+	    </record>
+    
+    	<menuitem id="main_menu_loan_payment" action="open_employee_loan_payment" parent="menu_hr_loan" sequence="2" groups="hr.group_hr_manager"/>
+	</data>
+</odoo>

@@ -806,8 +806,6 @@ msgid ""
 "All items couldn't be shipped, the remaining ones will be shipped as soon as"
 " they become available."
 msgstr ""
-"Nu toate articolele au putut fi expediate, celelalte vor fi expediate "
-"imediat ce devin disponibile."
 
 #. module: stock
 #: code:addons/stock/models/stock_inventory.py:112
@@ -1370,27 +1368,27 @@ msgstr "Calculeaza"
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.res_config_settings_view_form
 msgid "Compute shipping costs and ship with DHL"
-msgstr "Calculați costurile de transport și expediați cu DHL"
+msgstr ""
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.res_config_settings_view_form
 msgid "Compute shipping costs and ship with FedEx"
-msgstr "Calculați costurile de transport și expediați cu FedEx"
+msgstr ""
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.res_config_settings_view_form
 msgid "Compute shipping costs and ship with UPS"
-msgstr "Calculați costurile de transport și expediați cu UPS"
+msgstr ""
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.res_config_settings_view_form
 msgid "Compute shipping costs and ship with USPS"
-msgstr "Calculați costurile de transport și expediați cu USPS"
+msgstr ""
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.res_config_settings_view_form
 msgid "Compute shipping costs and ship with bpost"
-msgstr "Calculați costurile de transport și expediați cu bpost"
+msgstr ""
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.view_move_picking_form
@@ -5042,7 +5040,7 @@ msgstr ""
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.view_picking_form
 msgid "Put in Pack"
-msgstr "Pune în Pachet"
+msgstr ""
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.res_config_settings_view_form
@@ -5489,7 +5487,7 @@ msgstr "Ridicare Returnata"
 #. module: stock
 #: model:ir.actions.act_window,name:stock.act_stock_return_picking
 msgid "Reverse Transfer"
-msgstr "Returnați transferul"
+msgstr "Rambursați transferul"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_location_parent_right
@@ -5855,10 +5853,6 @@ msgid ""
 " labels and request carrier picking at your warehouse to ship to the "
 "customer. Apply shipping connector from delivery methods."
 msgstr ""
-"Conectorii de transport permit calcularea costurilor de transport exacte, "
-"tipărirea etichetelor de transport și solicitarea ridicării "
-"transportatorului la depozitul dvs. pentru a fi expediate clientului. "
-"Aplicați conectorul de livrare din metodele de livrare."
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_warehouse_code
@@ -7420,9 +7414,6 @@ msgid ""
 "stock move. If you need to change the type, you should first unreserve the "
 "stock move."
 msgstr ""
-"Nu puteți schimba tipul unui produs care este rezervat în mișcările de stoc."
-" Dacă doriți să schimbați tipul, ar trebui mai întâi să anulați rezervările "
-"din mișcările de stoc."
 
 #. module: stock
 #: code:addons/stock/models/product.py:513

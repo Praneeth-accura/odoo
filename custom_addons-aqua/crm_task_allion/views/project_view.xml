@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- inherit view of Project Form : adding the workflow -->
+        <record id="project_view_form_inherit" model="ir.ui.view">
+            <field name="name">project.view.form.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="set_to_new" string="New" type="object" class="oe_highlight" attrs="{'invisible': ['|',('stage_id', 'in', [1, 2, 3]), ('stage_id', '=', False)]}"/>
+                        <button name="set_to_inprogress" string="In Progress" type="object" class="oe_highlight" attrs="{'invisible': [('stage_id', '=', 2)]}"/>
+                        <button name="set_to_done" string="Done" type="object" class="oe_highlight" attrs="{'invisible': [('stage_id', 'in', [3, 1])]}"/>
+                        <field name="stage_id" widget="statusbar"/>
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='message_follower_ids']" position="after">
+                    <field name="message_ids" widget="mail_thread"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="done_date" attrs="{'invisible' : [('stage_id', '!=', 3)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="date_deadline"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="project_view_tree_inherit" model="ir.ui.view">
+            <field name="name">project.view.tree.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="stage_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="project_view_kanban_inherit" model="ir.ui.view">
+            <field name="name">project.view.kanban.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.project_view_kanban" />
+            <field name="arch" type="xml">
+                <xpath expr="//kanban[@class='o_kanban_mobile']" position="attributes">
+                    <attribute name="default_group_by">stage_id</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="task_view_form_inherit" model="ir.ui.view">
+            <field name="name">task.view.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='stage_id']" position="replace">
+                    <field name="stage_id" widget="statusbar" options="{'fold_field': 'fold'}"/>
+                </xpath>
+                <xpath expr="//field[@name='stage_id']" position="before">
+                    <button name="set_to_new" string="New" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('stage_id', 'in', [1, 2, 3]), ('stage_id', '=', False)]}"/>
+                    <button name="set_to_inprogress" string="In Progress" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('stage_id', '=', 2), ('stage_id', '=', False)]}"/>
+                    <button name="set_to_done" string="Done" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('stage_id', 'in', [3, 1]), ('stage_id', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//page[@name='description_page']" position="after">
+                    <page name="comment_page" string="Comment">
+                        <field name="comment" placeholder="Comment"/>
+                        <div class="oe_clear"/>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='date_deadline']" position="before">
+                    <field name="date_start"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="project_view_form_inherit_1" model="ir.ui.view">
+            <field name="name">project.view.form.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.project_project_view_form_simplified" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="date_deadline"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

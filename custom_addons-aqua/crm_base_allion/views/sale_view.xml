@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- inherit view of Sale Form : adding the "New Email Template" button -->
+        <record id="sale_form_inherit" model="ir.ui.view">
+            <field name="name">sale.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="(//button[@name='action_quotation_send'])[1]" position="after">
+                    <button name="action_quotation2_send" string="Send by Email Template 2" type="object" states="draft" class="btn-primary"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

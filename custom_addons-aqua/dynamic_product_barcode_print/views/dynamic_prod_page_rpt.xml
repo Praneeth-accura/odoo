@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="dynamic_prod_page_rpt">
+            <t t-call="web.html_container">
+            <t t-call="dynamic_product_barcode_print.barcode_layout">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <div class="page">
+                        <table width="100%" style="margin:0px;padding:0px;table-layout:fixed !important;">
+                            <span t-as="f" t-foreach="draw_table(data)">
+                                <span t-as="c" t-foreach="f">
+                                    <tr>
+                                        <span t-as="line" t-foreach="f[c]">
+                                            <t t-if="line != False">
+                                                here label height,width and margin will be set.below draw_style function will set style for td
+                                                <t t-set="style" t-value="draw_style(data)"/>
+                                                <td t-att-style="style" align="center">
+                                                    <div style="overflow: hidden;">
+                                                        do your design into this block only
+                                                        product name style can be change here
+                                                        <div style="color:black;font-size:20px;">
+                                                            <span t-field="line.product_id.name"/>
+                                                        </div>
+                                                        product internal code style can be change here
+                                                        <div style="color:black;font-size:20px;">
+                                                            <span t-field="line.product_id.default_code"/>
+                                                        </div>
+                                                        product barcode is created using get_barcode function.you can pass related parameters from barcode tab only
+                                                        <div style="color:black;margin-top:15px;font-size:9px;">
+                                                            <span t-raw="get_barcode(line.product_id.barcode, 'EAN13', data)"/>
+                                                        </div>
+                                                        to print price with pricelist
+                                                        
+                                                        <div align="center" style="color:black;font-size:12px;">
+                                                            <span t-esc="get_price(line.product_id, doc.pricelist_id)" t-options='{"widget": "monetary", "display_currency": product.currency_id}'/>
+                                                        </div> 
+                                                       
+                                                        design only above part for label
+                                                    </div>
+                                                </td>
+                                            </t>
+                                            Do not remove this lines , this is for blank td.
+                                            <t t-if="line == False">
+                                            <t t-set="style_td" t-value="draw_style(data)"/>
+                                                <td t-att-style="style_td">
+                                                </td>
+                                            </t>
+                                            Do not remove this lines
+                                        </span>
+                                    </tr>
+                                </span>
+                            </span>
+                        </table>
+                    </div>
+                </t>
+            </t>
+            </t>
+        </template>
+        
+        <report 
+			id="action_dynamic_prod_page_rpt"
+			string="Print Barcode"
+			model="wizard.product.page.report"
+			report_type="qweb-pdf"
+			file="dynamic_product_barcode_print.dynamic_prod_page_rpt"
+			name="dynamic_product_barcode_print.dynamic_prod_page_rpt"
+		/>
+
+    </data>
+</openerp>

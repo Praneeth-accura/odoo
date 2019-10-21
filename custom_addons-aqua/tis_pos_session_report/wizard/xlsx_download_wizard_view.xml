@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	    <record id="pos_excel_export_form" model="ir.ui.view">
+	        <field name="name">pos.excel.export.form</field>
+	        <field name="model">pos.excel.export</field>
+	        <field name="arch" type="xml">
+		        <form create="false" edit="false" save="false" discard="false">
+	                <group>
+	                    <field widget="binary" name="report_file" nolabel="1" filename="name"/>
+	                    <field name="name" nolabel="1" readonly="1" invisible="1"/>
+	                    
+	                </group>
+		            <footer>
+		            	<button string="Close" name="action_back"  type="object"/>
+		            </footer>
+		        </form>
+	        </field>
+	    </record>
+	    <record id="action_view_pos_excel_export" model="ir.actions.act_window">
+	            <field name="name">Download</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">pos.excel.export</field>
+	            <field name="view_type">form</field>
+	            <field name="view_mode">form</field>
+	            <field name="target">inline</field>
+	            <field name="view_id" ref="pos_excel_export_form"/>
+	    </record>
+	</data>
+	
+</odoo>

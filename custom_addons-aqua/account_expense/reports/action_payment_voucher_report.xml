@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <report
+            id="action_report_payment_voucher"
+            model="account.expense"
+            string="Payment Voucher"
+            report_type="qweb-pdf"
+            name="account_expense.payment_voucher_template"
+            file="account_expense.payment_voucher_template"
+            paperformat="account_expense.payment_voucher_paperformat"
+            menu="True"
+        />
+    </data>
+</odoo>

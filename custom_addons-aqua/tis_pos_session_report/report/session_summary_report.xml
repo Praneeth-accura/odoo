@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+            id="report_ir_model_session_overview"
+            string="Session Summary"
+            model="pos.session"
+            report_type="qweb-pdf"
+            name="tis_pos_session_report.report_sessionoverview"
+            file="tis_pos_session_report.report_sessionoverview"/>
+    
+     <report
+            id="report_ir_model_session_order_overview"
+            string="Session Order Summary"
+            model="pos.session"
+            report_type="qweb-pdf"
+            name="tis_pos_session_report.report_session_orderoverview"
+            file="tis_pos_session_report.report_session_orderoverview"/>
+
+</odoo>
+        

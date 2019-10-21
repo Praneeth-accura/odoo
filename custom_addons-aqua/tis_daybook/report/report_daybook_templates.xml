@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_daybook_document">
+		<t t-call="web.external_layout">
+			<t t-foreach="doc" t-as="o">
+				<div class="page">
+					<div class="oe_structure"/>
+	   				<div class="row">
+   	        			<div class="col-xs-12">
+	   	        			<h3>
+	   	        				<span t-field="o.journal_id.type"/> Daybook 
+	        					<span t-if="o.from_date == o.to_date">for <span t-esc="o.format_date(o.from_date)"/></span>
+	        					<span t-if="o.from_date != o.to_date"><span t-esc="o.format_date(o.from_date)"/> - <span t-esc="o.format_date(o.to_date)"/></span>
+	                		</h3>
+                		</div>
+               		</div>
+               		<t t-if="o.daybook_lines()">
+               			<table class="table table-condensed" t-if="o.type == 'bank' or o.type == 'cash'">
+               				<thead>
+	               				<tr>
+	               					<th>Payment Date</th>
+	               					<th>Name</th>
+	               					<th>Payment Journal</th>
+	               					<th>Customer</th>
+	               					<th>Payment Amount</th>
+	               				</tr>
+               				</thead>
+               				<tbody class="invoice_tbody">
+               					<tr t-foreach="o.daybook_lines()" t-as="line">
+               						<td><span t-field="line.payment_date"/></td>
+               						<td><span t-field="line.name"/></td>
+               						<td><span t-field="line.journal_id"/></td>
+               						<td><span t-field="line.partner_id"/></td>
+               						<td class="text-right"><span t-field="line.amount"/></td>
+               					</tr>
+               					<tr class="text-right">
+               						<td style="font-weight:bold" colspan="5">
+	               						<t t-set="total" t-value="sum(line.amount for line in o.daybook_lines())"/>
+	               						<span t-esc="total" t-options='{"widget": "monetary", "display_currency": o.daybook_lines()[0].currency_id}'/>
+               						</td>
+               					</tr>
+               				</tbody>
+               			</table>
+               			<table class="table table-condensed" t-if="o.type != 'bank' and o.type != 'cash'">
+               				<thead>
+	               				<tr>
+	               					<th>
+	               						<span t-if="o.type == 'sale'">Invoice</span> 
+	               						<span t-if="o.type == 'purchase'">Bill</span>
+	               						Date
+	               					</th>
+	               					<th>Number</th>
+	               					<th>
+	               						<span t-if="o.type == 'sale'">Customer</span> 
+	               						<span t-if="o.type == 'purchase'">Vendor</span>
+	               					</th>
+	               					<th>Due Date</th>
+	               					<th>Total</th>
+	               					<th>
+	               						<span t-if="o.type == 'sale'">Amount Due</span> 
+	               						<span t-if="o.type == 'purchase'">To Pay</span>
+	               					</th>
+	               				</tr>
+               				</thead>
+               				<tbody class="invoice_tbody">
+               					<tr t-foreach="o.daybook_lines()" t-as="line">
+               						<td><span t-field="line.date_invoice"/></td>
+               						<td><span t-field="line.number"/></td>
+               						<td><span t-field="line.partner_id"/></td>
+               						<td><span t-field="line.date_due"/></td>
+               						<td class="text-right"><span t-field="line.amount_total_signed"/></td>
+               						<td class="text-right"><span t-field="line.residual_signed"/></td>
+               					</tr>
+               					<tr style="font-weight:bold" class="text-right">
+               						<td colspan="5">
+	               						<t t-set="total" t-value="sum(line.amount_total_signed for line in o.daybook_lines())"/>
+	               						<span t-esc="total" t-options='{"widget": "monetary", "display_currency": o.daybook_lines()[0].currency_id}'/>
+               						</td>
+               						<td style="font-weight:bold" class="text-right">
+               							<t t-set="total" t-value="sum(line.residual_signed for line in o.daybook_lines())"/>
+	               						<span t-esc="total" t-options='{"widget": "monetary", "display_currency": o.daybook_lines()[0].currency_id}'/>
+               						</td>
+               					</tr>
+               				</tbody>
+               			</table>
+               		</t>
+				</div>
+			</t>
+		</t>
+	</template>
+	<template id="report_daybook">
+	    <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="tis_daybook.report_daybook_document"/>
+	        </t>
+	    </t>
+	</template>
+</odoo>

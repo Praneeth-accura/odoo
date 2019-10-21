@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- add new assets to the backend assets-->
+        <template id="ooa_assets_backend" name="account assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/account_accountant/static/src/js/tour.js"></script>
+            </xpath>
+        </template>
+</odoo>

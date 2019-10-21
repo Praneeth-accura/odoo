@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.ui.view" id="view_invoice_discount_form">
+		<field name="name">invoice.discount.form</field>
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.invoice_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='amount_untaxed']" position="after">
+				<field name="nbt_tax"/>
+				<field name="normal_tax"/>
+			</xpath>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="view_invoice_discount_form_1">
+		<field name="name">invoice.discount.form.1</field>
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.invoice_supplier_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='date_due']" position="after">
+				<field name="type_of_customer" invisible="context.get('type') in ('out_invoice', 'out_refund')" required="context.get('type') not in ('out_invoice', 'out_refund')"/>
+				<field name="crusdec_id" invisible="context.get('type') in ('out_invoice', 'out_refund')"/>
+				<field name="crusdec_date" invisible="context.get('type') in ('out_invoice', 'out_refund')"/>
+				<field name="crusdec_office_id" invisible="context.get('type') in ('out_invoice', 'out_refund')"/>
+				<field name="vat_disallowed" invisible="context.get('type') in ('out_invoice', 'out_refund')"/>
+			</xpath>
+		</field>
+	</record>
+
+    <record model="ir.ui.view" id="inherit_view_tax_form">
+		<field name="name">inherit.view.tax.form</field>
+		<field name="model">account.tax</field>
+		<field name="inherit_id" ref="account.view_tax_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='name']" position="after">
+				<field name="is_nbt"/>
+			</xpath>
+		</field>
+	</record>
+</odoo>

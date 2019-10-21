@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+	
+	    <!-- Religion Islam -->
+	    <record id="religion_name_islam" model="employee.religion">
+	        <field name="name">Islam</field>
+	    </record>
+	    
+	    <!-- Religion Buddhism -->
+	    <record id="religion_name_buddhism" model="employee.religion">
+	        <field name="name">Buddhism</field>
+	    </record>
+	    
+	    <!-- Religion Hinduism -->
+	    <record id="religion_name_hinduism" model="employee.religion">
+	        <field name="name">Hinduism</field>
+	    </record>
+	    
+	    <!-- Religion Christianity -->
+	    <record id="religion_name_christianity" model="employee.religion">
+	        <field name="name">Christianity</field>
+	    </record>
+	    
+	    <!-- Religion Other -->
+	    <record id="religion_name_other" model="employee.religion">
+	        <field name="name">Other/None</field>
+	    </record>
+	    
+	</data>
+</odoo>

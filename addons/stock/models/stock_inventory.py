@@ -227,7 +227,7 @@ class Inventory(models.Model):
         if self.company_id:
             domain += ' AND company_id = %s'
             args += (self.company_id.id,)
-        
+
         #case 1: Filter on One owner only or One product for a specific owner
         if self.partner_id:
             domain += ' AND owner_id = %s'
@@ -346,6 +346,18 @@ class InventoryLine(models.Model):
         digits=dp.get_precision('Product Unit of Measure'), readonly=True, store=True)
     inventory_location_id = fields.Many2one(
         'stock.location', 'Location', related='inventory_id.location_id', related_sudo=False)
+    diff_qty = fields.Float("Difference Qty", compute='_compute_diff1', store=True)
+
+    @api.one
+    @api.depends('product_qty','theoretical_qty')
+    def _compute_diff1(self):
+        for record in self:
+            record.diff_qty = record.product_qty - record.theoretical_qty
+
+    @api.multi
+    def _compute_diff(self):
+            self.product_id.diff_qty = 10
+
 
     @api.one
     @api.depends('location_id', 'product_id', 'package_id', 'product_uom_id', 'company_id', 'prod_lot_id', 'partner_id')

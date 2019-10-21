@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+    	<record id="view_payslip_inherit_form_modify" model="ir.ui.view">
+            <field name="name">hr.payslip.form.inherit.modify</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="os_hr_payroll_reports.view_payslip_inherit_form_paye"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//field[@name='credit_note']" position="after">
+            			<field name="modify_payslip" invisible="1"/>
+	        		</xpath>
+                    <xpath expr="//button[@name='compute_sheet']" position="after">
+                        <button string="Modify Sheet" name="%(os_hr_payslip_modify.action_view_payslip_modify_wizard_form)d" type="action"
+                        		class="oe_highlight" groups='hr.group_hr_manager' 
+                        		context="{'payslip_id': active_id}"
+                        		attrs="{'invisible':['|',('modify_payslip', '=', False),('state', '!=', 'done')]}"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <!--add button to hr.payslip.run header-->
+        <record id="view_hr_payslip_run_inherit_form_modify" model="ir.ui.view">
+            <field name="name">hr.payslip.run.form.inherit.modify</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//header" position="inside">
+            			<button string="Confirm Payslips" name="generate_batch_payslip" type="object" class="btn-primary" attrs="{'invisible': [('state', '=', 'confirm')]}" groups='hr.group_hr_manager'/>
+	        		</xpath>
+                    <xpath expr='//header//field[@name="state"]' position="replace">
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,close"/>
+	        		</xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

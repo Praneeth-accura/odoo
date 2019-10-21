@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="leave_details_document">
+    <t t-call="web.html_container">
+        <t t-call="web.internal_layout">
+        <t t-set="doc" t-value="doc.with_context({'lang':en_US})" />
+            <div class="page">
+            	<div>
+	                <h1 class="text-center mb32">
+	                    <u>Leave Details Report</u>
+	                </h1>
+	            </div>
+				<div style="float:right">
+					<span>Print Date : </span>
+					<span t-field="doc.current_date"/>
+				</div>
+				<div style="float:left;">
+					<table>
+						<tr>
+							<td><span t-if="doc.leave_date_from">Date From</span></td>
+							<td><span t-if="doc.leave_date_from">:</span></td>
+							<td><span t-field="doc.leave_date_from"/></td>
+						</tr>
+						<tr>
+							<td><span t-if="doc.leave_date_to">Date To</span></td>
+							<td><span t-if="doc.leave_date_to">:</span></td>
+							<td><span t-field="doc.leave_date_to"/></td>
+						</tr>
+					</table>
+				</div>
+                <table class="table table-bordered mb32" style="table-layout:auto">
+                    <thead>
+                        <t t-set="i" t-value="1"/>
+                        <t t-set="l" t-value="0"/>
+                        <tr>
+                            <th class="text-left">Sl No.</th>
+                            <th class="text-left">Code</th>
+                            <th class="text-left">Employee</th>
+                            <th class="text-left">Description</th>
+                            <th class="text-left">Leave Type</th>
+                            <th class="text-center">From</th>
+                            <th class="text-center">To</th>
+                            <th class="text-center">Duration</th>
+                        </tr>
+                   </thead>
+                   <tbody>
+                       <t t-foreach="doc.load_selected_details()" t-as="leave">
+	                       <!-- Lines associated -->
+                       		<tr>
+                       		   <td class="text-left"><span t-esc="i"/></td>
+                       		   <td class="text-left">
+	                               <span t-field="leave.employee_id.employee_code"/>
+	                           </td>
+	                           <td class="text-left">
+	                               <span t-field="leave.employee_id"/>
+	                           </td>
+	                           <td class="text-left">
+	                               <span t-field="leave.name"/>
+	                           </td>
+	                           <td class="text-left">
+	                               <span t-field="leave.holiday_status_id"/>
+	                           </td>
+	                           <td class="text-center">
+	                           	   <span t-field="leave.date_from"/>
+	                           </td>
+	                           <td class="text-center">
+	                               <span t-field="leave.date_to"/>
+	                           </td>
+	                           <td class="text-center">
+	                               <span t-field="leave.number_of_days_temp"/> days
+	                           </td>
+	                       	</tr>
+	                       <t t-set="i" t-value="i+1"/>
+	                       <t t-set="l" t-value="l+leave.number_of_days_temp"/>
+	                   </t>
+                    </tbody>
+                </table>
+                <div class="col-xs-3" style="float:right">
+                    <strong>Total Leaves = </strong>
+                    <span t-esc="l"/> Days
+                </div>
+            </div>
+        </t>
+    </t>
+</template>
+
+<template id="report_leave_details">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="os_hr_lk.leave_details_document" t-lang="en_US"/>
+        </t>
+    </t>
+</template>
+
+</odoo>

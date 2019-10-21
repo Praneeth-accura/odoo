@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_employee_inherit_form_paye" model="ir.ui.view">
+      <field name="name">hr.employee.inherit.form.paye</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+	      <data>
+	       	<xpath expr="//field[@name='terminate_date']" position="after">
+            	<field name="paye_section"/>
+	        </xpath>
+        	<xpath expr="//field[@name='branch']" position="after">
+        		<field name="income_tax_payer"/>
+        		<label string="File No" attrs="{'invisible':[('income_tax_payer', '!=', 'citizen')]}"/>
+           		<field name="incometax_or_passport" attrs="{'required':[('income_tax_payer', '!=', 'not')],
+           													'invisible':[('income_tax_payer', '!=', 'citizen')]}" nolabel="1"/>
+           		<label string="Passport No" attrs="{'invisible':[('income_tax_payer', '!=', 'non')]}"/>
+           		<field name="incometax_or_passport" attrs="{'required':[('income_tax_payer', '!=', 'not')],
+           													'invisible':[('income_tax_payer', '!=', 'non')]}" nolabel="1"/>
+	        </xpath>
+	      </data>
+	  </field>  
+	</record>
+	
+	<record id="view_payslip_inherit_form_paye" model="ir.ui.view">
+      <field name="name">hr.payslip.inherit.form.paye</field>
+      <field name="model">hr.payslip</field>
+      <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+      <field name="arch" type="xml">
+	      <data>
+	       	<xpath expr="//field[@name='credit_note']" position="after">
+            	<field name="paye_tax" invisible="1"/>
+	        </xpath>
+	      </data>
+	  </field>  
+	</record>
+</odoo>

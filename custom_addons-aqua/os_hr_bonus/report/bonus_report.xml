@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<report 
+			id="action_report_bonus"
+			string="Bonus Report"
+			model="bonus.payslip"
+			report_type="qweb-pdf"
+			file="os_hr_bonus.report_bonus"
+			name="os_hr_bonus.report_bonus"
+			print_report_name="'Bonus Slip -%s' %(object.employee_id.name)"/>
+	
+	</data>
+</odoo>

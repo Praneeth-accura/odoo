@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="pos_config_view_form_inherit_pos_return" model="ir.ui.view">
+            <field name="name">pos.config.form.inherit.pos.return</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+            <field name="arch" type="xml">
+               	<xpath expr="//h2[3]" position="before">
+               		<h2>Order Return</h2>
+					<div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box" title="Choose a specific tax regime at the order depending on the kind of customer (tax exempt, onsite vs. takeaway, etc.).">
+                            <div class="o_setting_left_pane">
+                                <field name="module_pos_return"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_pos_return" string="POS Return"/>
+                                <div class="text-muted">
+                                    Activate POS order product return
+                                </div>
+                            </div>
+                            <separator/>
+                            <div class="o_setting_left_pane" attrs="{'invisible': [('module_pos_return', '!=', True)]}">
+                                <field name="refund_order"/>
+                            </div>
+                            <div class="o_setting_right_pane" attrs="{'invisible': [('module_pos_return', '!=', True)]}">
+                                <label for="refund_order"/>
+                                <div class="text-muted">
+                                    Show refund orders also in product return
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box" attrs="{'invisible': [('module_pos_return', '!=', True)], 'required':[('module_pos_return', '=', True)]}">
+                            <div class="o_setting_right_pane">
+                                <label for="days_return"/>
+                                <div class="text-muted">
+                                    Maximum no of days for return
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="days_return"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	
+               	</xpath>
+            </field>
+        </record>
+</odoo>

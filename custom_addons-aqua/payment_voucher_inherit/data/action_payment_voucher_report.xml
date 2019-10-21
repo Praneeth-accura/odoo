@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <report
+            id="action_report_payment_voucher"
+            model="account.payment"
+            string="Payment Voucher"
+            report_type="qweb-pdf"
+            name="payment_voucher_inherit.payment_voucher_template"
+            file="payment_voucher_inherit.payment_voucher_template"
+            paperformat="payment_voucher_inherit.payment_voucher_paperformat"
+            menu="True"
+        />
+    </data>
+</odoo>

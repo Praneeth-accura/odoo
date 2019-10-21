@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_report" model="ir.ui.view">
+	    <field name="name">pos.details.wizard.form.inherit</field>
+	    <field name="model">pos.details.wizard</field>
+	    <field name="inherit_id" ref="point_of_sale.view_pos_details_wizard"/>
+	    <field name="arch" type="xml">
+		<xpath expr="//field[@name='end_date']" position="replace" ></xpath>
+   		<xpath expr="//field[@name='start_date']" position="replace" >
+			<group colspan="4">
+    			<group>
+         			<field name="report"/>
+    			</group>
+    			<group>
+    				<field name="sales_person" attrs="{'invisible': ['|',('report','not in',['daily','monthly','date_range']),
+   																	('products','=',True)]}"/>
+     				<field name="products" attrs="{'invisible': ['|',('report','not in',['daily','monthly','date_range']),
+																('sales_person','=',True)]}"/>
+    			</group>
+    			<group>
+    				<field name="start_date"/>
+			    </group>
+			    <group>
+			      	<field name="end_date"/>
+			    </group>
+ 			</group>
+    	</xpath>
+    	<xpath expr="//button[@name='generate_report']" position="replace">
+    		<button name="generate_report" string="Print" type="object" class="btn-primary" attrs="{'invisible': [('report','in',['daily','monthly','date_range'])]}"/>
+        	<button string="Print XLS" name="sales_report_xlsx"  type="object" class="btn-primary" attrs="{'invisible': [('report','not in',['daily','monthly','date_range'])]}"/>
+    	</xpath>
+	    </field>
+	</record>
+</odoo>

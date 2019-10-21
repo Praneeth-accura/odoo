@@ -3,29 +3,27 @@
 # * sale
 # 
 # Translators:
-# Monika Raciunaite <monika.raciunaite@gmail.com>, 2017
-# Rolandas <info@paninfo.lt>, 2017
-# Anatolij, 2017
-# Šarūnas Ažna <sarunas.azna@gmail.com>, 2017
+# Martin Trigaux, 2017
+# digitouch UAB <digitouchagencyeur@gmail.com>, 2017
 # Antanas Muliuolis <an.muliuolis@gmail.com>, 2017
+# Monika Raciunaite <monika.raciunaite@gmail.com>, 2017
+# Linas Versada <paulius.sladkevicius@gmail.com>, 2017
+# Arminas Grigonis <arminas@versada.lt>, 2017
 # Audrius Palenskis <audrius.palenskis@gmail.com>, 2017
 # UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2017
-# Arminas Grigonis <arminas@versada.lt>, 2017
-# digitouch UAB <digitouchagencyeur@gmail.com>, 2017
-# Eimantas <eimantas@focusate.eu>, 2018
+# Anatolij, 2017
+# Šarūnas Ažna <sarunas.azna@gmail.com>, 2017
+# Rolandas <info@paninfo.lt>, 2017
+# Paulius Sladkevičius <paulius@versada.eu>, 2017
 # Silvija Butko <silvija.butko@gmail.com>, 2018
-# Paulius Sladkevičius <paulius@versada.eu>, 2018
-# Linas Versada <linaskrisiukenas@gmail.com>, 2019
-# Martin Trigaux, 2019
-# Andrius Laukavičius <andrius@focusate.eu>, 2019
-# 
+# Eimantas <eimantas@focusate.eu>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 15:07+0000\n"
-"PO-Revision-Date: 2017-09-20 10:23+0000\n"
-"Last-Translator: Andrius Laukavičius <andrius@focusate.eu>, 2019\n"
+"POT-Creation-Date: 2018-04-27 14:48+0000\n"
+"PO-Revision-Date: 2018-04-27 14:48+0000\n"
+"Last-Translator: Eimantas <eimantas@focusate.eu>, 2018\n"
 "Language-Team: Lithuanian (https://www.transifex.com/odoo/teams/41243/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,51 +80,6 @@ msgid ""
 "% endif\n"
 "</p>\n"
 msgstr ""
-"\n"
-"<p>Gerb. ${object.partner_id.name}\n"
-"% set access_action = object.with_context(force_website=True).get_access_action()\n"
-"% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'\n"
-"% set doc_name = 'quotation' if object.state in ('draft', 'sent') else 'order confirmation'\n"
-"% set pay_sign_name =  object.get_portal_confirmation_action()\n"
-"% set access_name = is_online and object.state in ('draft', 'sent') and pay_sign_name in ('pay', 'sign') and 'Accept and %s online' % pay_sign_name or 'View %s' % doc_name\n"
-"% set access_url = is_online and object.get_mail_url() or ''\n"
-"\n"
-"% if object.partner_id.parent_id:\n"
-"    (<i>${object.partner_id.parent_id.name}</i>)\n"
-"% endif\n"
-",</p>\n"
-"<p>\n"
-"Čia\n"
-"% if ctx.get('proforma')\n"
-"prisegtuke, jūsų išankstinė sąskaita-faktūra\n"
-"% else\n"
-"the ${doc_name} <strong>${object.name}</strong>\n"
-"% endif\n"
-"% if object.origin:\n"
-"(su numeriu: ${object.origin} )\n"
-"% endif\n"
-"kurios dydis <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
-"iš ${object.company_id.name}.\n"
-"</p>\n"
-"\n"
-"% if is_online and not ctx.get('proforma'):\n"
-"    <br/><br/>\n"
-"    <center>\n"
-"        <a href=\"${access_url}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">${access_name}</a>\n"
-"        <br/><br/><br/>\n"
-"        <span style=\"color:#888888\">(arba žiūrėkite prisegtą PDF)</span>\n"
-"    </center>\n"
-"    <br/>\n"
-"% endif\n"
-"\n"
-"<p>Jei turite klausimų, galite atsakyti į šį laišką.</p>\n"
-"<p>Ačiū,</p>\n"
-"\n"
-"<p style=\"color:#888888;\">\n"
-"% if object.user_id and object.user_id.signature:\n"
-"    ${object.user_id.signature | safe}\n"
-"% endif\n"
-"</p>\n"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_product_product_sales_count
@@ -193,7 +146,7 @@ msgstr "&amp;nbsp;"
 #: model:ir.ui.view,arch_db:sale.portal_order_page
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "&amp;nbsp;<span>on</span>&amp;nbsp;"
-msgstr "&amp;nbsp;<span>esantis</span>&amp;nbsp;"
+msgstr "&amp;nbsp;<span>nuo</span>&amp;nbsp;"
 
 #. module: sale
 #: model:mail.template,body_html:sale.mail_template_data_notification_email_sale_order
@@ -271,78 +224,6 @@ msgid ""
 "                </html>\n"
 "            "
 msgstr ""
-"<html>\n"
-"                <head></head>\n"
-"                % set record = ctx.get('record')\n"
-"                % set company = record and record.company_id or ctx.get('company')\n"
-"                <body style=\"margin: 0; padding: 0;\">\n"
-"                <table border=\"0\" width=\"100%\" cellpadding=\"0\" bgcolor=\"#ededed\" style=\"padding: 20px; background-color: #ededed; border-collapse:separate;\" summary=\"o_mail_notification\">\n"
-"                    <tbody>\n"
-"\n"
-"                      <!-- HEADER -->\n"
-"                      <tr>\n"
-"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
-"                            <tr>\n"
-"                              <td valign=\"middle\">\n"
-"                                  <span style=\"font-size:20px; color:white; font-weight: bold;\">\n"
-"                                      ${object.record_name}\n"
-"                                  </span>\n"
-"                              </td>\n"
-"                              <td valign=\"middle\" align=\"right\">\n"
-"                                  <img src=\"/logo.png?company=${company.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${company.name}\">\n"
-"                              </td>\n"
-"                            </tr>\n"
-"                          </table>\n"
-"                        </td>\n"
-"                      </tr>\n"
-"\n"
-"                      <!-- CONTENT -->\n"
-"                      <tr>\n"
-"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;\">\n"
-"                            <tbody>\n"
-"                              <td valign=\"top\" style=\"font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;\">\n"
-"                                ${object.body | safe}\n"
-"                              </td>\n"
-"                            </tbody>\n"
-"                          </table>\n"
-"                        </td>\n"
-"                      </tr>\n"
-"\n"
-"                      <!-- FOOTER -->\n"
-"                      <tr>\n"
-"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
-"                            <tr>\n"
-"                              <td valign=\"middle\" align=\"left\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
-"                                ${company.name}<br/>\n"
-"                                ${company.phone or ''}\n"
-"                              </td>\n"
-"                              <td valign=\"middle\" align=\"right\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
-"                                % if company.email:\n"
-"                                <a href=\"mailto:${company.email}\" style=\"text-decoration:none; color: white;\">${company.email}</a><br/>\n"
-"                                % endif\n"
-"                                % if company.website:\n"
-"                                    <a href=\"${company.website}\" style=\"text-decoration:none; color: white;\">\n"
-"                                        ${company.website}\n"
-"                                    </a>\n"
-"                                % endif\n"
-"                              </td>\n"
-"                            </tr>\n"
-"                          </table>\n"
-"                        </td>\n"
-"                      </tr>\n"
-"                      <tr>\n"
-"                        <td align=\"center\">\n"
-"                            Powered by <a target=\"_blank\" href=\"https://www.odoo.com\">Odoo</a>.\n"
-"                        </td>\n"
-"                      </tr>\n"
-"                    </tbody>\n"
-"                </table>\n"
-"                </body>\n"
-"                </html>\n"
-"            "
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_order_page
@@ -364,15 +245,6 @@ msgstr ""
 "<i>Pavyzdys: išankstinio apmokėjimo paslaugų pasiūlymai, kuriems\n"
 "                klientui reikia nusipirkti papildomą valandų kiekį, nes jis išnaudojo\n"
 "                visas turėtas palaikymo valandas.</i>"
-
-#. module: sale
-#: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_my_orders
@@ -469,7 +341,7 @@ msgstr "<strong>Kontaktas</strong>"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "<strong>Date Ordered:</strong>"
-msgstr "<strong>Užsakymo data</strong>"
+msgstr "Užsakymo data"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_order_page
@@ -515,7 +387,7 @@ msgstr "<strong>Kiekis</strong>"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "<strong>Quotation Date:</strong>"
-msgstr "<strong>Pasiūlymo data:</strong>"
+msgstr "Pasiūlymo data:"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
@@ -606,7 +478,7 @@ msgid "Addresses in Sales Orders"
 msgstr "Adresai pardavimų užsakymuose"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:159
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:156
 #, python-format
 msgid "Advance: %s"
 msgstr "Avansas: %s"
@@ -644,7 +516,6 @@ msgid "Allows you to send pro-forma invoice."
 msgstr "Leidžia jums siųsti išankstinę sąskaitą faktūrą."
 
 #. module: sale
-#: model:ir.ui.view,arch_db:sale.report_invoice_layouted
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "Amount"
 msgstr "Kiekis"
@@ -691,7 +562,7 @@ msgstr "Analitinės  žymos"
 #. module: sale
 #: selection:product.template,expense_policy:0
 msgid "At cost"
-msgstr "Už kaštus"
+msgstr "Savikaina"
 
 #. module: sale
 #: model:ir.ui.menu,name:sale.menu_variants_action
@@ -981,7 +852,7 @@ msgid "Delivered"
 msgstr "Pristatyta"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:844
+#: code:addons/sale/models/sale.py:824
 #: model:ir.ui.view,arch_db:sale.view_order_form
 #, python-format
 msgid "Delivered Quantity"
@@ -1084,7 +955,7 @@ msgid "Display Name"
 msgstr "Vaizduojamas pavadinimas"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:85
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:84
 #, python-format
 msgid "Down Payment"
 msgstr "Pradinė įmoka"
@@ -1115,7 +986,7 @@ msgid "Down payment (percentage)"
 msgstr "Pradinė įmoka (procentais)"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:82
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:81
 #, python-format
 msgid "Down payment of %s%%"
 msgstr "Pradinė įmoka %s%%"
@@ -1155,15 +1026,10 @@ msgid "Extended Filters"
 msgstr "Išplėstiniai filtrai"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:827
+#: code:addons/sale/models/sale.py:807
 #, python-format
 msgid "Extra line with %s "
 msgstr "Pradinė įmoka su %s "
-
-#. module: sale
-#: model:ir.model,name:sale.model_ir_model_fields
-msgid "Fields"
-msgstr "Laukai"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_fiscal_position_id
@@ -1268,7 +1134,7 @@ msgid "Invoice"
 msgstr "Sąskaita faktūra"
 
 #. module: sale
-#: code:addons/sale/models/account_invoice.py:55
+#: code:addons/sale/models/account_invoice.py:52
 #, python-format
 msgid "Invoice %s paid"
 msgstr "Sąskaita faktūra %s apmokėta"
@@ -1356,7 +1222,7 @@ msgid "Invoiced"
 msgstr "Sąskaitos faktūros"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:845
+#: code:addons/sale/models/sale.py:825
 #: model:ir.ui.view,arch_db:sale.view_order_form
 #, python-format
 msgid "Invoiced Quantity"
@@ -1442,7 +1308,7 @@ msgid "Is expired"
 msgstr "Yra nebegaliojantis"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:864
+#: code:addons/sale/models/sale.py:861
 #, python-format
 msgid ""
 "It is forbidden to modify the following fields in a locked order:\n"
@@ -1450,12 +1316,6 @@ msgid ""
 msgstr ""
 "Neleidžiama keisti šių laukų užrakintame užsakyme:\n"
 "%s"
-
-#. module: sale
-#: code:addons/sale/models/sale.py:551
-#, python-format
-msgid "It is not allowed to confirm an order in the following states: %s"
-msgstr "Neleidžiama patvirtinti užsakymo, kuris yra šiose būsenose: %s"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_report_all_channels_sales___last_update
@@ -1617,7 +1477,7 @@ msgstr "Pavadinimas"
 #: code:addons/sale/models/sale.py:277 code:addons/sale/models/sale.py:279
 #, python-format
 msgid "New"
-msgstr "Naujas"
+msgstr "Nauja"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_quotation_form
@@ -1639,6 +1499,26 @@ msgstr "Jokios žinutės"
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "No longer edit orders once confirmed"
 msgstr "Nebetvarkyti užsakymų po patvirtinimo"
+
+#. module: sale
+#: model:ir.actions.act_window,help:sale.action_quotations
+#: model:ir.actions.act_window,help:sale.action_quotations_salesteams
+msgid ""
+"Note that once a Quotation becomes a Sales Order, it will be moved\n"
+"                from the Quotations list to the Sales Order list."
+msgstr ""
+"Turėkite omenyje, kad kai komercinis pasiūlymas tampa pardavimo užsakymu,\n"
+"                jis bus perkeltas iš pasiūlymų sąrašo į pardavimo užsakymų sąrašą."
+
+#. module: sale
+#: model:ir.actions.act_window,help:sale.act_res_partner_2_sale_order
+#: model:ir.actions.act_window,help:sale.action_orders_salesteams
+msgid ""
+"Note that once a Quotation becomes a Sales Order, it will be moved from the "
+"Quotations list to the Sales Order list."
+msgstr ""
+"Turėkite omenyje, kad kai komercinis pasiūlymas tampa pardavimo užsakymu, "
+"jis bus perkeltas iš pasiūlymų sąrašo į pardavimo užsakymų sąrašą."
 
 #. module: sale
 #: selection:sale.order,invoice_status:0
@@ -1783,7 +1663,7 @@ msgid "Ordered Qty"
 msgstr "Užsakytas kiekis"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:841
+#: code:addons/sale/models/sale.py:821
 #: model:ir.ui.view,arch_db:sale.view_order_form
 #, python-format
 msgid "Ordered Quantity"
@@ -1820,7 +1700,7 @@ msgstr "Užsakymai"
 #: model:ir.ui.menu,name:sale.menu_sale_order_invoice
 #: model:ir.ui.view,arch_db:sale.crm_team_salesteams_view_kanban
 msgid "Orders to Invoice"
-msgstr "Užsakymai sąskaitų pateikimui"
+msgstr "Užsakymai pajamavimui"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_orders_upselling
@@ -1888,7 +1768,7 @@ msgid "Please define an accounting sales journal for this company."
 msgstr "Nurodykite pardavimų buhalterijos žurnalą šiai kompanijai."
 
 #. module: sale
-#: code:addons/sale/models/sale.py:949
+#: code:addons/sale/models/sale.py:916
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -1896,6 +1776,11 @@ msgid ""
 msgstr ""
 "Nurodykite pajamų paskyrą šiam produktui: \"%s\" (id:%d) - arba jo "
 "kategorijai: \"%s\"."
+
+#. module: sale
+#: model:ir.ui.view,arch_db:sale.report_invoice_layouted
+msgid "Price"
+msgstr "Suma"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_price_reduce
@@ -1982,11 +1867,6 @@ msgstr "Produktas"
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Product Catalog"
 msgstr "Produktų katalogas"
-
-#. module: sale
-#: model:ir.ui.menu,name:sale.menu_product_category_config_sale
-msgid "Product Categories"
-msgstr "Produktų kategorijos"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_report_all_channels_sales_categ_id
@@ -2374,7 +2254,7 @@ msgstr "Pardavimo užsakymų sekcijos"
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_access_token
 msgid "Security Token"
-msgstr "Saugumo raktas"
+msgstr "Apsaugos požymis"
 
 #. module: sale
 #: model:ir.model.fields,help:sale.field_product_product_sale_line_warn
@@ -2394,6 +2274,14 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Sell and purchase products in different units of measure"
 msgstr "Parduoti ir pirkti produktus skirtingais matavimo vienetais"
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_res_config_settings_module_website_sale_digital
+msgid ""
+"Sell digital products - provide downloadable content on your customer portal"
+msgstr ""
+"Parduokite skaitmeninius produktus - suteikite atsisiunčiamą turinį savo "
+"klientų portale"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.res_config_settings_view_form
@@ -2647,35 +2535,14 @@ msgid "Terms and conditions"
 msgstr "Sąlygos"
 
 #. module: sale
-#: code:addons/sale/models/analytic.py:134
+#: code:addons/sale/models/analytic.py:128
+#: code:addons/sale/models/analytic.py:140
 #, python-format
 msgid ""
-"The Sales Order %s linked to the Analytic Account %s is cancelled. You "
-"cannot register an expense on a cancelled Sales Order."
+"The Sales Order %s linked to the Analytic Account must be validated before "
+"registering expenses."
 msgstr ""
-"Pardavimų užsakymas %s, susietas su analitine sąskaita %s, yra atšauktas. "
-"Negalite registruoti išlaidų atšauktam pardavimų užsakymui."
-
-#. module: sale
-#: code:addons/sale/models/analytic.py:133
-#, python-format
-msgid ""
-"The Sales Order %s linked to the Analytic Account %s is currently locked. "
-"You cannot register an expense on a locked Sales Order. Please create a new "
-"SO linked to this Analytic Account."
-msgstr ""
-"Pardavimų užsakymas %s, susietas su analitine sąskaita %s, šiuo metu yra "
-"užrakintas. Negalite registruoti išlaidų užrakintam pardavimų užsakymui. "
-"Sukurkite naują pardavimų užsakymą, susietą su šia analitine sąskaita."
-
-#. module: sale
-#: code:addons/sale/models/analytic.py:129
-#, python-format
-msgid ""
-"The Sales Order %s linked to the Analytic Account %s must be validated "
-"before registering expenses."
-msgstr ""
-"Pardavimų užsakymas %s, susietas su analitine sąskaita %s, turi būti "
+"Pardavimų užsakymas %s , susietas su analitikos paskyra, turi būti "
 "patvirtintas prieš registruojant išlaidas."
 
 #. module: sale
@@ -2700,7 +2567,7 @@ msgstr ""
 "kaštų kainą"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:151
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:149
 #, python-format
 msgid ""
 "The product used to invoice a down payment should be of type 'Service'. "
@@ -2710,7 +2577,7 @@ msgstr ""
 "paslaugos tipo. Naudokite kitą produktą arba atnaujinkite šį."
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:149
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:147
 #, python-format
 msgid ""
 "The product used to invoice a down payment should have an invoice policy set"
@@ -2759,7 +2626,7 @@ msgstr ""
 "įdiegti paskyros lentelę iš buhalterijos programos nustatymų meniu."
 
 #. module: sale
-#: code:addons/sale/models/sale.py:438 code:addons/sale/models/sale.py:442
+#: code:addons/sale/models/sale.py:430 code:addons/sale/models/sale.py:434
 #, python-format
 msgid "There is no invoiceable line."
 msgstr "Nėra eilutės, už kurią būtų galima pateikti sąskaitą."
@@ -2835,8 +2702,6 @@ msgstr ""
 #: selection:product.template,service_type:0
 msgid "Timesheets on project (one fare per SO/Project)"
 msgstr ""
-"Laiko apskaitos žiniaraščiai projektui (vienas kiekvienam "
-"užsakymui/projektui)"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_qty_to_invoice
@@ -2845,7 +2710,7 @@ msgstr ""
 #: selection:sale.order,invoice_status:0
 #: selection:sale.order.line,invoice_status:0
 msgid "To Invoice"
-msgstr "Sąskaitų pateikimui"
+msgstr "Neužpajamuota"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
@@ -2884,7 +2749,17 @@ msgid "Track Service"
 msgstr "Sekimo paslauga"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:578
+#: model:ir.model.fields,field_description:sale.field_res_config_settings_module_delivery_ups
+msgid "UPS"
+msgstr "UPS"
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_res_config_settings_module_delivery_usps
+msgid "USPS"
+msgstr "USPS"
+
+#. module: sale
+#: code:addons/sale/models/sale.py:570
 #, python-format
 msgid "Uncategorized"
 msgstr "Nekategorizuotas"
@@ -2968,7 +2843,7 @@ msgid "Warning"
 msgstr "Įspėjimas"
 
 #. module: sale
-#: code:addons/sale/models/sale.py:1037
+#: code:addons/sale/models/sale.py:1006
 #, python-format
 msgid "Warning for %s"
 msgstr "Įspėjimas %s"
@@ -3012,7 +2887,7 @@ msgstr ""
 "pabandykite jį atšaukti."
 
 #. module: sale
-#: code:addons/sale/models/sale.py:1098
+#: code:addons/sale/models/sale.py:1069
 #, python-format
 msgid ""
 "You can not remove a sales order line.\n"
@@ -3044,6 +2919,7 @@ msgid "Your Order has been confirmed."
 msgstr "Jūsų užsakymas buvo patvirtintas."
 
 #. module: sale
+#: model:ir.actions.act_window,help:sale.action_quotations
 #: model:ir.actions.act_window,help:sale.action_quotations_salesteams
 msgid ""
 "Your next actions should flow efficiently: confirm the Quotation\n"
@@ -3051,15 +2927,6 @@ msgid ""
 msgstr ""
 "Jūsų kiti veiksmai turėtų vykti efektyviai: patvirtinkite komercinį pasiūlymą\n"
 " pardavimo užsakymui, tada sukurkite sąskaitą ir gaukite apmokėjimą."
-
-#. module: sale
-#: model:ir.actions.act_window,help:sale.action_quotations
-msgid ""
-"Your next actions should flow efficiently: confirm the Quotation\n"
-"            to a Sales Order, then create the Invoice and collect the Payment."
-msgstr ""
-"Sekantys jūsų veiksmai turėtų vykti efektyviai: patvirtinkite komercinį pasiūlymą\n"
-"į pardavimų užsakymą, tada sukurkite sąskaitą ir gaukite mokėjimą."
 
 #. module: sale
 #: model:ir.actions.act_window,help:sale.act_res_partner_2_sale_order
@@ -3071,6 +2938,11 @@ msgstr ""
 "Jūsų kiti veiksmai turėtų vykti efektyviai: patvirtinkite komercinį "
 "pasiūlymą pardavimo užsakymui, tada sukurkite sąskaitą ir gaukite "
 "apmokėjimą."
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_res_config_settings_module_delivery_bpost
+msgid "bpost"
+msgstr "bpost"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_order_error
@@ -3086,7 +2958,7 @@ msgstr "dienos"
 #. module: sale
 #: model:ir.model,name:sale.model_report_sale_report_saleproforma
 msgid "report.sale.report_saleproforma"
-msgstr "report.sale.report_saleproforma"
+msgstr ""
 
 #. module: sale
 #: model:ir.model,name:sale.model_res_config_settings

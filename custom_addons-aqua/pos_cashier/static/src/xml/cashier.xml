@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	
+	<t t-extend="Chrome">
+	    <t t-jquery="div.pos-rightheader" t-operation="append">
+            <span class="placeholder-CashierWidget"></span>
+	    </t>
+	</t>
+
+    <t t-name="CashierWidget">
+        <span class="pos_cashier">Cashier:
+            <t t-esc="widget.get_cashier_name()" />
+        </span>
+    </t>
+    
+</templates>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_crm_base_allion_access_employee,crm.base,crm_base_allion.model_crm_departments,group_crm_employee_base,1,1,1,1
+access_crm_base_allion_access_accountant,crm.base,crm_base_allion.model_crm_departments,group_crm_accountant_base,1,1,1,1
+access_crm_base_allion_access_manager,crm.base,crm_base_allion.model_crm_departments,group_crm_manager_base,1,1,1,1
+access_crm_base_allion_access_director,crm.base,crm_base_allion.model_crm_departments,group_crm_director_base,1,1,1,1
+access_crm_base_allion_access_coordinator,crm.base,crm_base_allion.model_crm_departments,group_crm_coordinator_base,1,1,1,1

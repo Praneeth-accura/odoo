@@ -1,0 +1,23 @@
+<odoo>
+	<record model="ir.ui.view" id="view_journal_dashboard">
+	    <field name="name">view.journal.dashboard</field>
+	    <field name="model">account.journal</field>
+	    <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view"/>
+	    <field name="arch" type="xml">
+	    	<xpath expr="//t[@id='account.JournalBodySalePurchase']/div[2]" position="after">
+	    		  <div class="col-xs-6 o_kanban_primary_left" groups="account.group_account_manager">
+		    		  <button type="action" name="tis_daybook.action_daybook" class="btn btn-primary btn-sm o_invoice_new">
+	                 	 <span>Day Book</span>
+	                  </button>
+                  </div>
+	    	</xpath>
+	    	<xpath expr="//t[@t-name='JournalBodyBankCash']/div/t[4]" position="after">
+	    		  <div groups="account.group_account_manager">
+		    		  <button type="action" name="tis_daybook.action_daybook" class="btn btn-primary btn-sm o_invoice_new">
+	                 	 <span>Day Book</span>
+	                  </button>
+                  </div>
+	    	</xpath>
+	    </field>
+	</record>
+</odoo>

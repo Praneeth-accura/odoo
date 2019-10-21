@@ -12,7 +12,6 @@
 # Martin Trigaux, 2018
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2019
 # Boris Kodelja <boris@hbs.si>, 2019
-# Jasmina Macur <jasmina@hbs.si>, 2019
 # Tadej Lupšina <tadej@hbs.si>, 2019
 # 
 msgid ""
@@ -184,7 +183,7 @@ msgstr ""
 #. module: product
 #: sql_constraint:product.product:0
 msgid "A barcode can only be assigned to one product !"
-msgstr "Črtna koda je lahko dodeljena samo enemu izdelku!"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_product_description_sale
@@ -327,7 +326,7 @@ msgstr "Uporabljivo pri"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_applied_on
 msgid "Apply On"
-msgstr "Uporabi na"
+msgstr ""
 
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_pricelist_view_search
@@ -556,13 +555,13 @@ msgstr "Kategorija"
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_category_form_view
 msgid "Category name"
-msgstr "Naziv kategorije"
+msgstr ""
 
 #. module: product
 #: code:addons/product/models/product_pricelist.py:435
 #, python-format
 msgid "Category: %s"
-msgstr "Kategorija: %s"
+msgstr ""
 
 #. module: product
 #: model:product.product,website_description:product.product_product_5b
@@ -683,7 +682,7 @@ msgstr "Celotni naziv"
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_compute_price
 #: model:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "Compute Price"
-msgstr "Izračunaj ceno"
+msgstr ""
 
 #. module: product
 #: model:product.product,name:product.product_product_16
@@ -1115,7 +1114,7 @@ msgstr ""
 #. module: product
 #: selection:product.pricelist.item,compute_price:0
 msgid "Fix Price"
-msgstr "Fiksna cena"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_fixed_price
@@ -1559,7 +1558,7 @@ msgstr "Več enot mere"
 #. module: product
 #: model:res.groups,name:product.group_pricelist_item
 msgid "Manage Pricelist Items"
-msgstr "Upravljaj s postavkami cenikov"
+msgstr ""
 
 #. module: product
 #: model:res.groups,name:product.group_stock_packaging
@@ -1569,7 +1568,7 @@ msgstr "Pakiranje izdelkov"
 #. module: product
 #: model:res.groups,name:product.group_product_variant
 msgid "Manage Product Variants"
-msgstr "Upravljaj z različicami izdelkov"
+msgstr ""
 
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_pricelist_item_form_view
@@ -1724,7 +1723,7 @@ msgstr ""
 #. module: product
 #: selection:product.pricelist.item,compute_price:0
 msgid "Percentage (discount)"
-msgstr "Odstotek (popust)"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_percent_price
@@ -1861,7 +1860,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:product.product_pricelist_view
 #: model:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Pricelist Items"
-msgstr "Ceniki izdelkov"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_name
@@ -1882,7 +1881,7 @@ msgstr "Ceniki"
 #. module: product
 #: model:res.groups,name:product.group_product_pricelist
 msgid "Pricelists On Product"
-msgstr "Ceniki na izdelkih"
+msgstr ""
 
 #. module: product
 #: model:ir.ui.view,arch_db:product.view_partner_property_form
@@ -1978,7 +1977,7 @@ msgstr "Pakiranja proizvoda"
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_packaging_form_view
 msgid "Product Packaging"
-msgstr "Pakiranje izdelkov"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_product_template
@@ -3152,7 +3151,7 @@ msgstr "decimal.precision"
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_category_form_view
 msgid "e.g. Lamps"
-msgstr "npr. svetilke"
+msgstr ""
 
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_variant_easy_edit_view
@@ -3162,7 +3161,7 @@ msgstr ""
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_pricelist_view
 msgid "e.g. USD Retailers"
-msgstr "npr. Trgovci na drobno"
+msgstr ""
 
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_uom_form_view
