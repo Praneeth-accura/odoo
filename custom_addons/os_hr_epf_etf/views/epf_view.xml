@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+		<record id="view_employee_epf_form" model="ir.ui.view">
+            <field name="name">employee.epf.form</field>
+            <field name="model">employee.epf</field>
+            <field name="arch" type="xml">
+                <form string="Employee Provident Fund">
+                	<header>
+	       				<button name="confirm_epf" string="Confirm" states="draft" class="btn btn-primary" type='object'></button>
+	               		<button name="set_to_draft" states="confirm,cancel" string="Set to Draft" class="btn btn-primary" type='object'></button>
+	               		<button name="cancel_epf" states="confirm" string="Cancel" type='object'></button>
+	                	<field name="state" widget="statusbar"/>
+                	</header>
+                    <sheet>
+                    	<div class="oe_title">
+                    		<h1>
+                            	<field name="title" nolabel="1"/>
+                            </h1>
+                        </div>
+                    	<group cols="4">
+                    		<group>
+                    			<field name="epf_reg_no"/>
+                    			<field name="epf_date" attrs="{'readonly': [('state','!=','draft')]}"/>
+                               	<field name="contribution" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="surcharges" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="total_remittance" attrs="{'readonly': [('state','!=','draft')]}"/>
+                    		</group>
+                    		<group>
+                    			<field name="name" editable="0" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="cheque_no" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="branch_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="bank_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                    		</group>
+                    	</group>
+                    	<group cols="4">
+                    		<group>
+                    			<label for="street" string="Address"/>
+	                        	<div class="o_address_format">
+	                            	<field name="street" attrs="{'readonly': [('state','!=','draft')]}" placeholder="Street..." class="o_address_street"/>
+	                            	<field name="street2" attrs="{'readonly': [('state','!=','draft')]}" placeholder="Street 2..." class="o_address_street"/>
+	                            	<field name="city" attrs="{'readonly': [('state','!=','draft')]}" placeholder="City" class="o_address_city"/>
+	                            	<field name="state_id" attrs="{'readonly': [('state','!=','draft')]}" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+	                            	<field name="zip" attrs="{'readonly': [('state','!=','draft')]}" placeholder="ZIP" class="o_address_zip"/>
+	                             	<field name="country_id" attrs="{'readonly': [('state','!=','draft')]}" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True}"/>
+	                        	</div>
+                    		</group>
+           					<group>
+           						<field name="telephone" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="fax" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="email" widget="email" attrs="{'readonly': [('state','!=','draft')]}"/>
+           					</group>
+                  		</group>
+                    	<notebook>
+	                        <page string="EPF Lines">
+	                            <field name="epf_ids" attrs="{'readonly': [('state','!=','draft')]}">
+	                                <tree string="EPF Lines" editable="bottom">
+	                             		<field name="employee_id"/>
+		                                <field name="nic_no"/>
+		                                <field name="member_no"/>
+		                                <field name="total"/>
+		                                <field name="epf_employer"/>
+		                                <field name="epf_employee"/>
+		                                <field name="total_earning"/>
+	                             	</tree>
+	                            </field>
+	                        </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_employee_epf_tree" model="ir.ui.view">
+            <field name="name">employee.epf.tree</field>
+            <field name="model">employee.epf</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Provident Fund">
+                    <field name="name"/>
+                    <field name="epf_reg_no"/>
+                    <field name="contribution"/>
+                    <field name="surcharges"/>
+                    <field name="total_remittance"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+		<record id="action_view_employee_epf" model="ir.actions.act_window">
+            <field name="name">Employee Provident Fund</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.epf</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a new employee EPF.
+                </p>
+            </field>
+        </record>
+        
+        <menuitem
+        	action="action_view_employee_epf"
+            id="menu_hr_epf"
+            name="Employee Provident Fund"
+            parent="hr_payroll.menu_hr_payroll_root"
+            groups ="hr_payroll.group_hr_payroll_manager"
+            sequence="25"/>
+            
+    </data>
+</odoo>

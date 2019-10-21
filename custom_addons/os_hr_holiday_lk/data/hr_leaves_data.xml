@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+
+    <!-- Maternity leave -->
+    <record id="holiday_status_maternity" model="hr.holidays.status">
+        <field name="name">Maternity Leaves</field>
+        <field name="limit" eval="True"/>
+        <field name="color_name">red</field>
+    </record>
+    
+    <!-- Casual leave -->
+    <record id="holiday_status_casual" model="hr.holidays.status">
+        <field name="name">Casual Leaves</field>
+        <field name="limit" eval="True"/>
+        <field name="color_name">blue</field>
+    </record>
+    
+    <!-- Statutory leave -->
+    <record id="holiday_status_statutory" model="hr.holidays.status">
+        <field name="name">Statutory Leaves</field>
+        <field name="limit" eval="True"/>
+        <field name="color_name">lightcyan</field>
+    </record>
+    
+    <!-- Medical leave -->
+    <record id="holiday_status_medical" model="hr.holidays.status">
+        <field name="name">Medical Leaves</field>
+        <field name="limit" eval="True"/>
+        <field name="color_name">red</field>
+    </record>
+    
+    <!-- Leu to leave -->
+    <record id="holiday_status_leu" model="hr.holidays.status">
+        <field name="name">Leu To Leaves</field>
+        <field name="limit" eval="True"/>
+        <field name="color_name">black</field>
+    </record>
+    
+</data>
+</odoo>

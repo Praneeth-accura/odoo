@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+    	<record id="hr_contract_view_form_inherit_paye" model="ir.ui.view">
+            <field name="name">hr.contract.form.inherit.paye</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="os_hr_epf_etf.hr_contract_view_form_inherit"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//page[@name='epf_etf']" position="after">
+                        <page string="Salary for PAYE" name="paye_line">
+                        	<group cols="4">
+                              	<group>
+	                            	<field name="paye_salary_rule_ids" widget='many2many_tags'
+                            			   groups="hr_payroll.group_hr_payroll_manager,hr_payroll.group_hr_payroll_user"/>
+                              	</group>
+                           	</group>
+                        </page>
+                        <page string="Allowances" name="allowance_line">
+                        	<field name="allowance_rule_ids" nolabel="1" groups="hr_payroll.group_hr_payroll_manager,hr_payroll.group_hr_payroll_user">
+                        		<tree editable="bottom">
+                        			<field name="salary_rule_id"/>
+                        			<field name="code"/>
+                        			<field name="amount"/>
+                        		</tree>
+                        	</field>
+                        </page>
+                        <page string="Deductions" name="deduction_line">
+                        	<field name="deduction_rule_ids" nolabel="1" groups="hr_payroll.group_hr_payroll_manager,hr_payroll.group_hr_payroll_user">
+                        		<tree editable="bottom">
+                        			<field name="salary_rule_id"/>
+                        			<field name="code"/>
+                        			<field name="amount"/>
+                        		</tree>
+                        	</field>
+                        </page>
+                    </xpath>
+                    <xpath expr="//page[@name='epf_etf']/group" position="after">
+                    	<group name='opening_ytd' string='Opening YTD'>
+	                   		<field name='opening_ytd_ids' nolabel="1">
+	                   			<tree editable='bottom'>
+	                   				<field name='from_date'/>
+	                   				<field name='to_date'/>
+	                   				<field name='ytd_gross'/>
+	                   				<field name='ytd_net'/>
+	                   				<field name='ytd_paye_tax'/>
+	                   				<field name='ytd_emp_epf'/>
+	                   				<field name='ytd_comp_epf'/>
+	                   				<field name='ytd_etf'/>
+	                   			</tree>
+	                   		</field>	
+                   		</group>	
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

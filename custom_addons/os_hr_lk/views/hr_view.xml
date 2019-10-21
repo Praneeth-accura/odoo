@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Department Inherit View -->
+	<record id="view_department_inherit_form" model="ir.ui.view">
+    	<field name="name">hr.department.inherit.form</field>
+    	<field name="model">hr.department</field>
+    	<field name="inherit_id" ref="hr.view_department_form"/>
+    	<field name="arch" type="xml">
+	    	<data>
+	    		<xpath expr="//field[@name='name']" position="before">
+                	<field name="code"/>
+	    		</xpath>
+	    		<xpath expr="//field[@name='parent_id']" position="after">
+	    			<field name="description" placeholder="enter description here..."/>
+	    		</xpath>
+	    	</data>
+    	</field>
+    </record>
+    
+    <record id="view_department_inherit_tree" model="ir.ui.view">
+    	<field name="name">hr.department.inherit.tree</field>
+    	<field name="model">hr.department</field>
+    	<field name="inherit_id" ref="hr.view_department_tree"/>
+    	<field name="arch" type="xml">
+    		<field name="display_name" position="before">
+				<field name="code"/>
+			</field>
+    	</field>
+    </record>
+        
+    <record id="view_department_inherit_filter" model="ir.ui.view">
+       <field name="name">hr.department.inherit.search</field>
+       <field name="model">hr.department</field>
+       <field name="inherit_id" ref="hr.view_department_filter"/>
+       <field name="arch" type="xml">
+       	<xpath expr="//field[@name='name']" position="before">
+	   		<field name="code"/>
+       	</xpath>
+       </field>
+    </record>
+    
+    <!-- Employee Inherit View -->  
+    <record id="hr_kanban_view_employees_inherit" model="ir.ui.view">
+      <field name="name">hr.employee.inherit.kanban</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+      <field name="arch" type="xml">
+      	<data>
+			<xpath expr="//field[@name='name']" position="before">
+				<t t-if="employee_code != '/'">
+					<field name="employee_code"/>-
+				</t>
+			</xpath>
+  	  	</data>
+      </field>
+    </record>
+	
+	<record id="view_employee_inherit_form" model="ir.ui.view">
+      <field name="name">hr.employee.inherit.form</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+      <data>
+       	<xpath expr="//label[@for='name']" position="before">
+       		<div class="oe_title">
+       			<field name="emp_code_config" invisible="1" />
+       			<label for="employee_code" class="oe_edit_only"/>
+                <h1>
+                    <field name="employee_code" nolabel="1" attrs="{'readonly': [('emp_code_config','=','auto')]}"/>
+                </h1>
+            </div>
+        </xpath>
+        <xpath expr="//field[@name='name']" position="after">
+        	<h1>
+            	<field name="surname" nolabel="1" placeholder="Surname (optional)"/>
+            </h1>
+			<h4>
+				<field name="initial" nolabel="1" placeholder="Initial"/>
+				<field name="surnames" nolabel="1" placeholder="Surname"/>
+			</h4>
+        </xpath>
+        <xpath expr="//field[@name='bank_account_id']" position="after">
+         	<field name="bank" readonly="1"/>
+          	<field name="branch" readonly="1"/>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+	       	<field name="card_number"/>	 
+	       	<field name="joining_date"/>
+	       	<field name="confirm_date" />
+	       	<field name="terminate_date" />
+        </xpath>
+        <xpath expr="//field[@name='identification_id']" position="after">
+       	 	<field name="licence_number" />
+        </xpath>
+        <xpath expr="//field[@name='gender']" position="before">
+       	 	<field name="religion_id" widget="selection"/>
+        </xpath>
+        <xpath expr="//group[@name='work_permit']" position="after">
+          	<group string="Communication Language" name="com_lang">
+                 <field name="language_ids" widget="many2many_tags"/>
+            </group>
+        </xpath>
+        <xpath expr="//field[@name='address_home_id']" position="after">
+              <field name="temp_address_id"
+              		context="{'show_address': 1}"
+                 	options='{"always_reload": True, "highlight_first_line": True}'/>
+              <field name="is_temp_address_a_company" invisible="1" />
+              <field name="personal_email" />
+              <field name="telephone_number" />
+              <field name="mobile_number"/>
+              <field name="near_police_station" />
+        </xpath>
+	    <xpath expr="//field[@name='identification_id']" position="attributes">
+			<attribute name="string">NIC No</attribute>
+        </xpath>
+        <xpath expr="//page[@name='personal_information']" position="after">
+          	<page name="qualifications" string="Qualifications"  groups='hr.group_hr_manager'>
+                <group string="Educational Qualifications" colspan="4">
+                   	<field name="emp_qualification_ids" nolabel="1">
+                   		<tree editable='top'>
+                    		<field name="degree_id"/>
+                    		<field name="comments"/>
+						</tree>
+                    </field>
+               	</group>
+                <group string="Professional Qualifications" colspan="4">
+                   	<field name="prof_qualification_ids" nolabel="1">
+               			<tree editable='top'>
+               				<field name="qualification_id" required="1"/>
+          					<field name="comments"/>
+						</tree>
+                     </field>
+                </group>
+           	</page>
+        </xpath>
+        <xpath expr="//page[@name='hr_settings']" position="before">
+        	<page name="promotion_allowance" string="Promotions &#38; Others" groups='hr.group_hr_manager'>
+	             <group name="promotion_details" string="Promotion Details" colspan="4">
+	             	<field name="promotion_ids" nolabel="1">
+	                	<tree editable='top'>
+	                 		<field name="job_position_id" required="1"/>
+	                 		<field name='promotion_date' required="1"/>
+	                 		<field name="comments"/>
+				     	</tree>
+	               	</field>
+	             </group>
+	             <group name="allowance_details" string="Allowance Details" colspan="4">
+	               	<field name="allowance_ids" nolabel="1">
+	                 	<tree editable='top'>
+	                     	<field name="name" required="1"/>
+	                     	<field name='amount' required="1"/>
+	                     	<field name="approved_date" required="1"/>
+				 		</tree>
+	                </field>
+	             </group>
+	        </page>
+        </xpath>
+        <xpath expr="//page[@name='hr_settings']" position="before">
+        	<page name="employment_details" string="Employment Details" groups='hr.group_hr_manager'>
+        		<group>
+                	<group string="Employment Details" colspan="4">
+                  		<field name="employment_ids" nolabel="1">
+                 			<tree editable='top'>
+                 				<field name='company' required="1"/>
+                 				<field name='start_date' required="1"/>
+                 				<field name='end_date' required="1"/>
+                 				<field name='address'/>
+                 				<field name='position'/>
+                 				<field name='industry'/>
+							</tree>
+                    	</field>
+                    </group>
+                </group>
+            </page>
+        </xpath>
+        <xpath expr="//group[@name='com_lang']" position="after">
+            <group name='family_details' string="Family Details" colspan="4">
+               	<field name="family_ids" nolabel="1">
+                	<tree editable='top'>
+                		<field name='name' required="1"/>
+                		<field name='relation' required="1"/>
+                		<field name='emergency_contact'/>
+					</tree>
+               	</field>
+            </group>
+        </xpath>
+        <xpath expr="//field[@name='message_follower_ids']" position="after">
+        	<field name="activity_ids" widget="mail_activity"/>
+        </xpath>
+      </data>
+      </field>
+   	</record>
+        
+    <record id="view_employee_inherit_tree" model="ir.ui.view">
+        <field name="name">hr.employee.inherit.tree</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+             <data>
+                <xpath expr="//field[@name='name']" position="before">
+                	 <field name="employee_code" />
+                </xpath>
+             </data>
+        </field>
+    </record>
+    
+    <record id="view_employee_inherit_filter" model="ir.ui.view">
+       <field name="name">hr.employee.inherit.search</field>
+       <field name="model">hr.employee</field>
+       <field name="inherit_id" ref="hr.view_employee_filter"/>
+       <field name="arch" type="xml">
+       	<xpath expr="//field[@name='name']" position="before">
+	   		<field name="employee_code"/>
+       	</xpath>
+       </field>
+    </record>
+        
+    <!-- Bank Inherit View -->
+    <record id="view_res_partner_bank_inherit_form" model="ir.ui.view">
+        <field name="name">res.partner.bank.inherit.form</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+             <data>
+                <xpath expr="//field[@name='bank_id']" position="after">
+                	 <field name="branch_id" domain="[('bank_id', '=', bank_id)]"/>
+                </xpath>
+             </data>
+        </field>
+    </record>
+    
+    <!-- working schedule menu -->
+    <menuitem id="menu_resource_calendar_from_hr"
+        parent="hr.menu_human_resources_configuration"
+        action="resource.action_resource_calendar_form"
+        sequence="2"/>
+</odoo>

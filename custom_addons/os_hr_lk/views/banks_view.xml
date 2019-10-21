@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<menuitem id="menu_banks" name="Banks" 
+        parent="hr.menu_human_resources_configuration" sequence="1"/>
+	
+	 <!-- Branches View -->
+     <record id="bank_branches_view_form" model="ir.ui.view">
+     	<field name="name">bank.branch.form</field>
+     	<field name="model">bank.branch</field>
+     	<field name="arch" type="xml">
+        	<form string="Branches">
+            	<sheet>
+            		<group>
+	                	<field name="code"/>
+	                	<field name="name"/>
+	           			<field name="bank_id"/>
+             		</group>
+             	</sheet>
+         	</form>
+     	</field>
+     </record>
+     
+     <record id="bank_branches_view_tree" model="ir.ui.view">
+     	<field name="name">bank.branch.tree</field>
+     	<field name="model">bank.branch</field>
+     	<field name="arch" type="xml">
+        	<tree string="Branches">
+            	<field name="code"/>
+            	<field name="name"/>
+            	<field name="bank_id"/>
+         	</tree>
+     	</field>
+     </record>
+     
+     <!-- Bank View Action -->
+     <record id="bank_sub_view" model="ir.actions.act_window">
+     	<field name="name">Banks</field>
+   	 	<field name="res_model">res.bank</field>
+   	 	<field name="view_type">form</field>
+   	 	<field name="view_mode">tree,form</field>
+   	 	<field name="help" type="html">
+     		<p class="oe_view_nocontent_create">
+       			Click to create a Bank.
+     		</p>
+   	 	</field>
+     </record>
+     
+     <!-- Branch View Action -->
+     <record id="branch_sub_view" model="ir.actions.act_window">
+    	<field name="name">Branches</field>
+  	 	<field name="res_model">bank.branch</field>
+  	 	<field name="view_type">form</field>
+  	 	<field name="view_mode">tree,form</field>
+  	 	<field name="help" type="html">
+    		<p class="oe_view_nocontent_create">
+      			Click to create a Branch.
+    		</p>
+  	 	</field>
+    </record>
+     
+     <menuitem id="sub_menu_banks" action="bank_sub_view" name="Banks" 
+     	parent="menu_banks" sequence="1"/>
+     	
+     <menuitem id="sub_menu_branches" action="branch_sub_view" name="Branches" 
+        parent="menu_banks" sequence="2"/>
+        
+     <menuitem id="sub_menu_bank_account" action="base.action_res_partner_bank_account_form" name="Bank Accounts" 
+        parent="menu_banks" sequence="3"/>
+        
+</odoo>

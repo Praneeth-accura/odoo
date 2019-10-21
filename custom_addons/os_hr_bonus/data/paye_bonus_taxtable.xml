@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+	
+    <record id="tax_table_m0" model="revenue.taxtable">
+        <field name="name">M - 0</field>
+    </record>
+    <record id="tax_table_m0_5" model="revenue.taxtable">
+        <field name="name">M - 0.5</field>
+    </record>
+    <record id="tax_table_m1" model="revenue.taxtable">
+        <field name="name">M - 1</field>
+    </record>
+    <record id="tax_table_m1_5" model="revenue.taxtable">
+        <field name="name">M - 1.5</field>
+    </record>
+    <record id="tax_table_m2" model="revenue.taxtable">
+        <field name="name">M - 2</field>
+    </record>
+    <record id="tax_table_m2_5" model="revenue.taxtable">
+        <field name="name">M - 2.5</field>
+    </record>
+    <record id="tax_table_m3" model="revenue.taxtable">
+        <field name="name">M - 3</field>
+    </record>
+    <record id="tax_table_m3_5" model="revenue.taxtable">
+        <field name="name">M - 3.5</field>
+    </record>
+    <record id="tax_table_m4" model="revenue.taxtable">
+        <field name="name">M - 4</field>
+    </record>
+    <record id="tax_table_m4_5" model="revenue.taxtable">
+        <field name="name">M - 4.5</field>
+    </record>
+    <record id="tax_table_m5" model="revenue.taxtable">
+        <field name="name">M - 5</field>
+    </record>
+    <record id="tax_table_m5_5" model="revenue.taxtable">
+        <field name="name">M - 5.5</field>
+    </record>
+    <record id="tax_table_m6" model="revenue.taxtable">
+        <field name="name">M - 6</field>
+    </record>
+    <record id="tax_table_m6_5" model="revenue.taxtable">
+        <field name="name">M - 6.5</field>
+    </record>
+    <record id="tax_table_m7" model="revenue.taxtable">
+        <field name="name">M - 7</field>
+    </record>
+    <record id="tax_table_m7_5" model="revenue.taxtable">
+        <field name="name">M - 7.5</field>
+    </record>
+    <record id="tax_table_m8" model="revenue.taxtable">
+        <field name="name">M - 8</field>
+    </record>
+    <record id="tax_table_m8_5" model="revenue.taxtable">
+        <field name="name">M - 8.5</field>
+    </record>
+    <record id="tax_table_m9" model="revenue.taxtable">
+        <field name="name">M - 9</field>
+    </record>
+    <record id="tax_table_m9_5" model="revenue.taxtable">
+        <field name="name">M - 9.5</field>
+    </record>
+    <record id="tax_table_m10" model="revenue.taxtable">
+        <field name="name">M - 10</field>
+    </record>
+    <record id="tax_table_m10_5" model="revenue.taxtable">
+        <field name="name">M - 10.5</field>
+    </record>
+    <record id="tax_table_m11" model="revenue.taxtable">
+        <field name="name">M - 11</field>
+    </record>
+    <record id="tax_table_m11_5" model="revenue.taxtable">
+        <field name="name">M - 11.5</field>
+    </record>
+    <record id="tax_table_m12" model="revenue.taxtable">
+        <field name="name">M - 12</field>
+    </record>
+</data>
+</odoo>

@@ -1,0 +1,16 @@
+<!--server action to calculate late attendances of employees-->
+<!--this server action happens every 30 days-->
+<odoo>
+    <data>
+        <record id="late_attendance_server_action" model="ir.cron">
+            <field name="name">Calculate Late Attendance Monthly</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.late_attendance_server_actions()</field>
+            <field name="interval_number">30</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>

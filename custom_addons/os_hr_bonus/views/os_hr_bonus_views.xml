@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	 <menuitem 
+		id="menu_bonus" 
+		name="Bonus" sequence="46"
+		web_icon="os_hr_bonus,static/description/icon.png"/>
+       	
+	<record id="view_bonus_payslip_form" model="ir.ui.view">
+		<field name="name">bonus.payslip.form</field>
+        <field name="model">bonus.payslip</field>
+        <field name="arch" type="xml">
+        	<form string="Bonus Payslip">
+        		<header>
+      				<button name="confirm_bonus" string="Confirm" states="draft" class="btn btn-primary" type='object'></button>
+              		<button name="set_to_draft" states="confirm,cancel" string="Set to Draft" class="btn btn-primary" type='object'></button>
+              		<button name="cancel_bonus" states="confirm" string="Cancel" type='object'></button>
+               		<field name="state" widget="statusbar"/>
+               	</header>
+        		<sheet>
+        			<group cols="4">
+        				<group>
+		        			<field name="employee_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+		        			<field name="epf_no" attrs="{'readonly': [('state','!=','draft')]}"/>
+		        			<field name="average_salary"/>
+	        			</group>
+	        			<group>
+        				<label for="date_from" string="Period"/>
+	        				<div>
+	        					 <field name="date_from" class="oe_inline" attrs="{'readonly': [('state','not in',['draft','cancel'])]}"/> - 
+	        					 <field name="date_to" class="oe_inline" attrs="{'readonly': [('state','not in',['draft','cancel'])]}"/>
+	        				</div>
+        				</group>
+	        		</group>
+	        		<group>
+		        		<label for="name" string="Description"/>
+	       				<div>
+	       					<field name="name" attrs="{'readonly': [('state','!=','draft')]}"/>
+       					</div>
+       				</group>
+	        		<group cols="2">
+	        			<group string="Bonus Slip for Month">
+	        				<field name="gross_bonus" attrs="{'readonly': [('state','!=','draft')]}"/>
+	        				<field name="previous_bonus" attrs="{'readonly': [('state','!=','draft')]}"/>
+	        				<field name="total_bonus"/>
+	        			</group>
+	        			<group string="Deduction">
+	        				<field name="paye"/>
+	        				<field name="paye_deducted"/>
+	        				<field name="paye_payable"/>
+	        				<field name="stamp_duty"/>
+	        			</group>
+        			</group>
+        			<group cols="2">
+        				<group>
+	        				<field name="tax_table" attrs="{'readonly': [('state','!=','draft')]}"/>
+	        				<field name="tax_rate" attrs="{'readonly': [('state','!=','draft')]}"/>
+	        				<field name="gross_for_tax" attrs="{'readonly': [('state','!=','draft')]}"/>
+	        			</group>
+	        			<group>
+	        				<field name="other_deduction" attrs="{'readonly': [('state','!=','draft')]}"/>
+	        				<field name="total_deduction"/>
+	        				<field name="net_bonus"/>
+	        			</group>
+        			</group>
+        		</sheet>
+        	</form>
+        </field>
+	</record>
+	
+	<record id="view_bonus_tree" model="ir.ui.view">
+		<field name="name">bonus.tree</field>
+        <field name="model">bonus.payslip</field>
+        <field name="arch" type="xml">
+        	<tree string="Bonus">
+   				<field name="employee_id"/>
+      			<field name="epf_no"/>
+  				<field name="gross_bonus"/>
+  				<field name="total_deduction"/>
+  				<field name="net_bonus"/>
+  				<field name="state"/>
+  		 	</tree>
+        </field>
+	</record>
+	
+	<record id="action_bonus_payslip" model="ir.actions.act_window">
+		<field name="name">Bonus</field>
+  		<field name="res_model">bonus.payslip</field>
+    	<field name="view_type">form</field>
+      	<field name="view_mode">tree,form</field> 
+      	<field name="view_id" ref="view_bonus_tree"/>  
+	</record>
+	
+    <menuitem 
+		id="menu_bonus_payslip"
+		parent="menu_bonus" 
+		name="Bonus Payslips" 
+		sequence="1"
+		groups ="hr_payroll.group_hr_payroll_manager"
+       	action="action_bonus_payslip"/>
+       	
+</odoo>

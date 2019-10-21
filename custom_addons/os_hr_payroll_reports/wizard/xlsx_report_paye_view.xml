@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	    <record id="report_xlsx_wizard_form_inherit_paye" model="ir.ui.view">
+	        <field name="name">report.xlsx.wizard.form.inherit.paye</field>
+	        <field name="model">report.xlsx.wizard</field>
+	        <field name="inherit_id" ref="os_hr_epf_etf.report_xlsx_wizard_form"/>
+	        <field name="arch" type="xml">
+	        	<data>
+		        	<xpath expr="//field[@name='date_to']" position="after">
+		        		<field name="year_start" attrs="{'invisible': [('report_type','not in',['paye1','paye2','paye3','paye4'])]}"></field>
+		        		<field name="year_end" attrs="{'invisible': [('report_type','not in',['paye1','paye2','paye3','paye4'])]}"></field>
+		        		<field name="emp_id" attrs="{'invisible': [('report_type','!=','paye4')],'required': [('report_type','=','paye4')]}"></field>
+                	</xpath>
+               	</data>
+	        </field>
+	    </record>
+	</data>
+</odoo>

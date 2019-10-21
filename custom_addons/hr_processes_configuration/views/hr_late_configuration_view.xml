@@ -1,0 +1,67 @@
+<odoo>
+    <record id="hr_attendance_configuration_tree" model="ir.ui.view">
+        <field name="name">hr.attendance.configuration.tree</field>
+        <field name="model">hr.late.configuration</field>
+        <field name="arch" type="xml">
+            <tree string="Late Policy Configuration">
+                <field name="name"/>
+                <field name="is_late"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_attendance_configuration">
+        <field name="name">hr.attendance.configuration</field>
+        <field name="model">hr.late.configuration</field>
+        <field name="arch" type="xml">
+            <form string = "Late Policy Configuration">
+                <sheet>
+                    <field name="name" required="True"/>
+                    <group>
+                        <group>
+                            <group>
+                                <field name="is_late" required="True"/>
+                                <field name="case_one" attrs="{'invisible' : [('is_late', '!=', 'yes')], 'required': [('is_late', '=', 'yes')]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="time" attrs="{'invisible' : [('case_one', 'not in', ['time_range','monthly_late'])]}" widget="float_time"/>
+                                <field name="days" invisible="1"/>
+                                <field name="salary_deduction" attrs="{'invisible' : [('case_one', '=', False)], 'required': [('case_one', '!=', False)]}"/>
+                            </group>
+                            <group attrs="{'invisible' : ['|', ('salary_deduction', '=', False), ('salary_deduction', '=', 'no')], 'required': [('salary_deduction', '=', 'yes')]}">
+                                <field name="rate"/>
+                                <field name="percentage"/>
+                            </group>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="late_days_per_month" attrs="{'invisible' : [('case_one', '!=', 'late_days_for_month')]}"/>
+                        <field name="grace_time" widget="float_time" attrs="{'invisible' : [('case_one', '!=', 'late_days_for_month')]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hr_attendance_configuration_action">
+        <field name="name">Late Policy Configuration</field>
+        <field name="res_model">hr.late.configuration</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to config a new late policy rule
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="main_menu_attendance_configuration_action" name="Attendance Configuration"
+              parent="hr_attendance.menu_hr_attendance_root" sequence="90"/>
+
+    <menuitem action="hr_attendance_configuration_action"
+              id="menu_attendance_configuration_action"
+              parent="main_menu_attendance_configuration_action"
+              sequence="1"/>
+</odoo>

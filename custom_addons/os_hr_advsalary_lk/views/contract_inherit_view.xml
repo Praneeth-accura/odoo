@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Contract Inherit View -->
+	<record id="view_contract_inherit_form" model="ir.ui.view">
+    	<field name="name">hr.contract.inherit.form</field>
+    	<field name="model">hr.contract</field>
+    	<field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+    	<field name="arch" type="xml">
+	    	<data>
+	    		<xpath expr="//field[@name='payment_method']" position="after">
+    				<field name="advance_salary_limit"/>
+	    		</xpath>
+	    	</data>
+    	</field>
+    </record>
+</odoo>

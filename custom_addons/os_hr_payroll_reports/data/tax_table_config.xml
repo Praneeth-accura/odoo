@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+	    <record id="tax_table_0" model="tax.table">
+	        <field name="name">Tax Table</field>
+	    </record>
+	 </data>
+ </odoo>

@@ -1,0 +1,67 @@
+<odoo>
+    <record model="ir.ui.view" id="hr_nopay_configuration_tree">
+        <field name="name">hr.nopay.configuration.tree</field>
+        <field name="model">hr.nopay.configuration</field>
+        <field name="arch" type="xml">
+            <tree string = "Nopay Policy Configuration">
+                <field name="name"/>
+                <field name="is_nopay"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hr_nopay_configuration_form">
+        <field name="name">hr.nopay.configuration.form</field>
+        <field name="model">hr.nopay.configuration</field>
+        <field name="arch" type="xml">
+            <form string = "Nopay Policy Configuration">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="True"/>
+                            <field name="is_nopay" required="True"/>
+                        </group>
+                        <group>
+                            <field name="salary_deduction" attrs="{'invisible' : [('is_nopay', '!=', 'yes')], 'required': [('is_nopay', '=', 'yes')]}"/>
+                            <field name="payroll" attrs="{'invisible' : [('salary_deduction', '!=', 'yes')], 'required' : [('salary_deduction', '=', 'yes')]}"/>
+                        </group>
+                        <group attrs="{'invisible' : ['|', ('salary_deduction', '=', False), ('salary_deduction', '=', 'no')], 'required': [('salary_deduction', '=', 'yes')]}">
+                            <group>
+                                <field name="rate"/>
+                            </group>
+                            <group>
+                                <field name="percentage"/>
+                            </group>
+                        </group>
+                    </group>
+                    <group colspan="4" col="5" string="Select a Criteria" attrs="{'invisible' : [('is_nopay', '!=', 'yes')]}">
+                        <field name="one_finger"/>
+                        <field name="no_leave"/>
+                        <field name="probation"/>
+                        <field name="leave_not_approved"/>
+                        <field name="no_leaves"/>
+                        <field name="no_pay" invisible="1"/>
+                        <field name="less_working_hours"/>
+                        <field name="manual_selection" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hr_nopay_configuration_action">
+        <field name="name">Nopay Policy Configuration</field>
+        <field name="res_model">hr.nopay.configuration</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to config a new no pay policy rule
+            </p>
+        </field>
+    </record>
+
+    <menuitem action="hr_nopay_configuration_action"
+              id="menu_nopay_configuration_action"
+              parent="main_menu_attendance_configuration_action"
+              sequence="2"/>
+</odoo>

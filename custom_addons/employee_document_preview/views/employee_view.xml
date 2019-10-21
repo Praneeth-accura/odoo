@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+     
+        <record id="hr_employee_form_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.form.view.inheritance</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//div[@name='button_box']" position="inside">
+					<button name="action_get_attachment_tree_view" class="oe_stat_button" icon="fa-book" type="object">
+                		<field name="attachment_number" widget="statinfo" string="Documents"/>
+                	</button>
+				</xpath>
+            </field>
+        </record>
+
+        <!-- Resume and Letters -->
+    	<record id="ir_attachment_view_search_inherit_hr_employee" model="ir.ui.view">
+        	<field name="name">ir.attachment.search.inherit.employee</field>
+        	<field name="model">ir.attachment</field>
+        	<field name="inherit_id" ref="base.view_attachment_search"/>
+        	<field name="arch" type="xml">
+            	<xpath expr="//field[@name='create_date']" position="after">
+              	  <field name="index_content" string="Content"/>
+           	 </xpath>
+            	<xpath expr="//filter[@name='my_documents_filter']" position="attributes">
+                	<attribute name='invisible'>1</attribute>
+            	</xpath>
+            	<xpath expr="//filter[@name='url_filter']" position="attributes">
+                	<attribute name='invisible'>1</attribute>
+            	</xpath>
+            	<xpath expr="//filter[@name='binary_filter']" position="attributes">
+                	<attribute name='invisible'>1</attribute>
+            	</xpath>
+        	</field>
+    	</record>
+	</data>
+</odoo>

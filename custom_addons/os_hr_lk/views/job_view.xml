@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Job position Inherit View -->
+    <record id="view_job_inherit_form" model="ir.ui.view">
+    	<field name="name">hr.job.inherit.form</field>
+    	<field name="model">hr.job</field>
+    	<field name="inherit_id" ref="hr.view_hr_job_form"/>
+    	<field name="arch" type="xml">
+	    	<data>
+	    		<xpath expr="//label[@for='name']" position="before">
+                     <label for="code" class="oe_edit_only"/>
+                     <h1><field name="code" placeholder="Job Code"/></h1>
+	    		</xpath>
+	    	</data>
+    	</field>
+    </record>
+    
+    <record id="view_job_inherit_tree" model="ir.ui.view">
+    	<field name="name">hr.job.inherit.tree</field>
+    	<field name="model">hr.job</field>
+    	<field name="inherit_id" ref="hr.view_hr_job_tree"/>
+    	<field name="arch" type="xml">
+    		<field name="name" position="before">
+				<field name="code"/>
+			</field>
+    	</field>
+    </record>
+    
+    <record id="view_job_inherit_filter" model="ir.ui.view">
+       <field name="name">hr.job.inherit.search</field>
+       <field name="model">hr.job</field>
+       <field name="inherit_id" ref="hr.view_job_filter"/>
+       <field name="arch" type="xml">
+       	<xpath expr="//field[@name='name']" position="before">
+	   		<field name="code"/>
+       	</xpath>
+       </field>
+    </record>
+    
+    <record id="view_job_inherit_kanban" model="ir.ui.view">
+       <field name="name">hr.job.inherit.kanban</field>
+       <field name="model">hr.job</field>
+       <field name="inherit_id" ref="hr.hr_job_view_kanban"/>
+       <field name="arch" type="xml">
+       	<xpath expr="//field[@name='name']" position="after">
+	   		[<field name="code"/>]
+       	</xpath>
+       </field>
+    </record>
+    
+</odoo>

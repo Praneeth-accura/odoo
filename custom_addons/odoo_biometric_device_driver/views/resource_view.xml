@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- inherit hr form to add schedule history -->
+    <record id="view_employee_form_schedule_history_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form.schedue.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='hr_settings']" position="inside">
+                <group string='Working Schedule History'>
+                    <field name='working_history_ids' nolabel="1">
+                        <tree editable='bottom'>
+                            <field name='from_date'/>
+                            <field name='to_date'/>
+                            <field name='resource_calendar_id'/>
+                            <field name='ot_approve'/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_schedule_history" model="ir.ui.view">
+        <field name="name">view.schedule.history</field>
+        <field name="model">schedule.history</field>
+        <field name="arch" type="xml">
+            <form string="Schedule History">
+                <group>
+                    <field name="emp_id"/>
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                    <field name="resource_calendar_id"/>
+                    <field name="ot_approve"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="schedule_history_tree" model="ir.ui.view">
+        <field name="name">schedule.history.tree</field>
+        <field name="model">schedule.history</field>
+        <field name="arch" type="xml">
+            <tree string="Schedule History">
+                <field name="emp_id"/>
+                <field name="from_date"/>
+                <field name="to_date"/>
+                <field name="resource_calendar_id"/>
+                <field name="ot_approve"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_schedule_history">
+        <field name="name">Schedule History</field>
+        <field name="res_model">schedule.history</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_schedule_history" action="action_schedule_history" name="Schedule History"
+              parent="hr.menu_human_resources_configuration" sequence="88" groups="hr.group_hr_manager"/>
+</odoo>

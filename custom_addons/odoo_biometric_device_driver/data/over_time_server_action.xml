@@ -1,0 +1,16 @@
+<!--server action to calculate over time of employees-->
+<!--this server action happens every 30 days-->
+<odoo>
+    <data>
+        <record id="over_time_server_action" model="ir.cron">
+            <field name="name">Calculate Over Time Weekly</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.weekly_overtime_calculation_server_action()</field>
+            <field name="interval_number">7</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>
