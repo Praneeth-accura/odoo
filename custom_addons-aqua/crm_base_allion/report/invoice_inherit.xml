@@ -17,7 +17,10 @@
                         </table></td>
                         <td align="right">
                             <table width="50%" border="1px solid black">
-                            <tr>
+                            <tr  t-if="o.invoice_type == 'tax_invoice'">
+                                <td style="border: 1px solid black;padding:5px;text-align:center" colspan="2" ><strong style="font-size: 22px;">Tax Invoice</strong></td>
+                            </tr>
+                                <tr  t-else="o.invoice_type == '">
                                 <td style="border: 1px solid black;padding:5px;text-align:center" colspan="2" ><strong style="font-size: 22px;">Invoice</strong></td>
                             </tr>
                             <tr style="text-align:center;vertical-align:middle;">
@@ -28,11 +31,24 @@
                                 <td style="border: 1px solid black;padding:5px;">Invoice No :</td>
                                 <td style="border: 1px solid black;padding:5px;"><span t-field="o.number"/></td>
                             </tr>
-                            <tr>
-                                <td style="border: 1px solid black;padding:5px;">Purchase Order No:</td>
-                                <td style="border: 1px solid black;padding:5px;"></td>
+<!--                            <tr>-->
+<!--                                <td style="border: 1px solid black;padding:5px;">Purchase Order No:</td>-->
+<!--                                <td style="border: 1px solid black;padding:5px;"></td>-->
+<!--                            </tr>-->
+                                <tr  t-if="o.invoice_type == 'tax_invoice'">
+                                <td style="border: 1px solid black;padding:5px;">Customer VAT No:</td>
+                                <td style="border: 1px solid black;padding:5px;"><span t-field="o.partner_id.vat"/></td>
                             </tr>
-                        </table></td></tr></table>
+                                 <tr  t-if="o.invoice_type == 'tax_invoice'">
+                                <td style="border: 1px solid black;padding:5px;">Our VAT No:</td>
+                                <td style="border: 1px solid black;padding:5px;"><span t-field="o.company_id.vat"/></td>
+                            </tr>
+
+                        </table>
+                </td>
+            </tr>
+
+        </table>
 
                     <br></br>
                     <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
@@ -45,7 +61,7 @@
                                         <th style="border: 1px solid black;padding:5px;">Quantity</th>
                                         <th style="border: 1px solid black;padding:5px;">Unit Price</th>
                                         <th style="border: 1px solid black;padding:5px;" t-if="display_discount" class="text-right">Disc.(%)</th>
-                                        <th style="border: 1px solid black;padding:5px;" class="text-right">Taxes</th>
+                                        <th t-if="o.invoice_type == 'tax_invoice'" style="border: 1px solid black;padding:5px;" class="text-right">Taxes</th>
                                         <th style="border: 1px solid black;padding:5px;" class="text-right">Amount</th>
                                     </tr>
                                 </thead>
@@ -64,7 +80,7 @@
                                         <td t-if="display_discount" style="border: 1px solid black;padding:5px;" class="text-right">
                                             <span t-field="l.discount"/>
                                         </td>
-                                        <td style="border: 1px solid black;padding:5px;" class="text-right">
+                                        <td t-if="o.invoice_type == 'tax_invoice'" style="border: 1px solid black;padding:5px;" class="text-right">
                                             <span t-esc="', '.join(map(lambda x: (x.description or x.name), l.invoice_line_tax_ids))"/>
                                         </td>
                                         <td style="border: 1px solid black;padding:5px;">
@@ -80,27 +96,32 @@
                                 <p><strong><u>Terms &amp; Conditions</u></strong></p>
                                 <p>E. &amp; O.E
                                     <br></br>
-                                        1. Goods, once sold will not be taken back
+                                        1. Goods once sold will not be refunded and exchangeable within 7 days.
                                     <br></br>
-                                        2. Intrest @ 18% P/A will be charged if the payment is not made within the stipulated time.
-                                    
+                                        2. Interest @ 18% P/A will be charged if the payment is not made within the stipulated time.
                                     <br></br>
-                                    3. Cheque should be in favor of Aqua Masters (Pvt) Ltd &amp; Crossed A/C Payee Only
+                                        3. All cheques should be drawn in favor of Aqua Masters (Pvt) Ltd and Cross Account Payee Only.
                                 </p>
+
+                                 <p><strong><u>Bank Details</u> :</strong>
+                                        Sampath Bank PLC, Kotahena Branch, A/C No : 003710009006
+                                </p>
+
+
                             </td>
                             <td style="border: 1px solid black;padding:5px;"><strong>Subtotal</strong></td>
                             <td style="border: 1px solid black;padding:5px;" class="text-right">
                                         <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
                             </td>
                         </tr>
-                        <tr style="border-bottom:1px solid #dddddd;">
+                        <tr  t-if="o.invoice_type == 'tax_invoice'" style="border-bottom:1px solid #dddddd;">
                                     <td style="border: 1px solid black;padding:5px;"><strong>NBT</strong></td>
                                     <td style="border: 1px solid black;padding:5px;" class="text-right">
                                         <span t-field="o.nbt_tax"
                                               t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
                                     </td>
                         </tr>
-                        <tr style="border-bottom:1px solid #dddddd;">
+                        <tr t-if="o.invoice_type == 'tax_invoice'" style="border-bottom:1px solid #dddddd;">
                                     <td style="border: 1px solid black;padding:5px;"><strong>VAT</strong></td>
                                     <td style="border: 1px solid black;padding:5px;" class="text-right">
                                         <span t-field="o.normal_tax"
@@ -122,7 +143,7 @@
                     <br></br>
                 <table width="100%">
                     <tr style="text-align:center;vertical-align:middle;">
-                        <td>.........................</td>
+                        <td><span t-field="o.user_id"></span></td>
                         <td>.........................</td>
                         <td>.........................</td>
                     </tr>

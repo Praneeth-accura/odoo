@@ -46,5 +46,5 @@ xlwt==1.3.*
 xlrd==1.0.0
 pypiwin32 ; sys_platform == 'win32'
 dropbox
-paramiko
-python-docx
+paramiko==2.4.1
+python-docx==0.8.7

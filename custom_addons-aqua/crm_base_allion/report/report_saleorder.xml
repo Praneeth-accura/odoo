@@ -8,7 +8,7 @@
                     <div class="page">
                         <div class="oe_structure"/>
                             <h4 align="center">
-                                <span t-if="doc.state not in ['draft','sent']">Order</span>
+                                <span t-if="doc.state not in ['draft','sent']">Sales Order</span>
                                 <span t-if="doc.state in ['draft','sent']">Quotation</span>
                             </h4>
                             <table width="100%">
@@ -56,6 +56,29 @@
                                     <td width="23%">Contact Person </td>
                                     <td width="2%">:</td>
                                     <td width="25%"></td>
+                                     <td width="23%">Tax Type</td>
+                                    <td width="2%">:</td>
+                                    <td width="25%">
+                                        <span t-field="doc.tax_type"/>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td width="23%">Job Costing Code </td>
+                                    <td width="2%">:</td>
+                                    <td width="25%">
+                                        <span t-field="doc.job_costing_code"/></td>
+                                     <td width="23%">Delivery Date</td>
+                                    <td width="2%">:</td>
+                                    <td width="25%">
+                                        <span t-field="doc.delivery_date"/>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td width="23%">Installation Date</td>
+                                    <td width="2%">:</td>
+                                    <td width="25%">
+                                        <span t-field="doc.installation_date"/>
+                                    </td>
                                 </tr>
                             </table>
                         </td></tr></table>
@@ -159,7 +182,7 @@
                             <td style="border-right: 1px solid black;border-left: 1px solid black;padding:5px;">Discount</td>
                             <td style="border-right: 1px solid black;border-left: 1px solid black;padding:5px;"></td>
                             <td style="border-right: 1px solid black;border-left: 1px solid black;padding:5px;"></td>
-                            <td style="border-right: 1px solid black;border-left: 1px solid black;padding:5px;" class="text-right"><span t-field="doc.amount_discount"/></td>
+                            <td style="border-right: 1px solid black;border-left: 1px solid black;padding:5px;" class="text-right"><!--span t-field="doc.amount_discount"/--></td>
                         </tr>
                         <br></br>
                         <tr style="height:30px;">
