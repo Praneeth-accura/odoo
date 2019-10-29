@@ -160,23 +160,9 @@ class Product(models.Model):
             company_id = self.env.user.company_id.id
             return (
                 [('location_id.company_id', '=', company_id), ('location_id.usage', 'in', ['internal', 'transit'])],
-                ['&',
-                     ('location_dest_id.company_id', '=', company_id),
-                     '|',
-                         ('location_id.company_id', '=', False),
-                         '&',
-                             ('location_id.usage', 'in', ['inventory', 'production']),
-                             ('location_id.company_id', '=', company_id),
-                 ],
-                ['&',
-                     ('location_id.company_id', '=', company_id),
-                     '|',
-                         ('location_dest_id.company_id', '=', False),
-                         '&',
-                             ('location_dest_id.usage', 'in', ['inventory', 'production']),
-                             ('location_dest_id.company_id', '=', company_id),
-                 ]
-            )
+                [('location_id.company_id', '=', False), ('location_dest_id.company_id', '=', company_id)],
+                [('location_id.company_id', '=', company_id), ('location_dest_id.company_id', '=', False),
+            ])
         location_ids = []
         if self.env.context.get('location', False):
             if isinstance(self.env.context['location'], pycompat.integer_types):
@@ -274,9 +260,7 @@ class Product(models.Model):
 
         # TODO: Still optimization possible when searching virtual quantities
         ids = []
-        # Order the search on `id` to prevent the default order on the product name which slows
-        # down the search because of the join on the translation table to get the translated names.
-        for product in self.with_context(prefetch_fields=False).search([], order='id'):
+        for product in self.with_context(prefetch_fields=False).search([]):
             if OPERATORS[operator](product[field], value):
                 ids.append(product.id)
         return [('id', 'in', ids)]
@@ -451,11 +435,6 @@ class ProductTemplate(models.Model):
     def _is_cost_method_standard(self):
         return True
 
-    @api.depends(
-        'product_variant_ids',
-        'product_variant_ids.stock_move_ids.product_qty',
-        'product_variant_ids.stock_move_ids.state',
-    )
     def _compute_quantities(self):
         res = self._compute_quantities_dict()
         for template in self:

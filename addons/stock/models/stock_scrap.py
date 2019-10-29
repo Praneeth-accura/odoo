@@ -105,8 +105,7 @@ class StockScrap(models.Model):
     def do_scrap(self):
         for scrap in self:
             move = self.env['stock.move'].create(scrap._prepare_move_values())
-            # master: replace context by cancel_backorder
-            move.with_context(is_scrap=True)._action_done()
+            move._action_done()
             scrap.write({'move_id': move.id, 'state': 'done'})
         return True
 

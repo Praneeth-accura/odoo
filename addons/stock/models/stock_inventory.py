@@ -3,7 +3,7 @@
 
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 from odoo.tools import float_utils
 
 
@@ -148,13 +148,13 @@ class Inventory(models.Model):
         if self.filter == 'none' and self.product_id and self.location_id and self.lot_id:
             return
         if self.filter not in ('product', 'product_owner') and self.product_id:
-            raise ValidationError(_('The selected inventory options are not coherent.'))
+            raise UserError(_('The selected inventory options are not coherent.'))
         if self.filter != 'lot' and self.lot_id:
-            raise ValidationError(_('The selected inventory options are not coherent.'))
+            raise UserError(_('The selected inventory options are not coherent.'))
         if self.filter not in ('owner', 'product_owner') and self.partner_id:
-            raise ValidationError(_('The selected inventory options are not coherent.'))
+            raise UserError(_('The selected inventory options are not coherent.'))
         if self.filter != 'pack' and self.package_id:
-            raise ValidationError(_('The selected inventory options are not coherent.'))
+            raise UserError(_('The selected inventory options are not coherent.'))
 
     def action_reset_product_qty(self):
         self.mapped('line_ids').write({'product_qty': 0})
@@ -227,7 +227,7 @@ class Inventory(models.Model):
         if self.company_id:
             domain += ' AND company_id = %s'
             args += (self.company_id.id,)
-
+        
         #case 1: Filter on One owner only or One product for a specific owner
         if self.partner_id:
             domain += ' AND owner_id = %s'
@@ -310,9 +310,9 @@ class InventoryLine(models.Model):
         domain=[('type', '=', 'product')],
         index=True, required=True)
     product_name = fields.Char(
-        'Product Name', related='product_id.name', store=True, readonly=True, compute_sudo=True)
+        'Product Name', related='product_id.name', store=True, readonly=True)
     product_code = fields.Char(
-        'Product Code', related='product_id.default_code', store=True, readonly=True, compute_sudo=True)
+        'Product Code', related='product_id.default_code', store=True)
     product_uom_id = fields.Many2one(
         'product.uom', 'Product Unit of Measure',
         required=True,
@@ -346,18 +346,6 @@ class InventoryLine(models.Model):
         digits=dp.get_precision('Product Unit of Measure'), readonly=True, store=True)
     inventory_location_id = fields.Many2one(
         'stock.location', 'Location', related='inventory_id.location_id', related_sudo=False)
-    diff_qty = fields.Float("Difference Qty", compute='_compute_diff1', store=True)
-
-    @api.one
-    @api.depends('product_qty','theoretical_qty')
-    def _compute_diff1(self):
-        for record in self:
-            record.diff_qty = record.product_qty - record.theoretical_qty
-
-    @api.multi
-    def _compute_diff(self):
-            self.product_id.diff_qty = 10
-
 
     @api.one
     @api.depends('location_id', 'product_id', 'package_id', 'product_uom_id', 'company_id', 'prod_lot_id', 'partner_id')
@@ -418,7 +406,7 @@ class InventoryLine(models.Model):
         """
         for line in self:
             if line.product_id.type != 'product':
-                raise ValidationError(_("You can only adjust stockable products.") + '\n\n%s -> %s' % (line.product_id.display_name, line.product_id.type))
+                raise UserError(_("You can only adjust stockable products.") + '\n\n%s -> %s' % (line.product_id.display_name, line.product_id.type))
 
     def _get_quants(self):
         return self.env['stock.quant'].search([
