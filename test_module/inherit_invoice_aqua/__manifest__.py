@@ -12,7 +12,8 @@
             'delivery_report_inherit.xml',
             'purchase_order.xml',
             'purchase_order_template_inherit.xml',
-            'stock_inventory_view_inherit.xml'
+            'stock_inventory_view_inherit.xml',
+            'report/report_with_value_diff.xml'
         ],
     'installable': True,
     'application': True,

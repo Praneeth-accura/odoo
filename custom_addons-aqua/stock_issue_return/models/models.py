@@ -359,9 +359,9 @@ class StockMoveLine(models.Model):
                 prod_obj = self.env['product.template'].search([('id', '=', line.product_id.product_tmpl_id.id)])
                 prod_value = {'standard_price': line.cost}
                 prod_obj.write(prod_value)
-                line.product_id._axm_standard_price_trx_date(line.cost, line.inventory_id.date)
-            else:
-                line.product_id._axm_standard_price_trx_date(line.cost, line.inventory_id.date)
+            #     line.product_id._axm_standard_price_trx_date(line.cost, line.inventory_id.date)
+            # else:
+            #     line.product_id._axm_standard_price_trx_date(line.cost, line.inventory_id.date)
 
         return moves
 
@@ -376,10 +376,10 @@ class StockPickingCustom(models.Model):
     def button_validate(self):
         self.ensure_one()
 
-        order_date = fields.datetime.strptime(self.purchase_id.date_order, DEFAULT_SERVER_DATETIME_FORMAT)
-        scheduled_date = fields.datetime.strptime(self.scheduled_date, DEFAULT_SERVER_DATETIME_FORMAT)
-
-        if order_date > scheduled_date:
-            raise UserError(_("Scheduled date should be equal or greater than Order date"))
+        # order_date = fields.datetime.strptime(self.purchase_id.date_order, DEFAULT_SERVER_DATETIME_FORMAT)
+        # scheduled_date = fields.datetime.strptime(self.scheduled_date, DEFAULT_SERVER_DATETIME_FORMAT)
+        #
+        # if order_date > scheduled_date:
+        #     raise UserError(_("Scheduled date should be equal or greater than Order date"))
 
         return super(StockPickingCustom, self).button_validate()

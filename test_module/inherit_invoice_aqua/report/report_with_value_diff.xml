@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_value_different_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                         hello
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+    <report
+            string="Variance Report With Value"
+            id="action_report_inventory_with_value_different_xls"
+            model="stock.inventory"
+            report_type="xlsx"
+            name="inherit_invoice_aqua.report_value_different_document_xls"
+            file="inherit_invoice_aqua.report_value_different_document_xls"
+            print_report_name="'Inventory - %s' % (object.name)"
+    />
+
+    <report
+            string="Variance Report"
+            id="action_report_inventory_xls"
+            model="stock.inventory"
+            report_type="xlsx"
+            name="inherit_invoice_aqua.report_document_xls"
+            file="inherit_invoice_aqua.report_document_xls"
+            print_report_name="'Inventory Report- %s' % (object.name)"
+    />
+</odoo>
