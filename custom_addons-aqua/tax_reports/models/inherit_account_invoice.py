@@ -33,8 +33,8 @@ class InheritAccounts(models.Model):
         """computing normal tax excluding nbt_tax from overall tax"""
         self.normal_tax = self.amount_tax - self.nbt_tax
 
-    nbt_tax = fields.Float(string='NBT Tax', compute='_compute_nbt_tax')
-    normal_tax = fields.Float(string='Normal Tax', compute='_compute_normal_tax')
+    nbt_tax = fields.Float(string='NBT', compute='_compute_nbt_tax')
+    normal_tax = fields.Float(string='VAT', compute='_compute_normal_tax')
 
 
 class InheritAccountTax(models.Model):

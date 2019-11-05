@@ -7,10 +7,12 @@
                     <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
                     <div class="page">
                         <div class="oe_structure"/>
-                            <h4 align="center">
-                                <span t-if="doc.state not in ['draft','sent']">Sales Order</span>
-                                <span t-if="doc.state in ['draft','sent']">Quotation</span>
-                            </h4>
+                            <div class="crm_sale_report">
+                                <h4  align="center">
+                                    <span t-if="doc.state not in ['draft','sent']">Sales Order</span>
+                                    <span t-if="doc.state in ['draft','sent']">Quotation</span>
+                                </h4>
+                            </div>
                             <table width="100%">
                                 <tr>
                                     <td width="100%" style="border: 1px solid black;padding:5px;">
@@ -198,14 +200,10 @@
                             <td style="border-right: 1px solid black;border-left: 1px solid black;border-bottom: 1px solid black;padding:5px;"></td>
                         </tr>
                         <tr style="height:50px;">
-                                    <td style="border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;vertical-align:middle;padding:5px;" width="25%">
-                                        Amount in Words
-                                    </td>
-                                    <td style="border-top: 1px solid black;vertical-align:middle;padding:5px;border-bottom: 1px solid black;" width="3%">
-                                        :
-                                    </td>
-                                    <td style="border-top: 1px solid black;border-right: 1px solid black;vertical-align:middle;border-bottom: 1px solid black;" width="75%" colspan="5">
-                                    </td>
+                            <td  align="left" colspan="5" style="bordercrm_base_allion->report:1px solid black;vertical-align:middle;padding:5px;" width="100%">
+                                Amount in Words :
+                                <span t-field="doc.spell_total"/> only.
+                            </td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid black;vertical-align:middle;padding:5px;" width="75%" colspan="5">
