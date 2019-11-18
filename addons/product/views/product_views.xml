@@ -48,7 +48,7 @@
                                     <field name="categ_id" string="Internal Category"/>
                                     <field name="brand"/>
                                     <field name="p_category"/>
-                                    <field name="department"/>
+<!--                                    <field name="department"/>-->
                                 </group>
                                 <group name="group_standard_price">
                                     <field name="list_price" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>

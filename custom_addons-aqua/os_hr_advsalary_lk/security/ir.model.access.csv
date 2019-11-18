@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_advance_salary_request,advance.salary.request,model_advance_salary_request,hr_payroll.group_hr_payroll_user,1,1,1,1
-access_advance_salary_request_hr_user,advance.salary.request.hr.user,model_advance_salary_request,base.group_user,1,1,1,0
-access_previous_advances,previous.advances,model_previous_advances,hr_payroll.group_hr_payroll_user,1,1,1,1
-access_previous_advances_hr_user,previous.advances.hr.user,model_previous_advances,base.group_user,1,1,1,0

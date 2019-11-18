@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-
-access_crm_phonecalls_allion_access_employee,crm.phonecalls,crm_phonecall_allion.model_crm_phone_calls,group_crm_employee_1,1,1,1,1
-access_crm_phonecalls_allion_access_accountant,crm.phonecalls,crm_phonecall_allion.model_crm_phone_calls,group_crm_accountant_1,1,1,1,1
-access_crm_phonecalls_allion_access_manager,crm.phonecalls,crm_phonecall_allion.model_crm_phone_calls,group_crm_manager_1,1,1,1,1
-access_crm_phonecalls_allion_access_director,crm.phonecalls,crm_phonecall_allion.model_crm_phone_calls,group_crm_director_1,1,1,1,1
-access_crm_phonecalls_allion_access_coordinator,crm.phonecalls,crm_phonecall_allion.model_crm_phone_calls,group_crm_coordinator_1,1,1,1,1
-

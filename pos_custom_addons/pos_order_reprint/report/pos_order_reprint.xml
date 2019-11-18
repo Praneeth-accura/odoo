@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="pos_order_reprint">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div style="width: 300px;font-family: 'Inconsolata';font-size: 14px;text-align: left;">
+                                <div style="text-align: center;">
+                                    <t t-esc="datetime.datetime.strptime(o.order_date_with_tz, '%Y-%m-%d %H:%M:%S').strftime('%m/%d/%Y %H:%M:%S')"/>
+                                    <t t-esc="o.pos_reference"/>
+                                </div>
+                                <br/>
+                                <t t-esc="o.session_id.user_id.company_id.name"/>
+                                <br/>
+                                <div style="text-align: left;font-size: 14px;font-family: 'Inconsolata';">
+                                    Phone:
+                                    <t t-esc="o.session_id.user_id.company_id.phone"/>
+                                    <br/>
+                                </div>
+                                <div style="text-align: left;font-size: 14px;font-family: 'Inconsolata';">
+                                    User:
+                                    <t t-esc="o.session_id.user_id.name"/>
+                                    <br/>
+                                </div>
+                                <br/>
+                                <t t-if="o.session_id.config_id.is_header_or_footer">
+                                    <div style="text-align:center;font-size: 14px;font-family: 'Inconsolata';">
+                                        <t t-esc="o.session_id.config_id.receipt_header"/>
+                                    </div>
+                                    <br/>
+                                </t>
+                                <table style="width: 100%;font-size: 14px;font-family: 'Inconsolata';border: 0;table-layout: fixed;table-layout: fixed;border-collapse: collapse;text-align: left;word-wrap: break-word;">
+                                    <colgroup>
+                                        <col width='50%'/>
+                                        <col width='25%'/>
+                                        <col width='25%'/>
+                                    </colgroup>
+                                    <tr t-foreach="o.lines" t-as="orderline">
+                                        <td>
+                                            <t t-esc="orderline.product_id.display_name" style="font-family: 'Inconsolata'"/>
+                                        </td>
+                                        <td style="text-align: right;word-wrap: break-word;font-size: 14px;font-family: 'Inconsolata'">
+                                            <span t-esc="orderline.qty"/> <t t-if="orderline.product_id.product_tmpl_id.uom_id.category_id.name != 'Unit'"> <span t-esc="orderline.product_id.product_tmpl_id.uom_id.name"/></t> &#160;
+                                        </td>
+                                        <td style='text-align: right;word-wrap: break-word;font-size: 14px;font-family: "Inconsolata"'>
+                                            <span t-esc="orderline.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.session_id.user_id.company_id.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table style="width: 100%;font-size: 14px;font-family: 'Inconsolata';border: 0;table-layout: fixed;table-layout: fixed;border-collapse: collapse;text-align: left;border-spacing: 0px;word-wrap: break-word;">
+                                    <tr>
+                                        <td>Subtotal:</td>
+                                        <td style='text-align: right;'>
+                                            <span t-esc="sum(l.price_subtotal for l in o.lines)" t-options='{"widget": "monetary", "display_currency": o.session_id.user_id.company_id.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <t t-if="o.total_discount > 0">
+                                            <td>Discount:</td>
+                                            <td style='text-align: right;'>
+                                                <t t-esc="o.total_discount" t-options='{"widget": "monetary", "display_currency": o.session_id.user_id.company_id.currency_id}'/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                    <tr style='font-size: 20px; margin: 5px;'>
+                                        <td>Total:</td>
+                                        <td style='text-align: right;'>
+                                            <span t-esc="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.session_id.user_id.company_id.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table style="width: 100%;font-size: 14px;font-family: 'Inconsolata';border: 0;table-layout: fixed;table-layout: fixed;border-collapse: collapse;text-align: left;border-spacing: 0px;word-wrap: break-word;">
+                                    <t t-set="cash_price" t-value="0"/>
+                                    <t t-set="name" t-value="0"/>
+                                    <t t-foreach="o.statement_ids" t-as="price">
+                                      <t t-if="price.amount &gt; 0">
+                                          <t t-set="cash_price" t-value="cash_price + price.amount"/>
+                                          <t t-set="name" t-value="price.journal_id.name"/>
+                                      </t>
+                                      <tr>
+                                          <t t-if="cash_price &gt; 0">
+                                              <td>
+                                                  <span t-esc="name"/> (<span t-esc="o.session_id.user_id.company_id.currency_id.name"/>)
+                                              </td>
+                                              <td style="text-align: right;word-wrap: break-word;font-size: 14px;font-family: 'Inconsolata';">
+                                                  <t t-esc="cash_price"  t-options='{"widget": "monetary", "display_currency": o.session_id.user_id.company_id.currency_id}'/>
+                                              </td>
+                                          </t>
+                                      </tr>
+                                    </t>
+                                </table>
+                                <br/>
+                                <table style="width: 100%;font-size: 14px;font-family: 'Inconsolata';border: 0;table-layout: fixed;table-layout: fixed;border-collapse: collapse;text-align: left;border-spacing: 0px;word-wrap: break-word;">
+                                    <t t-set="change_price" t-value="0"/>
+                                    <t t-set="change_name" t-value="None"/>
+                                    <t t-foreach="o.statement_ids" t-as="change">
+                                        <t t-if="change.amount &lt; 0">
+                                          <t t-set="change_price" t-value="change_price + change.amount"/>
+                                          <t t-set="change_name" t-value="change.journal_id.name"/>
+                                        </t>
+                                    </t>
+                                    <t t-if="change_price != 0">
+                                        <tr>
+                                            <td>
+                                                <t t-if="change_name == 'Cash'">Change : </t>
+                                                <t t-if="change_name != 'Cash'"><span t-esc="change_name"/> : </t>
+                                            </td>
+                                            <td style="text-align: right;word-wrap: break-word;font-size: 14px;font-family: 'Inconsolata';">
+                                                <t t-if="change_price &lt; 0">
+                                                    <span t-esc="change_price * -1" t-options='{"widget": "monetary", "display_currency": o.session_id.user_id.company_id.currency_id}'/>
+                                                </t>
+                                                <t t-if="change_price == 0">
+                                                    <span t-esc="change_price" t-options='{"widget": "monetary", "display_currency": o.session_id.user_id.company_id.currency_id}'/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </table>
+                                <t t-if="o.session_id.config_id.is_header_or_footer">
+                                    <br />
+                                    <div style='text-align:center'>
+                                        <t t-esc="o.session_id.config_id.receipt_footer" />
+                                    </div>
+                                </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

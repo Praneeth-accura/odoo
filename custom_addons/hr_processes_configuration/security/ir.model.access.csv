@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_late_config,hr.late.configuration,model_hr_late_configuration,hr_attendance.group_hr_attendance_manager,1,1,1,1
-access_nopay_config,hr.nopay.configuration,model_hr_nopay_configuration,hr_attendance.group_hr_attendance_manager,1,1,1,1
-access_ot_config,hr.over.time.configuration,model_hr_over_time_configuration,hr_attendance.group_hr_attendance_manager,1,1,1,1
-
-access_late_config_user,hr.late.configuration.user,model_hr_late_configuration,hr_attendance.group_hr_attendance_user,0,0,0,0
-access_nopay_config_user,hr.nopay.configuration.user,model_hr_nopay_configuration,hr_attendance.group_hr_attendance_user,0,0,0,0
-access_ot_config_user,hr.over.time.configuration.user,model_hr_over_time_configuration,hr_attendance.group_hr_attendance_user,0,0,0,0

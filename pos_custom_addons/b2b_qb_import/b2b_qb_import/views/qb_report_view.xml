@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_export_qb_form" model="ir.ui.view">
+        <field name="name">qb.report.form</field>
+        <field name="model">qb.report</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+        <form string="Export QB Entries">
+             <group>
+             	<field name="qb_printed" invisible="1"/>
+             	<group attrs="{'invisible':[('qb_printed','=',True)]}" col="4" colspan="4">
+             		<group colspan="2">
+             			<label string="Period"/>
+             			<div>
+	             			<field name="date_from" class="oe_inline"/>
+	             			<field name="date_to" class="oe_inline"/>
+             			</div>
+             			<separator/>
+             			<field name='type' widget='radio'/>
+             		</group>
+             		<group colspan="2">
+             			<field name="journal_ids" class="oe_inline" widget="many2many_tags" options="{'no_create': True}"/>
+             		</group>
+             	</group>
+             	<field name="file_name" invisible="1"/>
+           		<field name="qb_file" readonly="1" filename="file_name" attrs="{'invisible':[('qb_printed','=',False)]}"/>
+             	<footer>
+		            <button string='Export' name="action_export_csv" 
+		             	type="object" class="btn-primary" attrs="{'invisible':[('qb_printed','=',True)]}"/>
+		            <button string="Cancel" class="oe_link" special="cancel"/>
+             	</footer>
+             </group>
+         </form>
+        </field>
+    </record>
+   
+    <record id="action_qb_report" model="ir.actions.act_window">
+        <field name="name">Export QB Entries</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qb.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    
+   <menuitem action="action_qb_report" id="menu_qb_report" 
+   		sequence="200" parent="account.menu_finance_entries" />
+   		
+</odoo>

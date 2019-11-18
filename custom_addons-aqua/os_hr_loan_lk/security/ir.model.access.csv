@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_loan_type_user,loan.type.user,model_loan_type,hr.group_hr_user,1,1,1,1
-access_loan_type_emp,loan.type.emp,model_loan_type,base.group_user,1,0,0,0
-access_loan_details_user,loan.details.user,model_loan_details,hr.group_hr_user,1,1,1,1
-access_loan_details_emp,loan.details.emp,model_loan_details,os_hr_loan_lk.group_loan_employee,1,1,1,0
-access_loan_witness_user,loan.witness.user,model_loan_witness,hr.group_hr_user,1,1,1,1
-access_loan_witness_emp,loan.witness.emp,model_loan_witness,base.group_user,1,1,1,0
-access_loan_installment_user,loan.installment.user,model_loan_installment,hr.group_hr_user,1,1,1,1
-access_loan_installment_emp,loan.installment.emp,model_loan_installment,base.group_user,1,0,1,1

@@ -1,6 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_allowance_rules_user,allowance.rules.user,model_allowance_rules,hr.group_hr_user,1,1,1,0
-access_allowance_rules_emp,allowance.rules.emp,model_allowance_rules,hr.group_hr_manager,1,1,1,1
-access_deduction_rules_user,deduction.rules.user,model_deduction_rules,hr.group_hr_user,1,1,1,0
-access_deduction_rules_emp,deduction.rules.emp,model_deduction_rules,hr.group_hr_manager,1,1,1,1
-
