@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="customer_invoice_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+
+                <div class="page">
+                    <div class="row">
+                        <div class="col-xs-6 o_kanban_primary_left">
+                             <table width="100%%">
+
+                                 <tr style="height:20px"> <td  style="border: 1px solid black;padding:5px;"><strong>CONSIGNEE :</strong></td></tr>
+                                 <tr style="height:120px">
+                                     <td  style="border: 1px solid black;padding:5px;">
+                                         <span t-field="o.partner_id" t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                                     </td>
+                                 </tr>
+                             </table>
+                        </div>
+                        <div class="col-xs-6 o_kanban_primary_right">
+                            <table width="100%">
+                                <tr style="height:20px"><td  style="border: 1px solid black;padding:5px;"><strong>SHIPPER :</strong></td></tr>
+                                 <tr style="height:120px">
+                                     <td  style="border: 1px solid black;padding:5px;">
+                                     <span t-field="res_company.partner_id.name"/><br/>
+                                    <span t-field="res_company.partner_id.street"/><br/>
+                                    <span t-field="res_company.partner_id.street2"/><br/>
+                                    <span t-field="res_company.partner_id.city"/><br/>
+                                    <span t-field="res_company.partner_id.country_id"/>
+                                     </td>
+                                 </tr>
+                             </table>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="row">
+                            <table border="1" width="100%">
+                                <tr><td style="font-size:20px" align="center" colspan="5"><strong>COMMERCIAL INVOICE</strong></td></tr>
+                                <br></br>
+                                <tr style="border: 1px solid black;padding:5px;">
+                                <td style="padding:5px;">Invoice Number :</td>
+                                <td style="padding:5px;"> <span t-field="o.number"/></td>
+                                    <td style="padding:5px;"></td>
+                                <td style="padding:5px;">Invoice Date :</td>
+                                <td style="padding:5px;"><p t-field="o.date_invoice"/></td>
+                            </tr>
+                          </table>
+                    </div>
+                      <br></br>
+                    <div class="row">
+                            <table width="100%">
+                                <thead>
+                                <tr>
+                                    <th style="border: 1px solid black;padding:5px;">Description of Goods</th>
+                                    <th style="border: 1px solid black;padding:5px;">Quantity</th>
+                                    <th style="border: 1px solid black;padding:5px;">Unit Price</th>
+                                    <th style="border: 1px solid black;padding:5px;">Total Value</th>
+                                </tr>
+                                </thead>
+                                 <tr>
+                                     <tbody class="sale_tbody" style="height: 200px;">
+                                    <tr t-foreach="o.invoice_line_ids" t-as="l">
+                                        <td style="border: 1px solid black;padding:5px;">
+                                            <span t-field="l.name"/>
+                                        </td>
+                                        <td style="border: 1px solid black;padding:5px;">
+                                            <span t-field="l.quantity"/>
+                                            <span t-field="l.uom_id"/>
+                                        </td>
+
+                                        <td style="border: 1px solid black;padding:5px;">
+                                            <span t-field="l.price_unit"/>
+                                        </td>
+
+                                        <td style="border: 1px solid black;padding:5px;">
+                                            <span t-field="l.price_subtotal"
+                                                  t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                         <tr>
+                                             <td style="border: 1px solid black;padding:5px;"  class="text-center" colspan="3"><strong>Total</strong></td>
+                                              <td style="border: 1px solid black;padding:5px;" class="text-left">
+                                                <span t-field="o.amount_total"
+                                                      t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                              </td>
+                                         </tr>
+                                </tbody>
+                                </tr>
+                          </table>
+                        <br></br>
+                        <br></br>
+                        <table width="100%">
+                            <tr>
+                                <td rowspan="2" style="border: 1px solid black;padding:5px;" ><strong>Name Of Vessel</strong>
+                                     <span t-field="o.arava_vessel"/>
+                                </td>
+                                <td colspan="3" style="border: 1px solid black;padding:5px;" ><strong>Purchase Contract No :</strong>
+                                     <span t-field="o.origin"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid black;padding:5px;" ><strong>Freight</strong>
+                                    <span t-field="o.arava_freight"/>
+                                </td>
+                                <td style="border: 1px solid black;padding:5px;" ><strong>Shipping Mark</strong>
+                                    <span t-field="o.arava_shipping_mark"/>
+                                </td>
+                                <td rowspan="2" style="border: 1px solid black;padding:5px;" ><strong>Beneficiary Bank Details :</strong>
+                                <span><br/>ARAVA (PRIVATE) LIMITED<br/>Bank : NDB Bank, <br/>No. 505, <br/>Sri Jayawardanapura Mawatha,<br/> Ethul Kotte,<br/> Kotte, Sri Lanka
+                                 <br/><br></br><strong>A/C No:106480004078</strong> <br/> Swift code :NDBSLKLX <br/> Tel : +94-11-244844
+                                </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid black;padding:5px;" ><strong>Port of Discharge</strong>
+                                    <span t-field="o.arava_discharge"/>
+                                </td>
+                                <td style="border: 1px solid black;padding:5px;" ><strong>Port Of Shipment</strong>
+                                    <span t-field="o.arava_shipment"/>
+                                </td>
+                                <td style="border: 1px solid black;padding:5px;" ><strong>Terms of Payments</strong>
+                                    <span t-field="o.arava_shipping_payment"/>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </t>
+
+        </t>
+    </template>
+
+    <template id="arava_customer_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="arava_templates.customer_invoice_template" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+</odoo>

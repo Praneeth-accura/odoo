@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="custom_theme assets" inherit_id="website.assets_frontend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/custom_theme/static/src/css/custom.css"/>
+            </xpath>
+        </template>
+        <template id="id" name="custom_theme_back" inherit_id="website.assets_backend">
+             <xpath expr="." position="inside">
+                 <link href="/custom_theme/static/src/css/custom.css" rel="stylesheet" type="text/css"/>
+             </xpath>
+        </template>
+    </data>
+</openerp>

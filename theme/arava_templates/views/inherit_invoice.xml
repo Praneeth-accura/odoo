@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="invoice_view_inherit" model="ir.ui.view">
+            <field name="name">invoice.view.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="arava_vessel" />
+                    <field name="arava_freight" />
+                    <field name="arava_shipping_payment" />
+                </field>
+                <field name="team_id" position="after">
+                     <field name="arava_shipping_mark" />
+                    <field name="arava_shipment" />
+                    <field name="arava_discharge" />
+                </field>
+            </field>
+        </record>
+
+</odoo>

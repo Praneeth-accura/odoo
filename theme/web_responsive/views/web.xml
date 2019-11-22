@@ -29,7 +29,7 @@
             <t t-set="body_classname" t-value="'drawer drawer--left o_web_client'" />
 
             <header role="banner">
-                <nav id="odooAppDrawer" class="app-drawer-nav drawer-nav" role="navigation">
+                <nav style="display: none;" id="odooAppDrawer" class="app-drawer-nav drawer-nav" role="navigation">
                     <t t-call="web.menu" />
                 </nav>
 
@@ -37,11 +37,11 @@
                      role="navigation"
                      groups="base.group_user,base.group_portal"
                      >
-                    f<div class="container-fluid">
+                    <div class="container-fluid">
 
                         <div class="navbar-header">
 
-                            <a class="drawer-toggle navbar-collapse collapse btn btn-default app-drawer-toggle"
+                            <a href="/" class="drawer-toggle navbar-collapse collapse btn btn-default app-drawer-toggle"
                                accesskey="A"
                                >
                                 <span class="sr-only">Toggle App Drawer</span>
@@ -257,7 +257,6 @@
                         class="row oe_application_menu_placeholder"
                         style="display: none;">
                         <t t-foreach="menu_data['children']" t-as="menu">
-<!--                            -&#45;&#45;&#45;&#45;-->
                             <div class="col-sm-4 text-center mt16">
                                 <t t-call="web.menu_link">
                                     <t t-set="display_images" t-value="1" />

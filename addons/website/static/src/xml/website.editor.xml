@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
     <div t-name="website.homepage_editor_welcome_message" class="container text-center o_homepage_editor_welcome_message">
-        <h2 class="mt0">Welcome to your <b>Homepage</b>!</h2>
-        <p class="lead hidden-xs">Let's start designing.</p>
-        <div class="o_tooltip_container hidden-xs">Follow all the <div class="o_tooltip bottom"/> signs to get your website ready in no time.</div>
+        <a href="http://localhost:7068/web#view_type=list&amp;model=sale.order&amp;menu_id=177&amp;action=243"> <h2 class="mt0"><b>Sale</b>!</h2></a>
+        <a href="http://localhost:7068/web#view_type=list&amp;model=purchase.order&amp;menu_id=240&amp;action=336"> <h2 class="mt0"><b>purchase</b>!</h2></a>
+        <a href="http://localhost:7068/web#view_type=kanban&amp;model=stock.picking.type&amp;menu_id=199&amp;action=274"> <h2 class="mt0"><b>inventory</b>!</h2></a>
     </div>
 
-    <div t-name="website.leaving_current_page_edition">
-        <p>What do you want to do?</p>
-        <p class="text-muted">Your current changes will be saved automatically.</p>
-    </div>
 </templates>

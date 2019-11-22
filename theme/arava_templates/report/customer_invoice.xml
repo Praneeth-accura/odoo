@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+     <report
+            string="Customer Invoice"
+            id="action_customer_invoice"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            name="arava_templates.arava_customer_invoice"
+            file="arava_templates.arava_customer_invoice"
+            print_report_name="'Customer - %s - %s' % (object.partner_id.name or '', object.name)"
+    />
+</odoo>

@@ -7,7 +7,7 @@ from odoo.http import Controller, request, route
 from odoo.addons.backend_theme_v11.controllers.main import DasboardBackground
 from werkzeug.utils import redirect
 
-DEFAULT_IMAGE = '/silent_material_theme/static/src/img/yello.jpeg'
+DEFAULT_IMAGE = '/silent_material_theme/static/src/img/Untitled.jpg'
 
 class NewDasboardBackground(DasboardBackground):
 

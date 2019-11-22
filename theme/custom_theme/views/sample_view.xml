@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <template id="sample_view">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure"/>
+                     <div class="container top-margin">
+                         <!--Your Contents-->
+
+                               <div class="col-md-3">
+                                    <a href="/sale">
+                                        <div class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#mymodal">
+                                            <i class="fa fa-users" id="icone_grande"></i> <br/>
+                                            <span class="texto_grande"><i class="fa fa-plus-circle"></i> Sale</span>
+                                        </div>
+                                    </a>
+                              </div>
+
+
+                             <div class="col-md-3">
+                                 <a href="http://localhost:7068/web#view_type=list&amp;model=purchase.order&amp;menu_id=240&amp;action=336">
+                                    <div class="btn btn-block btn-lg btn-danger" data-toggle="modal" data-target="#mymodal">
+                                        <i class="fa fa-user" id="icone_grande"></i> <br/>
+                                        <span class="texto_grande"><i class="fa fa-times-circle-o"></i> Purchase </span>
+                                    </div>
+                                 </a>
+                              </div>
+
+
+                            <div class="col-md-3">
+                                <a href="http://localhost:7068/web#view_type=kanban&amp;model=stock.picking.type&amp;menu_id=199&amp;action=274">
+                                    <div class="btn btn-block btn-lg btn-primary" data-toggle="modal" data-target="#mymodal">
+                                        <i class="fa fa-cog fa-spin" id="icone_grande"></i> <br/>
+                                        <span class="texto_grande"><i class="fa fa-edit"></i> Inventory</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <a href="http://localhost:7068/web#view_type=kanban&amp;model=stock.picking.type&amp;menu_id=199&amp;action=274" >
+                                    <div class="btn btn-block btn-lg btn-warning" data-toggle="modal" data-target="#mymodal">
+                                        <i class="fa fa-pied-piper-alt" id="icone_grande"></i> <br/>
+                                        <span class="texto_grande"><i class="fa fa-list-ul"></i> Invoicing</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+             </t>
+        </template>
+    </data>
+</odoo>

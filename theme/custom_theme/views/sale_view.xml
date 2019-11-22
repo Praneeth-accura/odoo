@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="sale_view">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure"/>
+                         <div class="container top-margin">
+
+                             <div class="row">
+                              <div class="col-md-3" style="padding-bottom: 4%;">
+                                  <a href="/" >
+                                    <div class="btn btn-block btn-lg btn-warning" data-toggle="modal" data-target="#mymodal">
+                                        <i class="fa fa-pied-piper-alt" id="icone_grande"></i>
+                                        <br/>
+                                        <span class="texto_grande"><i class="fa fa-list-ul"></i> Home </span>
+                                    </div>
+                                    </a>
+                              </div>
+                                 <div class="col-md-9">
+
+                                 </div>
+
+                             </div>
+
+                             <div class="row">
+
+                               <div class="col-md-3">
+                                   <a href="http://localhost:7068/web#view_type=list&amp;model=sale.order&amp;menu_id=173&amp;action=240">
+                                    <div class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#mymodal">
+                                        <i class="fa fa-users" id="icone_grande"></i>
+                                        <br/>
+                                        <span class="texto_grande"><i class="fa fa-plus-circle"></i> Sale Orders</span>
+                                    </div>
+                                   </a>
+                              </div>
+                                 <div class="col-md-1 arrow-icon">
+                                     <i class="fa fa-arrow-right"></i>
+                                  </div>
+
+                             <div class="col-md-3">
+                                  <a href="http://localhost:7068/web#view_type=list&amp;model=sale.order&amp;menu_id=177&amp;action=243">
+                                    <div class="btn btn-block btn-lg btn-danger" data-toggle="modal" data-target="#mymodal">
+                                        <i class="fa fa-user" id="icone_grande"></i> <br/>
+                                        <span class="texto_grande"><i class="fa fa-times-circle-o"></i> Quotation</span></div>
+                                  </a>
+                              </div>
+
+                                  <div class="col-md-1 arrow-icon">
+                                     <i class="fa fa-arrow-right"></i>
+                                  </div>
+
+                             <div class="col-md-3">
+                                   <a href="http://localhost:7068/web#view_type=kanban&amp;model=res.partner&amp;menu_id=153&amp;action=48">
+                                    <div class="btn btn-block btn-lg btn-danger" data-toggle="modal" data-target="#mymodal">
+                                        <i class="fa fa-user" id="icone_grande"></i> <br/>
+                                        <span class="texto_grande"><i class="fa fa-times-circle-o"></i> Customers</span></div>
+                                  </a>
+                              </div>
+                             </div>
+
+                        </div>
+                 </div>
+             </t>
+        </template>
+    </data>
+</odoo>
