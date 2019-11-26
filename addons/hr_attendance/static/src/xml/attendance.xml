@@ -92,7 +92,7 @@
     <t t-name="HrAttendanceGreetingMessage">
         <div class="o_hr_attendance_message_container o_app_switcher_background">
             <div class="o_hr_attendance_message">
-                <t t-if="widget.attendance">
+                <t t-if="widget.attendance">z
                     <t t-if="widget.attendance.check_out">
                         <h1 class="o_hr_attendance_validation">
                             Checked out at <t t-esc="widget.attendance.check_out_time"/>

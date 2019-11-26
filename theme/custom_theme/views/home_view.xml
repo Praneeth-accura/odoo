@@ -10,40 +10,40 @@
                          <!--Your Contents-->
 
                                <div class="col-md-3">
-                                    <a href="/sale">
+                                    <a href="/account">
                                         <div class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#mymodal">
                                             <i class="fa fa-users" id="icone_grande"></i> <br/>
-                                            <span class="texto_grande"><i class="fa fa-plus-circle"></i> Sale</span>
+                                            <span class="texto_grande"><i class="fa fa-plus-circle"></i>ACCOUNT</span>
                                         </div>
                                     </a>
                               </div>
 
 
                              <div class="col-md-3">
-                                 <a href="http://localhost:7068/web#view_type=list&amp;model=purchase.order&amp;menu_id=240&amp;action=336">
+                                 <a href="/pos">
                                     <div class="btn btn-block btn-lg btn-danger" data-toggle="modal" data-target="#mymodal">
                                         <i class="fa fa-user" id="icone_grande"></i> <br/>
-                                        <span class="texto_grande"><i class="fa fa-times-circle-o"></i> Purchase </span>
+                                        <span class="texto_grande"><i class="fa fa-times-circle-o"></i>POS</span>
                                     </div>
                                  </a>
                               </div>
 
 
                             <div class="col-md-3">
-                                <a href="http://localhost:7068/web#view_type=kanban&amp;model=stock.picking.type&amp;menu_id=199&amp;action=274">
+                                <a href="/crm">
                                     <div class="btn btn-block btn-lg btn-primary" data-toggle="modal" data-target="#mymodal">
                                         <i class="fa fa-cog fa-spin" id="icone_grande"></i> <br/>
-                                        <span class="texto_grande"><i class="fa fa-edit"></i> Inventory</span>
+                                        <span class="texto_grande"><i class="fa fa-edit"></i>CRM</span>
                                     </div>
                                 </a>
                             </div>
 
 
                             <div class="col-md-3">
-                                <a href="http://localhost:7068/web#view_type=kanban&amp;model=stock.picking.type&amp;menu_id=199&amp;action=274" >
+                                <a href="/hr" >
                                     <div class="btn btn-block btn-lg btn-warning" data-toggle="modal" data-target="#mymodal">
                                         <i class="fa fa-pied-piper-alt" id="icone_grande"></i> <br/>
-                                        <span class="texto_grande"><i class="fa fa-list-ul"></i> Invoicing</span>
+                                        <span class="texto_grande"><i class="fa fa-list-ul"></i>HR</span>
                                     </div>
                                 </a>
                             </div>

@@ -4,13 +4,15 @@
     'version': '1.0',
     'author': 'OneStep',
     'data': ['views/layout.xml',
-             'views/sample_view.xml',
-             'views/sale_view.xml',
-             'views/custom_theme.xml'
+             'views/home_view.xml',
+             'views/account_view.xml',
+             'views/custom_theme.xml',
+             # 'views/inherit_web_settings.xml',
              ],
     'category': 'Theme/Creative',
     'depends': ['website',
-                'sale'
+                'sale',
+                'base',
                 ],
     'css': ['static/src/css/custom.css'],
 

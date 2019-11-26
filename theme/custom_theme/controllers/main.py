@@ -13,6 +13,6 @@ class Bar(http.Controller):
 
 
 class SaleTheme(http.Controller):
-    @http.route('/sale', type='http', website=True, auth="public")
+    @http.route('/account', type='http', website=True, auth="public")
     def page_certificate_verification(self, **kw):
-        return request.render('custom_theme.sale_view')
+        return request.render('custom_theme.account_view')

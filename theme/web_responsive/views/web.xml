@@ -112,11 +112,21 @@
                 <ul style="display: none"
                     class="oe_secondary_menu nav navbar-nav"
                     t-att-data-menu-parent="menu['id']">
+
                     <li class="app-name">
                         <span class="oe_menu_text">
-                            <t t-esc="menu['name']"/>
+                            <t t-if="menu['name']=='Sales'" >
+                                <a href="/account"> <t t-esc="menu['name']" /></a>
+                            </t>
+                             <t t-if="menu['name']=='Purchases'" >
+                                <a href="/purchase"> <t t-esc="menu['name']" /></a>
+                            </t>
+                           <t t-if="menu['name']!='Purchases' and menu['name']!='Sales' " >
+                                <t  t-esc="menu['name']"/>
+                           </t>
                         </span>
                     </li>
+
                     <li>
                         <t t-call="web.menu_secondary_submenu" />
                     </li>
