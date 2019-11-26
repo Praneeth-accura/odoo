@@ -9,6 +9,7 @@
                      <field name="gross_weight" />
                      <field name="deduction" />
                      <field name="pro_gross_field" />
+                     <field name="gross_mul_ded" invisible="1" />
                 </xpath>
             </field>
      </record>
