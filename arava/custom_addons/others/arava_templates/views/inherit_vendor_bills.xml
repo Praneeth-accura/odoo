@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//tree//field[@name='analytic_tag_ids']" position="after">
                      <field name="gross" />
+                     <field name="deduction" />
                 </xpath>
             </field>
      </record>
